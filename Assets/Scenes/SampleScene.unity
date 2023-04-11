@@ -205,6 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 136394852}
   - component: {fileID: 136394851}
+  - component: {fileID: 136394853}
   m_Layer: 0
   m_Name: background
   m_TagString: Untagged
@@ -276,6 +277,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &136394853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136394850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d9f4d57978631a4b96524ed3746dd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newColor: {r: 0.8113208, g: 0.14159843, b: 0.14159843, a: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,6 +409,45 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 832645524906405556}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &1122372281
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122372280}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.39, y: 0.38}
+    newSize: {x: 0.39, y: 0.39}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.39, y: 0.38}
+  m_EdgeRadius: 0
+--- !u!114 &1122372284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122372280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d9f4d57978631a4b96524ed3746dd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newColor: {r: 0, g: 0.7275305, b: 1, a: 1}
 --- !u!1 &1428672411
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,10 +478,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 1122372280}
-  leftpos: {x: -7.8, y: 3.81, z: 0}
-  rightpos: {x: -7.8, y: 3.81, z: 0}
-  one: {r: 1, g: 1, b: 1, a: 1}
-  zero: {r: 0, g: 0.6765175, b: 1, a: 1}
+  leftpos: {x: -7.8, y: 4.5, z: 0}
+  rightpos: {x: -7.8, y: 4.5, z: 0}
+  one: {r: 0, g: 0.7294118, b: 1, a: 1}
+  zero: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
+  src: {r: 0.053904653, g: 1, b: 0, a: 1}
   rend: {fileID: 0}
 --- !u!4 &1428672413
 Transform:

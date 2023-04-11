@@ -8,6 +8,9 @@ public class MET : MonoBehaviour
     private GameObject spawn;
 
     private GameObject[,] myArray = new GameObject[100, 100];
+    private int[,] save1 = new int[100, 100];
+
+    
     private int i = 0, j = 0;
     
     [SerializeField]
@@ -22,29 +25,72 @@ public class MET : MonoBehaviour
     [SerializeField]
     public Color zero=new Color();
 
+    [SerializeField]
+    public Color src=new Color();
+
     public SpriteRenderer rend;
     private void Start()
     {   
-        for(int i=0;i<17;i++){
+        for(int i=0;i<19;i++){
             for(int j=0;j<26;j++){
                 myArray[i, j] = Instantiate(spawn, leftpos, transform.rotation);
                 leftpos += new Vector3(0.5f, 0f, 0f);
-                if(i%2==1){
-                    myArray[i,j].GetComponent<SpriteRenderer>().color=one;
-                }else{
-                    myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
-                }
+                myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
             }
             rightpos+=new Vector3(0f,-0.5f,0f);
             leftpos=rightpos;
         }
-        myArray[0,0].GetComponent<SpriteRenderer>().color = zero;
-
     }
     //j->17 i->26
     private void Update()
-    {
-       
+    { 
+    //   myArray[0,7].GetComponent<SpriteRenderer>().color=src;
+      if(Input.GetKeyDown(KeyCode.S)){
+        saveThemaze();
+      }
+      if(Input.GetKeyDown(KeyCode.D)){
+        displaySaved();
+      }
+      if(Input.GetKeyDown(KeyCode.R)){
+        resetThemaze();
+      }
+    }
+   private void saveThemaze(){
+        for(int i=0;i<19;i++){
+            for(int j=0;j<26;j++){
+                if(myArray[i,j].GetComponent<SpriteRenderer>().color!=zero){
+                    save1[i,j]=1;
+                }else{
+                    save1[i,j]=0;
+                }
+            }
+        }
+        Debug.Log("saved successfully");
+   }
+   private void displaySaved(){
+         for(int i=0;i<19;i++)
+        {
+        for(int j=0;j<26;j++)
+        {
+            if(save1[i,j]==1)
+            {
+                myArray[i,j].GetComponent<SpriteRenderer>().color=one;
+            }
+            else
+            {
+                myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
+            }
+        }
+    }
+    Debug.Log("overwrited successfully");
+    }
+    private void resetThemaze(){
+        for(int i=0;i<19;i++){
+            for(int j=0;j<26;j++){
+                myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
+            }
+        }
+        Debug.Log("Reset Successfully");
     }
 }
 
