@@ -1,4 +1,4 @@
-using System.Collections;
+  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -9,12 +9,11 @@ public class MET : MonoBehaviour
     [SerializeField]
     private GameObject spawn;
 
-    private GameObject[,] myArray = new GameObject[100, 100];
+    public static GameObject[,] myArray = new GameObject[100, 100];
     private int[,] d1=new int[100,100];
     private int[,] d2 = new int[100, 100];
     private int[,] save1 = new int[100, 100];
 
-    private int i = 0, j = 0;
     
     [SerializeField]
     public Vector3 leftpos;
@@ -23,18 +22,22 @@ public class MET : MonoBehaviour
     public Vector3 rightpos;
 
     [SerializeField]
-    public Color one=new Color();
+    public static Color one=new Color(0f, 162f, 255f);
 
     [SerializeField]
-    public Color zero=new Color();
+    public static Color zero=new Color(54f / 255f, 54f / 255f, 54f / 255f);
 
     [SerializeField]
     public Color src=new Color();
 
     public SpriteRenderer rend;
-
+    public static MET instance;
     private void Start()
-    {   
+    {   if(instance!=null){
+            Destroy(this.gameObject);
+            return;
+        }
+        instance=this;
         for(int i=0;i<19;i++){
             for(int j=0;j<26;j++){
                 myArray[i, j] = Instantiate(spawn, leftpos, transform.rotation);
@@ -46,7 +49,9 @@ public class MET : MonoBehaviour
         }
 
         defaultMaze("d1.txt",ref d1);
-        defaultMaze("d2.txt",ref d2);
+        defaultMaze("d2.txt",ref d2); 
+
+        GameObject.DontDestroyOnLoad(gameObject);
     }
 
     void defaultMaze(string fel,ref int [,]ar){
@@ -139,7 +144,6 @@ public class MET : MonoBehaviour
                 }else{
                     myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
                 }
-                
             }
         }
     }
