@@ -25,10 +25,10 @@ public class FloodFill_Algo : MonoBehaviour
             if (hit.collider != null)
             {
                 GameObject hitObject = hit.collider.gameObject;
-                hitObject.GetComponent<SpriteRenderer>().color=Color.green;
-                flooded=true;
+                hitObject.GetComponent<SpriteRenderer>().color=new Color(185f, 94f, 255f);
+                // flooded=true;
                 floodFill();
-                flooded=false;
+                // flooded=false;
             }
         }
     }
@@ -37,7 +37,7 @@ public class FloodFill_Algo : MonoBehaviour
         //first find pixel which is green
         for(int i=0;i<19;i++){
             for(int j=0;j<26;j++){
-                if(MET.myArray[i,j].GetComponent<SpriteRenderer>().color==Color.green){
+                if(MET.myArray[i,j].GetComponent<SpriteRenderer>().color==new Color(185f, 94f, 255f)){
                     MET.myArray[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
                     floody(i,j);
                     break;
@@ -69,8 +69,8 @@ public class FloodFill_Algo : MonoBehaviour
 
     IEnumerator DelayedFunction(int row,int column)
     {
-        yield return new WaitForSeconds(0.2f);
-        Debug.Log("Delayed function executed");
+        yield return new WaitForSeconds(0.0000f);
+        // Debug.Log("Delayed function executed");
         floody(row, column);
     }
 }

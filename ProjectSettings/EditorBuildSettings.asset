@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Flood.unity
     guid: 578576a5ee8886d43a5010499c0abd68
+  - enabled: 1
+    path: Assets/Scenes/setDSTandSRC.unity
+    guid: f112d8b4dce894846b2b09b497544db6
+  - enabled: 1
+    path: Assets/Scenes/Backtracking.unity
+    guid: 9942a35361085564991ea823cccace4a
   m_configObjects: {}
