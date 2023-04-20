@@ -14,6 +14,8 @@ public class MET : MonoBehaviour
     private int[,] d2 = new int[100, 100];
     private int[,] save1 = new int[100, 100];
 
+    public static int ROW=19;
+    public static int COL=26;
     
     [SerializeField]
     public Vector3 leftpos;
