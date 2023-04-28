@@ -259,7 +259,7 @@ TextureImporter:
         serializedVersion: 2
         x: 1520
         y: 533
-        width: 153
+        width: 372
         height: 91
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -270,27 +270,6 @@ TextureImporter:
       bones: []
       spriteID: 0e9dc56c9668f4940800000000000000
       internalID: 5282588676786543072
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DESTINATION BUTTON
-      rect:
-        serializedVersion: 2
-        x: 1728
-        y: 533
-        width: 164
-        height: 91
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: acb4cccacd6ca2ef0800000000000000
-      internalID: -132074587959833654
       vertices: []
       indices: 
       edges: []
@@ -325,7 +304,7 @@ TextureImporter:
         width: 372
         height: 91
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

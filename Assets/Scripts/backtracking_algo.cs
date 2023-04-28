@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading;
 
 public class backtracking_algo : MonoBehaviour
 {   
     private int[,] maze=new int[MET.ROW,MET.COL];
     private int[,] ans=new int[MET.ROW,MET.COL];
 
-
     [SerializeField]
     private Color pathColor=new Color();
+    // private int sx=0,sy=0,dx=MET.ROW-1,dy=MET.COL-1;
+    private float DELAY=0.1f;
+
+    
     void Start()
-    {
+    {   
+        // GameObject temp= GameObject.FindWithTag("setsrc");
+        // temp.SetActive(false);
         for(int i=0;i<MET.ROW;i++){
             for(int j=0;j<MET.COL;j++){
                 if(MET.myArray[i,j].GetComponent<SpriteRenderer>().color==MET.one){
@@ -22,68 +26,68 @@ public class backtracking_algo : MonoBehaviour
                 }
             }
         }
-        backtrack(0,0);
+        StartCoroutine(backtrack(SETDSTSRC.sx,SETDSTSRC.sy));
     }
 
     void Update()
     {
-        
+       
     }
-
-    
-    bool backtrack(int row, int col)
+    private bool done=false;
+    IEnumerator backtrack(int row, int col)
     {
-        if (row == MET.ROW - 1 && col == MET.COL - 1)
+        if (row == SETDSTSRC.dx && col == SETDSTSRC.dy)
         {
-            // Reached the destination
-            return true;
+            MET.myArray[row, col].GetComponent<SpriteRenderer>().color = pathColor;
+            yield return new WaitForSeconds(DELAY);
+            // yield return null;
+            done=true;
+            yield break;
         }
-
-        // Mark current cell as part of the solution path
         MET.myArray[row, col].GetComponent<SpriteRenderer>().color = pathColor;
         ans[row, col] = 1;
-        
-        // Try all possible moves from the current cell
+
+        yield return new WaitForSeconds(DELAY);
+
         if (isValidMove(row + 1, col))
         {
-            // Move down
-            if (backtrack(row + 1, col)) return true;
+            yield return StartCoroutine(backtrack(row + 1, col));
+            if(done)yield break;
+            // yield break;
         }
 
         if (isValidMove(row, col + 1))
         {
-            // Move right
-            if (backtrack(row, col + 1)) return true;
+            yield return StartCoroutine(backtrack(row, col + 1));
+            if(done)yield break;
+            // yield break;
         }
 
         if (isValidMove(row - 1, col))
         {
-            // Move up
-            if (backtrack(row - 1, col)) return true;
+            yield return StartCoroutine(backtrack(row - 1, col));
+            if(done)yield break;
+            // yield break;
         }
 
         if (isValidMove(row, col - 1))
         {
-            // Move left
-            if (backtrack(row, col - 1)) return true;
+            yield return StartCoroutine(backtrack(row, col - 1));
+            if(done)yield break;
+            // yield break;
         }
 
-        // Backtrack
+            yield return new WaitForSeconds(DELAY);
         MET.myArray[row, col].GetComponent<SpriteRenderer>().color = MET.one;
         ans[row, col] = 0;
-        return false;
+        yield return null;
+        // yield break;
     }
 
     bool isValidMove(int row, int col)
-    {
-        // Check if the cell is within the maze boundaries and is not a wall or already visited
-        return row >= 0 && row < MET.ROW && col >= 0 && col < MET.COL && maze[row, col] == 1 && ans[row, col] == 0;
+    {   bool a=row >= 0 && row < MET.ROW && col >= 0 && col < MET.COL && maze[row, col] == 1 && ans[row, col] == 0;
+        return a;
     }
 
-    IEnumerator caller(int row, int col)
-    {
-        yield return new WaitForSeconds(0.1f); // adjust the delay time as needed
-        
-    }
 
 }

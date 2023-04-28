@@ -6,13 +6,33 @@ using System.IO;
 
 public class MET : MonoBehaviour
 {   
-    [SerializeField]
+    // [SerializeField]
     private GameObject spawn;
 
     public static GameObject[,] myArray = new GameObject[100, 100];
     private int[,] d1=new int[100,100];
     private int[,] d2 = new int[100, 100];
+    private int[,] d3={{1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0},
+    {1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0},
+    {1,1,1,1,1,1,1,1,0,0,1,1,1,0,1,1,1,1,0,0,0,1,0,0,0,0},
+    {0,0,0,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,1,0,1,1,1,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0},
+    {0,0,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0},
+    {0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,0},
+    {0,0,1,0,0,0,0,0,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0},
+    {0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,1,1,1,0,1,1,1,1,1,1,0},
+    {0,0,1,0,1,1,1,1,1,0,0,1,1,1,0,0,0,1,0,1,0,0,0,0,0,0},
+    {1,1,1,0,1,0,0,0,0,0,1,1,0,1,0,0,0,1,0,1,1,1,1,0,0,0},
+    {1,0,1,0,1,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0,1,0,0,0},
+    {1,0,1,1,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,0,0},
+    {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0},
+    {0,0,1,1,1,1,1,0,1,1,1,1,0,0,0,1,0,0,0,0,0,1,1,1,1,0},
+    {0,0,1,0,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,0,1,0,0,1,0},
+    {0,0,1,1,1,0,0,1,1,1,0,1,0,1,0,0,0,0,0,0,0,1,0,1,1,0},
+    {0,0,0,0,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,0,0},
+    {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1}};
     private int[,] save1 = new int[100, 100];
+
 
     public static int ROW=19;
     public static int COL=26;
@@ -34,26 +54,36 @@ public class MET : MonoBehaviour
 
     public SpriteRenderer rend;
     public static MET instance;
+
     private void Start()
-    {   if(instance!=null){
+    {
+        spawn=GameObject.FindWithTag("blk");
+        if(instance!=null){
             Destroy(this.gameObject);
             return;
         }
         instance=this;
         for(int i=0;i<19;i++){
-            for(int j=0;j<26;j++){
+            for(int j=0;j<26;j++){               
+                // spawn.x=3;
+                
                 myArray[i, j] = Instantiate(spawn, leftpos, transform.rotation);
                 leftpos += new Vector3(0.5f, 0f, 0f);
                 myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
+
+                myArray[i,j].GetComponent<Flip>().x=i;
+                myArray[i,j].GetComponent<Flip>().y=j;
+                // Debug.Log(myArray[i,j].GetComponent<Flip>().x);
             }
             rightpos+=new Vector3(0f,-0.5f,0f);
             leftpos=rightpos;
         }
 
         defaultMaze("d1.txt",ref d1);
-        defaultMaze("d2.txt",ref d2); 
+        defaultMaze("d2.txt",ref d2);
 
         GameObject.DontDestroyOnLoad(gameObject);
+
     }
 
     void defaultMaze(string fel,ref int [,]ar){
@@ -83,6 +113,9 @@ public class MET : MonoBehaviour
       }
       if(Input.GetKeyDown(KeyCode.G)){
         defaultFlood(ref d2);
+      } 
+      if(Input.GetKeyDown(KeyCode.H)){
+        defaultMaze();
       }
     }
 
@@ -142,6 +175,18 @@ public class MET : MonoBehaviour
         for(int i=0;i<19;i++){
             for(int j=0;j<26;j++){
                 if(ar[i,j]==1){
+                    myArray[i,j].GetComponent<SpriteRenderer>().color=one;
+                }else{
+                    myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
+                }
+            }
+        }
+    }
+
+    private void defaultMaze(){
+        for(int i=0;i<19;i++){
+            for(int j=0;j<26;j++){
+                if(d3[i,j]==1){
                     myArray[i,j].GetComponent<SpriteRenderer>().color=one;
                 }else{
                     myArray[i,j].GetComponent<SpriteRenderer>().color=zero;

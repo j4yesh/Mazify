@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c97fc170068964c8786fd07cd6c131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathColor: {r: 0, g: 0.9433962, b: 0.59249717, a: 1}
+  pathColor: {r: 0.94509804, g: 0, b: 0.04926772, a: 1}
 --- !u!4 &1098498480
 Transform:
   m_ObjectHideFlags: 0

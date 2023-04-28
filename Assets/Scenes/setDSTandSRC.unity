@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 79117985}
   m_Layer: 0
   m_Name: SET
-  m_TagString: Untagged
+  m_TagString: setsrc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,8 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff36e4af82acb84e8af6bd635acab56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cc: {r: 1, g: 0.18261102, b: 0.1745283, a: 1}
-  rr: {r: 0.33834857, g: 1, b: 0.25, a: 1}
 --- !u!4 &79117986
 Transform:
   m_ObjectHideFlags: 0

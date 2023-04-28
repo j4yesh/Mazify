@@ -8,25 +8,29 @@ public class Flip : MonoBehaviour
     private Color originalColor;
     private bool isdown=false;
     private bool blek=false;
+
+    // [SerializeField]
+    public int x,y;
+
     private void Start()
     {   
         originalColor=GetComponent<SpriteRenderer>().color;
         GameObject.DontDestroyOnLoad(this.gameObject);
     }
 
-    private void OnMouseEnter()
-    {   
-        if(isdown){
-            GetComponent<SpriteRenderer>().color = newColor;
-        }
-        if(blek){
-            GetComponent<SpriteRenderer>().color = originalColor;
-        }
-    }
-    private void OnMouseDown(){
-            // GetComponent<SpriteRenderer>().color=Color.green;
-            // floodFill();
-    }
+    // private void OnMouseEnter()
+    // {   
+    //     if(isdown){
+    //         GetComponent<SpriteRenderer>().color = newColor;
+    //     }
+    //     if(blek){
+    //         GetComponent<SpriteRenderer>().color = originalColor;
+    //     }
+    // }
+    // private void OnMouseDown(){
+    //         // GetComponent<SpriteRenderer>().color=Color.green;
+    //         // floodFill();
+    // }
     
     void Update(){
         // Draw();
