@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +13,18 @@ public class SETDSTSRC : MonoBehaviour
    
     public static Color rr = Color.green;
 
+    public Color psrc=MET.zero;
+
+    public Color pdst=MET.zero;
+
     public static SETDSTSRC sds;
 
     private GameObject spawn;
 
     public static int sx=0,sy=0,dx=18,dy=25;
+
+    [SerializeField]
+    public testconfirmation tc=new testconfirmation();
 
     private void Start()
     {   
@@ -43,12 +50,15 @@ public class SETDSTSRC : MonoBehaviour
                     Destroy(prevSRC);
                 }
                     GameObject hitObject = hit.collider.gameObject;
+
+                    psrc=hitObject.GetComponent<SpriteRenderer>().color;
+
                     Vector3 spawnPosition = hitObject.transform.position;
                     prevSRC=Instantiate(spawn, spawnPosition, Quaternion.identity); 
                     prevSRC.GetComponent<SpriteRenderer>().color=cc;
                     prevSRC.GetComponent<Renderer>().sortingOrder=10;
-                sx=hitObject.GetComponent<Flip>().x;
-                sy=hitObject.GetComponent<Flip>().y;
+                    sx=hitObject.GetComponent<Flip>().x;
+                    sy=hitObject.GetComponent<Flip>().y;
             }
         }
 
@@ -63,12 +73,20 @@ public class SETDSTSRC : MonoBehaviour
                     Destroy(prevDST);
                 }
                     GameObject hitObject = hit.collider.gameObject;
+
+                    pdst=hitObject.GetComponent<SpriteRenderer>().color;
+
+                    if(psrc!=pdst || psrc==MET.zero){
+                        tc.openconfirmationwindow("invalid h brohh!");
+                    }else
+                    {
                     Vector3 spawnPosition = hitObject.transform.position;
                     prevDST=Instantiate(spawn, spawnPosition, Quaternion.identity); 
                     prevDST.GetComponent<SpriteRenderer>().color=rr;
                     prevDST.GetComponent<Renderer>().sortingOrder=10;
-                dx=hitObject.GetComponent<Flip>().x;
-                dy=hitObject.GetComponent<Flip>().y;
+                    dx=hitObject.GetComponent<Flip>().x;
+                    dy=hitObject.GetComponent<Flip>().y;
+                    }
             }
         }
     }
