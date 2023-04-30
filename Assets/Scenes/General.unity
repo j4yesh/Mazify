@@ -622,6 +622,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261a9ab6a987fbd4091211263fbcc5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1755708447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4004787608025871239, guid: eb92049abee9aaf47a58bec5b0d2e87b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4004787606736043036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1799871324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1430,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
         type: 3}
+      propertyPath: elementsToDisable.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
       propertyPath: a
       value: 
       objectReference: {fileID: 817299097}
@@ -1437,6 +1448,66 @@ PrefabInstance:
       propertyPath: noButton
       value: 
       objectReference: {fileID: 755172033}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1755708447}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[1]
+      value: 
+      objectReference: {fileID: 741081757}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[2]
+      value: 
+      objectReference: {fileID: 73451846}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[3]
+      value: 
+      objectReference: {fileID: 73451846}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[4]
+      value: 
+      objectReference: {fileID: 73451846}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[5]
+      value: 
+      objectReference: {fileID: 73451846}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[7]
+      value: 
+      objectReference: {fileID: 373004296}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[8]
+      value: 
+      objectReference: {fileID: 373004296}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[9]
+      value: 
+      objectReference: {fileID: 373004296}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[10]
+      value: 
+      objectReference: {fileID: 373004296}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[11]
+      value: 
+      objectReference: {fileID: 373004296}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6da4a162135d549469cd5ab64b23ca92, type: 3}
 --- !u!1001 &4004787606736043036

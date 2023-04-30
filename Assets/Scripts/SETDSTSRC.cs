@@ -24,7 +24,7 @@ public class SETDSTSRC : MonoBehaviour
     public static int sx=0,sy=0,dx=18,dy=25;
 
     [SerializeField]
-    public testconfirmation tc=new testconfirmation();
+    public testconfirmation tc;
 
     private void Start()
     {   

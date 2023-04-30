@@ -12,7 +12,10 @@ public class backtracking_algo : MonoBehaviour
     // private int sx=0,sy=0,dx=MET.ROW-1,dy=MET.COL-1;
     private float DELAY=0.1f;
 
+    [SerializeField]
+    private testconfirmation tc;
     
+    private bool notfound=false;
     void Start()
     {   
         // GameObject temp= GameObject.FindWithTag("setsrc");
@@ -27,12 +30,24 @@ public class backtracking_algo : MonoBehaviour
             }
         }
         StartCoroutine(backtrack(SETDSTSRC.sx,SETDSTSRC.sy));
+        // while(notfound!=true||done!=true){
+
+        // }
+        // if(notfound==false){
+        //     tc.openconfirmationwindow("PATH NOT FOUND BRUHH!");
+        // }
+    }
+    void Update(){
+        if(notfound){
+            tc.openconfirmationwindow("PATH NOT FOUND BRUHH!");
+            notfound=false;
+        }
+        if(done){
+            tc.openconfirmationwindow("PATH FOUND BRUHHH!");
+            done=false;
+        }
     }
 
-    void Update()
-    {
-       
-    }
     private bool done=false;
     IEnumerator backtrack(int row, int col)
     {
@@ -80,6 +95,11 @@ public class backtracking_algo : MonoBehaviour
             yield return new WaitForSeconds(DELAY);
         MET.myArray[row, col].GetComponent<SpriteRenderer>().color = MET.one;
         ans[row, col] = 0;
+
+        if(MET.myArray[SETDSTSRC.sx, SETDSTSRC.sy].GetComponent<SpriteRenderer>().color == MET.one){
+            notfound=true;
+        }
+
         yield return null;
         // yield break;
     }

@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff36e4af82acb84e8af6bd635acab56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  psrc: {r: 0.21176471, g: 0.21176471, b: 0.21176471, a: 1}
+  pdst: {r: 0.21176471, g: 0.21176471, b: 0.21176471, a: 1}
   tc: {fileID: 1885637809}
 --- !u!4 &79117986
 Transform:
@@ -581,6 +583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
         type: 3}
+      propertyPath: elementsToDisable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
       propertyPath: yesButton
       value: 
       objectReference: {fileID: 303070418}
@@ -594,6 +601,11 @@ PrefabInstance:
       propertyPath: a
       value: 
       objectReference: {fileID: 303070419}
+    - target: {fileID: 1478876142934503679, guid: 6da4a162135d549469cd5ab64b23ca92,
+        type: 3}
+      propertyPath: elementsToDisable.Array.data[0]
+      value: 
+      objectReference: {fileID: 79117984}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6da4a162135d549469cd5ab64b23ca92, type: 3}
 --- !u!114 &1885637809 stripped
