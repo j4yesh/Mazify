@@ -8,5 +8,6 @@ public class confirmORNOT : MonoBehaviour
 {
     public Button yesButton;
     public Button noButton;
-    public TextMeshProUGUI messageText; 
+    public TextMeshProUGUI msgText;
+
 }
