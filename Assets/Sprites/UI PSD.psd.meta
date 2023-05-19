@@ -29,6 +29,12 @@ TextureImporter:
   - first:
       213: -4278474527924449995
     second: BACKTRACKING
+  - first:
+      213: -132074587959833654
+    second: DIJKSTRASALGO
+  - first:
+      213: -1069817261660711696
+    second: SNAKE GAME
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -312,6 +318,48 @@ TextureImporter:
       bones: []
       spriteID: 53d818ec51ecf94c0800000000000000
       internalID: -4278474527924449995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DIJKSTRASALGO
+      rect:
+        serializedVersion: 2
+        x: 1521
+        y: 204
+        width: 371
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acb4cccacd6ca2ef0800000000000000
+      internalID: -132074587959833654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SNAKE GAME
+      rect:
+        serializedVersion: 2
+        x: 1521
+        y: 94
+        width: 370
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f4d1206ede3721f0800000000000000
+      internalID: -1069817261660711696
       vertices: []
       indices: 
       edges: []

@@ -5,6 +5,7 @@ using UnityEngine;
 public class FloodFill_Algo : MonoBehaviour
 {
     private bool flooded=false;
+    private int row,col;
     // public static FloodFill_Algo ffinst;
     void Start()
     {   
@@ -22,28 +23,29 @@ public class FloodFill_Algo : MonoBehaviour
         if(!flooded && Input.GetMouseButton(0)){
             Vector3 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector3.forward);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.transform.gameObject.tag=="blk")
             {
                 GameObject hitObject = hit.collider.gameObject;
-                hitObject.GetComponent<SpriteRenderer>().color=new Color(185f, 94f, 255f);
-                // flooded=true;
+                // hitObject.GetComponent<SpriteRenderer>().color=new Color(185f, 94f, 255f);
+                row=hitObject.GetComponent<Flip>().x;
+                col=hitObject.GetComponent<Flip>().y;
                 floodFill();
-                // flooded=false;
             }
         }
     }
 
      void floodFill(){
         //first find pixel which is green
-        for(int i=0;i<19;i++){
-            for(int j=0;j<26;j++){
-                if(MET.myArray[i,j].GetComponent<SpriteRenderer>().color==new Color(185f, 94f, 255f)){
-                    MET.myArray[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
-                    floody(i,j);
-                    break;
-                }
-            }
-        }
+        // for(int i=0;i<19;i++){
+        //     for(int j=0;j<26;j++){
+        //         if(MET.myArray[i,j].GetComponent<SpriteRenderer>().color==new Color(185f, 94f, 255f)){
+        //             MET.myArray[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+        //             floody(i,j);
+        //             break;
+        //         }
+        //     }
+        // }
+        floody(row,col);
     }
     void floody(int row, int column)
     {

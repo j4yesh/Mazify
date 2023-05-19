@@ -338,27 +338,32 @@ PrefabInstance:
     - target: {fileID: 518626769780628164, guid: ad5034c711d5bc7479a0342d70e4d43c,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 518626769780628164, guid: ad5034c711d5bc7479a0342d70e4d43c,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 518626769780628164, guid: ad5034c711d5bc7479a0342d70e4d43c,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 518626769780628164, guid: ad5034c711d5bc7479a0342d70e4d43c,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 518626769780628164, guid: ad5034c711d5bc7479a0342d70e4d43c,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 518626769780628164, guid: ad5034c711d5bc7479a0342d70e4d43c,
+        type: 3}
+      propertyPath: m_margin.y
+      value: 10.890503
       objectReference: {fileID: 0}
     - target: {fileID: 518626770727668739, guid: ad5034c711d5bc7479a0342d70e4d43c,
         type: 3}

@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Backtracking.unity
     guid: 9942a35361085564991ea823cccace4a
+  - enabled: 1
+    path: Assets/Scenes/dijkshtra.unity
+    guid: 402c3c8daf41d354aba0aae3206c60d0
+  - enabled: 1
+    path: Assets/Scenes/snakeGame.unity
+    guid: b192bb73b6ac74b4e9ebd994ba465927
   m_configObjects: {}

@@ -38,14 +38,14 @@ public class backtracking_algo : MonoBehaviour
         // }
     }
     void Update(){
-        if(notfound){
-            tc.openconfirmationwindow("PATH NOT FOUND BRUHH!");
-            notfound=false;
-        }
-        if(done){
-            tc.openconfirmationwindow("PATH FOUND BRUHHH!");
-            done=false;
-        }
+        // if(notfound){
+        //     tc.openconfirmationwindow("PATH NOT FOUND BRUHH!");
+        //     notfound=false;
+        // }
+        // if(done){
+        //     tc.openconfirmationwindow("PATH FOUND BRUHHH!");
+        //     done=false;
+        // }
     }
 
     private bool done=false;
@@ -57,6 +57,7 @@ public class backtracking_algo : MonoBehaviour
             yield return new WaitForSeconds(DELAY);
             // yield return null;
             done=true;
+            tc.openconfirmationwindow("PATH FOUND BRUHHH!");
             yield break;
         }
         MET.myArray[row, col].GetComponent<SpriteRenderer>().color = pathColor;
@@ -98,6 +99,7 @@ public class backtracking_algo : MonoBehaviour
 
         if(MET.myArray[SETDSTSRC.sx, SETDSTSRC.sy].GetComponent<SpriteRenderer>().color == MET.one){
             notfound=true;
+            tc.openconfirmationwindow("PATH NOT FOUND BRUHH!");
         }
 
         yield return null;

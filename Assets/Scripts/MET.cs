@@ -35,7 +35,7 @@ public class MET : MonoBehaviour
 
 
     public static int ROW=19;
-    public static int COL=26;
+    public static int COL=27;
     
     [SerializeField]
     public Vector3 leftpos;
@@ -63,8 +63,8 @@ public class MET : MonoBehaviour
             return;
         }
         instance=this;
-        for(int i=0;i<19;i++){
-            for(int j=0;j<26;j++){               
+        for(int i=0;i<MET.ROW;i++){
+            for(int j=0;j<MET.COL;j++){               
                 // spawn.x=3;
                 
                 myArray[i, j] = Instantiate(spawn, leftpos, transform.rotation);
@@ -99,22 +99,22 @@ public class MET : MonoBehaviour
     private void Update()
     { 
     //   myArray[0,7].GetComponent<SpriteRenderer>().color=src;
-      if(Input.GetKeyDown(KeyCode.S)){
+      if(Input.GetKeyDown(KeyCode.T)){
         saveThemaze();
       }
-      if(Input.GetKeyDown(KeyCode.D)){
+      if(Input.GetKeyDown(KeyCode.Y)){
         displaySaved();
       }
-      if(Input.GetKeyDown(KeyCode.R)){
+      if(Input.GetKeyDown(KeyCode.U)){
         resetThemaze();
       }
-      if(Input.GetKeyDown(KeyCode.F)){
+      if(Input.GetKeyDown(KeyCode.I)){
         defaultFlood(ref d1);
       }
-      if(Input.GetKeyDown(KeyCode.G)){
+      if(Input.GetKeyDown(KeyCode.O)){
         defaultFlood(ref d2);
       } 
-      if(Input.GetKeyDown(KeyCode.H)){
+      if(Input.GetKeyDown(KeyCode.P)){
         defaultMaze();
       }
     }

@@ -30,12 +30,12 @@ public class SETDSTSRC : MonoBehaviour
     {   
        sx=0;sy=0;dx=MET.ROW;dy=MET.COL; 
        spawn=GameObject.FindWithTag("blk"); 
-       if(sds!=null){
-            Destroy(this.gameObject);
-            return;
-       }
-       sds=this;
-       GameObject.DontDestroyOnLoad(gameObject);
+    //    if(sds!=null){
+    //         Destroy(this.gameObject);
+    //         return;
+    //    }
+    //    sds=this;
+    //    GameObject.DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
@@ -87,6 +87,15 @@ public class SETDSTSRC : MonoBehaviour
                     dx=hitObject.GetComponent<Flip>().x;
                     dy=hitObject.GetComponent<Flip>().y;
                     }
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.R)){
+            if(prevDST){
+                Destroy(prevDST);
+            }
+            if(prevSRC){
+                Destroy(prevSRC);
             }
         }
     }

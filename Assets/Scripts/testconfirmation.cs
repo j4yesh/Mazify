@@ -17,9 +17,18 @@ public class testconfirmation : MonoBehaviour
     [SerializeField]
     public GameObject[] elementsToDisable;
 
+    public static testconfirmation tc;
+
     void Start(){
+
+        // if(tc!=null){
+        //     Destroy(gameObject);
+        // }
+        // tc=this;
+        // DontDestroyOnLoad(gameObject);
+
         // openconfirmationwindow("please set Source and Destination on block with same color");
-        noButton.gameObject.SetActive(false);
+        // noButton.gameObject.SetActive(false);
         a.gameObject.SetActive(false);
     }
 
@@ -40,6 +49,7 @@ public class testconfirmation : MonoBehaviour
     }
 
     public void yesclicked(){
+        Debug.Log("yes clicked at that instant");
         a.gameObject.SetActive(false);
         foreach( GameObject i in elementsToDisable){
             i.SetActive(true);
@@ -47,6 +57,7 @@ public class testconfirmation : MonoBehaviour
     }
 
     public void noclicked(){
+        Debug.Log("yes clicked at that instant");
         a.gameObject.SetActive(false);
         a.msgText.text="error211!";
     }
