@@ -125,8 +125,8 @@ public class MET : MonoBehaviour
     }
 
    private void saveThemaze(){
-        for(int i=0;i<19;i++){
-            for(int j=0;j<26;j++){
+        for(int i=0;i<MET.ROW;i++){
+            for(int j=0;j<MET.COL;j++){
                 if(myArray[i,j].GetComponent<SpriteRenderer>().color!=zero){
                     save1[i,j]=1;
                 }else{
@@ -177,8 +177,8 @@ public class MET : MonoBehaviour
     }
 
     private void defaultFlood(ref int [,]ar){
-        for(int i=0;i<19;i++){
-            for(int j=0;j<26;j++){
+        for(int i=0;i<MET.ROW;i++){
+            for(int j=0;j<MET.COL;j++){
                 if(ar[i,j]==1){
                     myArray[i,j].GetComponent<SpriteRenderer>().color=one;
                 }else{
@@ -189,8 +189,8 @@ public class MET : MonoBehaviour
     }
 
     private void defaultMaze(){
-        for(int i=0;i<19;i++){
-            for(int j=0;j<26;j++){
+        for(int i=0;i<MET.ROW;i++){
+            for(int j=0;j<MET.COL;j++){
                 if(d3[i,j]==1){
                     myArray[i,j].GetComponent<SpriteRenderer>().color=one;
                 }else{

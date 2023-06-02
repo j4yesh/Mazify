@@ -27,11 +27,8 @@ public class SETDSTSRC : MonoBehaviour
     [SerializeField]
     public testconfirmation tc;
 
-    public TextMeshProUGUI sceneName;
     private void Start()
     {  
-       sceneName=FindObjectOfType<TextMeshProUGUI>();
-       sceneName.text="SRC/DST";
        sx=0;sy=0;dx=MET.ROW;dy=MET.COL; 
        spawn=GameObject.FindWithTag("blk"); 
     //    if(sds!=null){
