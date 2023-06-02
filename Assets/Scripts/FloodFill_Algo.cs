@@ -50,7 +50,7 @@ public class FloodFill_Algo : MonoBehaviour
     void floody(int row, int column)
     {
         // Check if the current cell is within the bounds of the array
-        if (row < 0 || row >= 19 || column < 0 || column >= 26) {
+        if (row < 0 || row >= MET.ROW || column < 0 || column >= MET.COL) {
             return;
         }
 

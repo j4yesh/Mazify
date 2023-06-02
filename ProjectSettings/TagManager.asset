@@ -6,6 +6,7 @@ TagManager:
   tags:
   - blk
   - setsrc
+  - scenename
   layers:
   - Default
   - TransparentFX

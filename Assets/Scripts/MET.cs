@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using TMPro;
 
 public class MET : MonoBehaviour
 {   
@@ -52,11 +53,15 @@ public class MET : MonoBehaviour
     [SerializeField]
     public Color src=new Color();
 
-    public SpriteRenderer rend;
+    public TextMeshProUGUI sceneName;
+
     public static MET instance;
 
+
     private void Start()
-    {
+    {   
+        sceneName=FindObjectOfType<TextMeshProUGUI>();
+        sceneName.text="DRAW/ERASE";
         spawn=GameObject.FindWithTag("blk");
         if(instance!=null){
             Destroy(this.gameObject);
@@ -163,8 +168,8 @@ public class MET : MonoBehaviour
     }
 
     private void resetThemaze(){
-        for(int i=0;i<19;i++){
-            for(int j=0;j<26;j++){
+        for(int i=0;i<ROW;i++){
+            for(int j=0;j<COL;j++){
                 myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
             }
         }
