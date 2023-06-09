@@ -105,8 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43eb1d5c98ba65d4183bd758fe0efbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: {fileID: 0}
   leftpos: {x: -7.8, y: 4.5, z: 0}
   rightpos: {x: -7.8, y: 4.5, z: 0}
   src: {r: 0.053904653, g: 1, b: 0, a: 1}
-  rend: {fileID: 0}
+  sceneName: {fileID: 0}
