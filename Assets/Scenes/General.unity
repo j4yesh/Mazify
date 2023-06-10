@@ -551,10 +551,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1243703543}
   - component: {fileID: 1243703542}
-  - component: {fileID: 1243703544}
   - component: {fileID: 1243703545}
+  - component: {fileID: 1243703544}
   m_Layer: 0
-  m_Name: DIJKSTRASALGO_BUTTON
+  m_Name: BFS bUTTON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1243703541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f913717dfdfd7247a423853bc8aa0c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d21525b952c064469b3e325961a0df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &1243703545
