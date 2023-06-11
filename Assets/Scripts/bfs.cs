@@ -39,13 +39,20 @@ public class Graph
 
 public class bfs : MonoBehaviour
 {
-    // Create a vector of pairs to store the adjacency list
+
+    [SerializeField]
+    public static Color INSIDER = new Color(1f, 0.255f, 0.086f);
+    public static Color BORDER = new Color(1f, 0.325f, 0f);
+
+    private float DELAY = 2f;
+
+    [SerializeField]
+    private testconfirmation tc;
+
     List<KeyValuePair<int, int>> adj = new List<KeyValuePair<int, int>>(514);
 
-    // Create an unordered map to store the adjacency list by index
     ConcurrentDictionary<int, KeyValuePair<int, int>> adk = new ConcurrentDictionary<int, KeyValuePair<int, int>>();
 
-    // Create an unordered map to store the adjacency list by pair
     ConcurrentDictionary<KeyValuePair<int, int>, int> adl = new ConcurrentDictionary<KeyValuePair<int, int>, int>();
 
     Graph addj = new Graph(514);
@@ -109,32 +116,66 @@ public class bfs : MonoBehaviour
 
         var init=new KeyValuePair<int, int>(x, y);
 
-        bool[] visited = new bool[514];
+        var finit=new KeyValuePair<int, int>(SETDSTSRC.dx,SETDSTSRC.dy);
+        int t= adl[finit];
+
+        int[] visited = new int[514];
+        for(int i=0;i<514;i++){
+            visited[i]=25000;
+        }
         Queue<int> queue = new Queue<int>();
 
         queue.Enqueue(adl[init]);
-        visited[adl[init]] = true;
-
-        while (queue.Count > 0) {
+        visited[adl[init]] = 0;
+        bool flag=true;
+        while (queue.Count > 0 && flag) {
             int u = queue.Peek();
             queue.Dequeue();
             foreach (int v in addj.admet[u]) {
-                if (!visited[v]) {
+                if (visited[v]>visited[u]+1) {
                     KeyValuePair<int,int> pick = adj[v];
                     int m = pick.Key;
                     int n = pick.Value;
 
-                    MET.myArray[m,n].GetComponent<SpriteRenderer>().color=Color.red;
-
+                    //MET.myArray[m,n].GetComponent<SpriteRenderer>().color=Color.red;
+                    StartCoroutine(bordit(m,n));
                     yield return new WaitForSeconds(0.1f);
 
-                    visited[v] = true;
+                    visited[v] = visited[u]+1;
                     queue.Enqueue(v);
+                    
+                    if(v==t){
+                        flag=false;
+                        break;
+                    }
                 }
             }
         }
+        
 
+        if (visited[t] == 25000) {
+            Debug.Log("no path exist");
+            tc.openconfirmationwindow("NO PATH EXIST!");
+        }
+        else{
+            while (t != 0) {
+                t = visited[t] - 1;
+                KeyValuePair<int,int> pick = adj[t];
+                        int m = pick.Key;
+                        int n = pick.Value;
+                MET.myArray[m,n].GetComponent<SpriteRenderer>().color=Color.green;
+            }
+             tc.openconfirmationwindow("PATH FOUND!");
+            Destroy(SETDSTSRC.prevDST);
+            Destroy(SETDSTSRC.prevSRC);
+        }
         yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator bordit(int x,int y){
+        MET.myArray[x,y].GetComponent<SpriteRenderer>().color=BORDER;
+        yield return new WaitForSeconds(DELAY);
+        MET.myArray[x,y].GetComponent<SpriteRenderer>().color=BORDER;
     }
 
     void Update()
