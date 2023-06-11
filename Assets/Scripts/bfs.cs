@@ -120,8 +120,10 @@ public class bfs : MonoBehaviour
         int t= adl[finit];
 
         int[] visited = new int[514];
+        int[] dist = new int[514];
         for(int i=0;i<514;i++){
             visited[i]=25000;
+            dist[i]=-1;
         }
         Queue<int> queue = new Queue<int>();
 
@@ -133,6 +135,8 @@ public class bfs : MonoBehaviour
             queue.Dequeue();
             foreach (int v in addj.admet[u]) {
                 if (visited[v]>visited[u]+1) {
+                    dist[v]=u;
+                    
                     KeyValuePair<int,int> pick = adj[v];
                     int m = pick.Key;
                     int n = pick.Value;
@@ -158,8 +162,8 @@ public class bfs : MonoBehaviour
             tc.openconfirmationwindow("NO PATH EXIST!");
         }
         else{
-            while (t != 0) {
-                t = visited[t] - 1;
+            while (t != adl[init]) {
+                t = dist[t];
                 KeyValuePair<int,int> pick = adj[t];
                         int m = pick.Key;
                         int n = pick.Value;
