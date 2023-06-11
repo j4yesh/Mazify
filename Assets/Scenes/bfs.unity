@@ -364,6 +364,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_PANEL 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2351476986368671694, guid: 37173fef3258ed845bbdb361e6d6bfdd,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2351476986437234206, guid: 37173fef3258ed845bbdb361e6d6bfdd,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -387,27 +392,37 @@ PrefabInstance:
     - target: {fileID: 2351476986441942438, guid: 37173fef3258ed845bbdb361e6d6bfdd,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2351476986441942438, guid: 37173fef3258ed845bbdb361e6d6bfdd,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2351476986441942438, guid: 37173fef3258ed845bbdb361e6d6bfdd,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2351476986441942438, guid: 37173fef3258ed845bbdb361e6d6bfdd,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2351476986441942438, guid: 37173fef3258ed845bbdb361e6d6bfdd,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351476986441942438, guid: 37173fef3258ed845bbdb361e6d6bfdd,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 39.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351476986441942438, guid: 37173fef3258ed845bbdb361e6d6bfdd,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 39.3
       objectReference: {fileID: 0}
     - target: {fileID: 2351476986697161833, guid: 37173fef3258ed845bbdb361e6d6bfdd,
         type: 3}
@@ -538,7 +553,7 @@ PrefabInstance:
     - target: {fileID: 7983937635210278576, guid: 1d005b08f3c3ce74eb13095620129c9a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -36.7
+      value: -61
       objectReference: {fileID: 0}
     - target: {fileID: 7983937635210278576, guid: 1d005b08f3c3ce74eb13095620129c9a,
         type: 3}
@@ -619,6 +634,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: BFS
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983937635210278591, guid: 1d005b08f3c3ce74eb13095620129c9a,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 25.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983937635210278591, guid: 1d005b08f3c3ce74eb13095620129c9a,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d005b08f3c3ce74eb13095620129c9a, type: 3}

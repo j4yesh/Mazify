@@ -20,13 +20,11 @@ public class testconfirmation : MonoBehaviour
     public static testconfirmation tc;
 
     void Start(){
-
         // if(tc!=null){
         //     Destroy(gameObject);
         // }
         // tc=this;
         // DontDestroyOnLoad(gameObject);
-
         // openconfirmationwindow("please set Source and Destination on block with same color");
         // noButton.gameObject.SetActive(false);
         a.gameObject.SetActive(false);

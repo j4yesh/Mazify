@@ -5,8 +5,8 @@ using TMPro;
 
 public class SETDSTSRC : MonoBehaviour
 {
-    private GameObject prevSRC;
-    private GameObject prevDST;
+    public static GameObject prevSRC;
+    public static GameObject prevDST;
     private bool srcass=false;
     private bool dstass=false;
 
@@ -23,6 +23,8 @@ public class SETDSTSRC : MonoBehaviour
     private GameObject spawn;
 
     public static int sx=0,sy=0,dx=18,dy=25;
+
+    private Color pathColor=new Color(1f, 0.92f, 0.016f, 1f);
 
     [SerializeField]
     public testconfirmation tc;
@@ -89,6 +91,12 @@ public class SETDSTSRC : MonoBehaviour
                     dy=hitObject.GetComponent<Flip>().y;
                     }
             }
+
+        }
+
+        if(Input.GetKeyDown(KeyCode.D)){
+            Debug.Log("removed");
+            remove();
         }
 
         if(Input.GetKeyDown(KeyCode.R)){
@@ -99,5 +107,13 @@ public class SETDSTSRC : MonoBehaviour
                 Destroy(prevSRC);
             }
         }
+        // if(pdst && pdst.GetComponent<SpriteRenderer>().color==pathColor){
+        //     remove();
+        // }
+    }
+    
+    public void remove(){
+            Destroy(prevDST);
+            Destroy(prevSRC);
     }
 }

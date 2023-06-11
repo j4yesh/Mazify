@@ -8,13 +8,16 @@ public class backtracking_algo : MonoBehaviour
     private int[,] ans=new int[MET.ROW,MET.COL];
 
     [SerializeField]
-    private Color pathColor=new Color();
+    private Color pathColor=new Color(1f, 0.92f, 0.016f, 1f);
     // private int sx=0,sy=0,dx=MET.ROW-1,dy=MET.COL-1;
     private float DELAY=0.1f;
 
     [SerializeField]
     private testconfirmation tc;
     
+    // [SerializeField]
+    // private SETDSTSRC sds;
+
     private bool notfound=false;
     void Start()
     {   
@@ -58,6 +61,8 @@ public class backtracking_algo : MonoBehaviour
             // yield return null;
             done=true;
             tc.openconfirmationwindow("PATH FOUND BRUHHH!");
+            Destroy(SETDSTSRC.prevDST);
+            Destroy(SETDSTSRC.prevSRC);
             yield break;
         }
         MET.myArray[row, col].GetComponent<SpriteRenderer>().color = pathColor;
@@ -100,6 +105,7 @@ public class backtracking_algo : MonoBehaviour
         if(MET.myArray[SETDSTSRC.sx, SETDSTSRC.sy].GetComponent<SpriteRenderer>().color == MET.one){
             notfound=true;
             tc.openconfirmationwindow("PATH NOT FOUND BRUHH!");
+           // SETDSTSRC.GetComponent<remove>();
         }
 
         yield return null;

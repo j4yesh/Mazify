@@ -198,7 +198,7 @@ PrefabInstance:
     - target: {fileID: 7983937635210278576, guid: 1d005b08f3c3ce74eb13095620129c9a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -47.4
+      value: -72.9
       objectReference: {fileID: 0}
     - target: {fileID: 7983937635210278576, guid: 1d005b08f3c3ce74eb13095620129c9a,
         type: 3}
@@ -253,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 7983937635210278591, guid: 1d005b08f3c3ce74eb13095620129c9a,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7983937635210278591, guid: 1d005b08f3c3ce74eb13095620129c9a,
         type: 3}
@@ -279,6 +279,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.spaceCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983937635210278591, guid: 1d005b08f3c3ce74eb13095620129c9a,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 23.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983937635210278591, guid: 1d005b08f3c3ce74eb13095620129c9a,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 23.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d005b08f3c3ce74eb13095620129c9a, type: 3}
@@ -620,6 +630,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas_PANEL 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351476986368671694, guid: 37173fef3258ed845bbdb361e6d6bfdd,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2351476986437234206, guid: 37173fef3258ed845bbdb361e6d6bfdd,
         type: 3}
