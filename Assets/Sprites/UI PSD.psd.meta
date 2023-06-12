@@ -13,7 +13,7 @@ TextureImporter:
     second: ref baggy
   - first:
       213: 4661052098189700849
-    second: SAVE_BUTTON
+    second: DFS_BUTTON
   - first:
       213: 5448029768894330622
     second: LOAD_SAVED_BUTTON
@@ -218,7 +218,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SAVE_BUTTON
+      name: DFS_BUTTON
       rect:
         serializedVersion: 2
         x: 1520
@@ -352,7 +352,7 @@ TextureImporter:
         width: 370
         height: 91
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

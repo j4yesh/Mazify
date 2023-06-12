@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/bfs.unity
     guid: 414ebe84b6028f541b89b00ccd0f5a55
+  - enabled: 1
+    path: Assets/Scenes/dfs.unity
+    guid: 233d85d534eb9834aad9d696f026e74f
   m_configObjects: {}

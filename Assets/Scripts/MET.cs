@@ -163,7 +163,7 @@ public class MET : MonoBehaviour
             }
             ss+=num;
         }
-        Debug.Log(ss);
+        // Debug.Log(ss);
     Debug.Log("overwrited successfully");
     }
 
@@ -198,6 +198,7 @@ public class MET : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Default maze loaded");
     }
 }
 

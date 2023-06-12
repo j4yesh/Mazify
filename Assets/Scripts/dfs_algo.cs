@@ -4,40 +4,40 @@ using UnityEngine;
 using System;
 using System.Collections.Concurrent;
 
-public class Graph
-{
-    public int V; // Number of vertices
-    public List<List<int>> admet; // adjacency list
+// public class Graph
+// {
+//     public int V; // Number of vertices
+//     public List<List<int>> admet; // adjacency list
 
-    public Graph(int V)
-    {
-        this.V = V;
-        admet = new List<List<int>>(V);
-        for (int i = 0; i < V; i++)
-        {
-            admet.Add(new List<int>());
-        }
-    }
+//     public Graph(int V)
+//     {
+//         this.V = V;
+//         admet = new List<List<int>>(V);
+//         for (int i = 0; i < V; i++)
+//         {
+//             admet.Add(new List<int>());
+//         }
+//     }
 
-    public void addEdge(int u, int v)
-    {
-        admet[u].Add(v);
-    }
+//     public void addEdge(int u, int v)
+//     {
+//         admet[u].Add(v);
+//     }
 
-    public void print()
-    {
-        for (int i = 0; i < V; i++)
-        {
-            Debug.Log("Vertex " + i + ":");
-            foreach (int v in admet[i])
-            {
-                Debug.Log(" " + v);
-            }
-        }
-    }
-}
+//     public void print()
+//     {
+//         for (int i = 0; i < V; i++)
+//         {
+//             Debug.Log("Vertex " + i + ":");
+//             foreach (int v in admet[i])
+//             {
+//                 Debug.Log(" " + v);
+//             }
+//         }
+//     }
+// }
 
-public class bfs : MonoBehaviour
+public class dfs_algo : MonoBehaviour
 {
 
     [SerializeField]
@@ -78,41 +78,42 @@ public class bfs : MonoBehaviour
                 {
                     var x = new KeyValuePair<int, int>(i, j);
                     if (i < MET.ROW - 1 && MET.myArray[i + 1, j].GetComponent<SpriteRenderer>().color == MET.one)
-                {
-                    var y = new KeyValuePair<int, int>(i + 1, j);
-                    addj.addEdge(adl[x], adl[y]);
-                    addj.addEdge(adl[y], adl[x]);
-                }
+                    {
+                        var y = new KeyValuePair<int, int>(i + 1, j);
+                        addj.addEdge(adl[x], adl[y]);
+                        addj.addEdge(adl[y], adl[x]);
+                    }
 
-                if (i > 0 && MET.myArray[i - 1, j].GetComponent<SpriteRenderer>().color == MET.one)
-                {
-                    var y = new KeyValuePair<int, int>(i - 1, j);
-                    addj.addEdge(adl[x], adl[y]);
-                    addj.addEdge(adl[y], adl[x]);
-                }
+                    if (i > 0 && MET.myArray[i - 1, j].GetComponent<SpriteRenderer>().color == MET.one)
+                    {
+                        var y = new KeyValuePair<int, int>(i - 1, j);
+                        addj.addEdge(adl[x], adl[y]);
+                        addj.addEdge(adl[y], adl[x]);
+                    }
 
-                if (j < MET.COL - 1 && MET.myArray[i, j + 1].GetComponent<SpriteRenderer>().color == MET.one)
-                {
-                    var y = new KeyValuePair<int, int>(i, j + 1);
-                    addj.addEdge(adl[x], adl[y]);
-                    addj.addEdge(adl[y], adl[x]);
-                }
+                    if (j < MET.COL - 1 && MET.myArray[i, j + 1].GetComponent<SpriteRenderer>().color == MET.one)
+                    {
+                        var y = new KeyValuePair<int, int>(i, j + 1);
+                        addj.addEdge(adl[x], adl[y]);
+                        addj.addEdge(adl[y], adl[x]);
+                    }
 
-                if (j > 0 && MET.myArray[i, j - 1].GetComponent<SpriteRenderer>().color == MET.one)
-                {
-                    var y = new KeyValuePair<int, int>(i, j - 1);
-                    addj.addEdge(adl[x], adl[y]);
-                    addj.addEdge(adl[y], adl[x]);
-                }
+                    if (j > 0 && MET.myArray[i, j - 1].GetComponent<SpriteRenderer>().color == MET.one)
+                    {
+                        var y = new KeyValuePair<int, int>(i, j - 1);
+                        addj.addEdge(adl[x], adl[y]);
+                        addj.addEdge(adl[y], adl[x]);
+                    }
 
                 }
             }
         }
         //addj.print();
-        StartCoroutine(BFS(SETDSTSRC.sx,SETDSTSRC.sy));
+        StartCoroutine(DFS(SETDSTSRC.sx, SETDSTSRC.sy));
     }
 
-    IEnumerator BFS(int x,int y){
+    IEnumerator DFS(int x, int y)
+    {
 
         var init=new KeyValuePair<int, int>(x, y);
 
@@ -125,14 +126,13 @@ public class bfs : MonoBehaviour
             visited[i]=25000;
             dist[i]=-1;
         }
-        Queue<int> queue = new Queue<int>();
+        Stack<int> stack = new Stack<int>();
 
-        queue.Enqueue(adl[init]);
+        stack.Push(adl[init]);
         visited[adl[init]] = 0;
         bool flag=true;
-        while (queue.Count > 0 && flag) {
-            int u = queue.Peek();
-            queue.Dequeue();
+        while (stack.Count > 0 && flag) {
+            int u = stack.Pop();
             foreach (int v in addj.admet[u]) {
                 if (visited[v]>visited[u]+1) {
                     dist[v]=u;
@@ -140,13 +140,11 @@ public class bfs : MonoBehaviour
                     KeyValuePair<int,int> pick = adj[v];
                     int m = pick.Key;
                     int n = pick.Value;
-
-                    //MET.myArray[m,n].GetComponent<SpriteRenderer>().color=Color.red;
                     StartCoroutine(bordit(m,n));
                     yield return new WaitForSeconds(0.1f);
 
                     visited[v] = visited[u]+1;
-                    queue.Enqueue(v);
+                    stack.Push(v);
                     
                     if(v==t){
                         flag=false;
@@ -174,12 +172,41 @@ public class bfs : MonoBehaviour
             Destroy(SETDSTSRC.prevSRC);
         }
         yield return new WaitForSeconds(1f);
+
     }
 
-    IEnumerator bordit(int x,int y){
-        MET.myArray[x,y].GetComponent<SpriteRenderer>().color=BORDER;
+    void DFSUtil(int v, int[] visited, int[] dist, int target, bool flag)
+    {
+        visited[v] = 1;
+
+        KeyValuePair<int, int> pick = adj[v];
+        int m = pick.Key;
+        int n = pick.Value;
+
+        StartCoroutine(bordit(m, n));
+
+        if (v == target)
+        {
+            flag = false;
+            return;
+        }
+
+        foreach (int u in addj.admet[v])
+        {
+            if (visited[u] == 0)
+            {
+                dist[u] = v;
+                DFSUtil(u, visited, dist, target, flag);
+                if (!flag)
+                    return;
+            }
+        }
+    }
+
+    IEnumerator bordit(int x, int y)
+    {
+        MET.myArray[x, y].GetComponent<SpriteRenderer>().color = BORDER;
         yield return new WaitForSeconds(DELAY);
-        MET.myArray[x,y].GetComponent<SpriteRenderer>().color=BORDER;
     }
 
     void Update()
@@ -187,7 +214,3 @@ public class bfs : MonoBehaviour
 
     }
 }
-
-
-
-
