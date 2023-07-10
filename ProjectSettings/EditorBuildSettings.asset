@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/dfs.unity
     guid: 233d85d534eb9834aad9d696f026e74f
+  - enabled: 1
+    path: Assets/Scenes/dpflood.unity
+    guid: cb0d946ceea0d1b4992e20ef6cfbedb7
   m_configObjects: {}

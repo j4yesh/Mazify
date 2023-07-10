@@ -35,6 +35,9 @@ TextureImporter:
   - first:
       213: -1069817261660711696
     second: SNAKE GAME
+  - first:
+      213: -7749317166026266834
+    second: dp_button
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -360,6 +363,27 @@ TextureImporter:
       bones: []
       spriteID: 0f4d1206ede3721f0800000000000000
       internalID: -1069817261660711696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dp_button
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 850
+        width: 372
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e27ea2b5815e47490800000000000000
+      internalID: -7749317166026266834
       vertices: []
       indices: 
       edges: []

@@ -7,6 +7,8 @@ TagManager:
   - blk
   - setsrc
   - scenename
+  - vw
+  - hw
   layers:
   - Default
   - TransparentFX

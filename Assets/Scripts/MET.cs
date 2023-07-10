@@ -139,9 +139,9 @@ public class MET : MonoBehaviour
 
    private void displaySaved(){
         string ss="{";
-         for(int i=0;i<19;i++)
+         for(int i=0;i<MET.ROW;i++)
         {   string num="{";
-            for(int j=0;j<26;j++)
+            for(int j=0;j<MET.COL;j++)
             {
                 if(save1[i,j]==1)
                 {

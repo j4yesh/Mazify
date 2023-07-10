@@ -7,7 +7,10 @@ TextureImporter:
     second: material-colorpicker_1
   - first:
       213: -464577650955045763
-    second: material-colorpicker_0
+    second: verticle_wall
+  - first:
+      213: 3780839631600912160
+    second: horizontol_wall
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -144,6 +147,48 @@ TextureImporter:
       bones: []
       spriteID: 8f4bc4c9b23b3d860800000000000000
       internalID: 7553577999917692152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: verticle_wall
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 67
+        width: 4
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d743d30861d7d89f0800000000000000
+      internalID: -464577650955045763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horizontol_wall
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 68
+        width: 39
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0278a4afc9d387430800000000000000
+      internalID: 3780839631600912160
       vertices: []
       indices: 
       edges: []
