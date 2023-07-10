@@ -9,6 +9,7 @@ TagManager:
   - scenename
   - vw
   - hw
+  - cell
   layers:
   - Default
   - TransparentFX
