@@ -8,7 +8,7 @@ using namespace std;
   struct node{
      int row,col;
      bool right=true,left=true,top=true,bottom=true;
-     int wall[4]={true};
+     int wall[4]={true,true,true,true};
   };
 
   node celler[5][5];
@@ -158,7 +158,6 @@ void solve(){
           q.pop();
           queken(q,temp);
         }
-
 
         //ripic tipic
         if(cell[cur.first][cur.second]==minVal){
