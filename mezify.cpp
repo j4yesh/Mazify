@@ -23,7 +23,7 @@ using namespace std;
     {4,3,2,3,4}
   };
 
-  void hesCelller(pair<int,int>temp,bool a[4]){
+  void wallSaver(pair<int,int>temp,bool a[4]){
     for(int i=0;i<4;i++){
        if(!a[i]){
           celler[temp.first][temp.second].wall[i]=false;
@@ -79,8 +79,38 @@ void queken(queue<pair<int,int>>&q,pair<int,int>pr){
     vr.push_back({cell[pr.first][pr.second-1],{pr.first,pr.second-1}});
   }
 
-  for(auto itt: vr){
-    cout<<itt.first<<'|'<<itt.second.first<<" , "<<itt.second.second<<endl;
+  for(auto it: vr){
+    cout<<it.first<<'|'<<it.second.first<<" , "<<it.second.second<<endl;
+    int minValue=INT_MAX;
+      if(celler[it.second.first][it.second.second].wall[0]){ //celler se test krre
+        if(cell[it.second.first][it.second.second]<=cell[it.second.first-1][it.second.second]){
+          minValue=min(cell[it.second.first-1][it.second.second],minValue);
+          // q.push({it.second.first-1,it.second.second});
+        }
+      }
+      if(celler[it.second.first][it.second.second].wall[1]){
+        if(cell[it.second.first][it.second.second]<=cell[it.second.first+1][it.second.second]){
+          minValue=min(cell[it.second.first+1][it.second.second],minValue);
+          // q.push({it.second.first+1,it.second.second});
+        }
+      }
+      if(celler[it.second.first][it.second.second].wall[2]){
+        if(cell[it.second.first][it.second.second]<=cell[it.second.first][it.second.second+1]){
+          minValue=min(cell[it.second.first][it.second.second+1],minValue);
+          // q.push({it.second.first,it.second.second+1});
+        }
+      }
+      if(celler[it.second.first][it.second.second].wall[3]){
+        if(cell[it.second.first][it.second.second]<=cell[it.second.first][it.second.second-1]){
+          minValue=min(cell[it.second.first][it.second.second-1],minValue);
+          // q.push({it.second.first,it.second.second-1});
+        }
+      }
+    
+    if(minValue!=INT_MAX && cell[it.second.first][it.second.second]<=minValue){
+      cell[it.second.first][it.second.second]=minValue+1;
+    }
+
   }
   
 }
@@ -116,7 +146,7 @@ void solve(){
         pair<int, int> next={cur.first,cur.second};
         int minVal = cell[cur.first][cur.second];
         cout << "possible directions to go: ";
-        cin>>a[0]>>a[1]>>a[2]>>a[3];
+        cin>>a[0]>>a[1]>>a[2]>>a[3]; //take input from ultrasonic sensor
 
         if(a[0]){
             if(cell[cur.first][cur.second]>cell[cur.first-1][cur.second]){
@@ -131,6 +161,7 @@ void solve(){
           q.push({cur.first +1, cur.second});
             minVal=cell[cur.first+1][cur.second];
             next={cur.first+1,cur.second};
+            cout<<"mi itthe alo hoto\n";
           }
         }
 
@@ -145,13 +176,13 @@ void solve(){
 
         if (a[3]){ 
           if(cell[cur.first][cur.second]>cell[cur.first][cur.second-1]){
-          q.push({cur.first, cur.second - 1});
+              q.push({cur.first, cur.second - 1}); //incase lahan value asel tarch
               minVal=cell[cur.first][cur.second-1];
               next={cur.first,cur.second-1};
           }
         }
 
-        hesCelller(cur,a);
+        wallSaver(cur,a);
 
         while(!q.empty()){
           pair<int,int>temp=q.front();
@@ -159,11 +190,11 @@ void solve(){
           queken(q,temp);
         }
 
-        //ripic tipic
+        
         if(cell[cur.first][cur.second]==minVal){
             cout<<"game hogya bro!\n";
             cell[cur.first][cur.second]=bringout(a)+1;
-        }   
+        }   //buts works correctly,altough review
 
         cout<<next.first<<" "<<next.second<<endl;
         cur=next;
@@ -176,11 +207,17 @@ int main()
 {
 
   for(int i=0;i<ROW;i++){
-    for(int j=0;j<COL;j++){
-      celler[i][j].row=i;
-      celler[i][j].col=j;
-    }
+      celler[0][i].wall[0]=false;
+      celler[ROW-1][i].wall[1]=false;
+      celler[i][ROW-1].wall[2]=false;
+      celler[i][0].wall[3]=false;
   }
+  // while(true){
+  //   int a,b; cin>>a>>b;
+  //   for(auto it: celler[a][b].wall){
+  //     cout<<it<< " ";
+  //   } cout<<endl;
+  // }
 
   pair<int,int>src={4,0};
   cur=src;
