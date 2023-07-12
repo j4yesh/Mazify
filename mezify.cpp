@@ -27,7 +27,7 @@ using namespace std;
     for(int i=0;i<4;i++){
        if(!a[i]){
           celler[temp.first][temp.second].wall[i]=false;
-          cout<<"yahape aya tha mai\n";
+          cout<<"wall save krha hu bro\n";
        }
     }
   }
@@ -68,51 +68,31 @@ void queken(queue<pair<int,int>>&q,pair<int,int>pr){
 
   if(celler[pr.first][pr.second].wall[0]){ //celler se test krre
     vr.push_back({cell[pr.first-1][pr.second],{pr.first-1,pr.second}});
+    // q.push({pr.first-1,pr.second});
   }
   if(celler[pr.first][pr.second].wall[1]){
     vr.push_back({cell[pr.first+1][pr.second],{pr.first+1,pr.second}});
+    // q.push({pr.first+1,pr.second});
   }
   if(celler[pr.first][pr.second].wall[2]){
     vr.push_back({cell[pr.first][pr.second+1],{pr.first,pr.second+1}});
+    // q.push({pr.first,pr.second+1});
   }
   if(celler[pr.first][pr.second].wall[3]){
     vr.push_back({cell[pr.first][pr.second-1],{pr.first,pr.second-1}});
+    // q.push({pr.first,pr.second-1});
   }
-
+  int minValue=INT_MAX;
   for(auto it: vr){
-    cout<<it.first<<'|'<<it.second.first<<" , "<<it.second.second<<endl;
-    int minValue=INT_MAX;
-      if(celler[it.second.first][it.second.second].wall[0]){ //celler se test krre
-        if(cell[it.second.first][it.second.second]<=cell[it.second.first-1][it.second.second]){
-          minValue=min(cell[it.second.first-1][it.second.second],minValue);
-          // q.push({it.second.first-1,it.second.second});
-        }
-      }
-      if(celler[it.second.first][it.second.second].wall[1]){
-        if(cell[it.second.first][it.second.second]<=cell[it.second.first+1][it.second.second]){
-          minValue=min(cell[it.second.first+1][it.second.second],minValue);
-          // q.push({it.second.first+1,it.second.second});
-        }
-      }
-      if(celler[it.second.first][it.second.second].wall[2]){
-        if(cell[it.second.first][it.second.second]<=cell[it.second.first][it.second.second+1]){
-          minValue=min(cell[it.second.first][it.second.second+1],minValue);
-          // q.push({it.second.first,it.second.second+1});
-        }
-      }
-      if(celler[it.second.first][it.second.second].wall[3]){
-        if(cell[it.second.first][it.second.second]<=cell[it.second.first][it.second.second-1]){
-          minValue=min(cell[it.second.first][it.second.second-1],minValue);
-          // q.push({it.second.first,it.second.second-1});
-        }
-      }
-    
-    if(minValue!=INT_MAX && cell[it.second.first][it.second.second]<=minValue){
-      cell[it.second.first][it.second.second]=minValue+1;
-    }
-
+        minValue=min(it.first,minValue);
   }
-  
+    if(minValue!=INT_MAX && cell[pr.first][pr.second]<=minValue){
+      cell[pr.first][pr.second]=minValue+1;
+      for(auto it: vr){
+        q.push({it.second.first,it.second.second});
+      }
+      cout<<"minValue: "<<minValue<<endl;
+    }
 }
 
 int bringout(bool a[4]){
@@ -136,17 +116,84 @@ int bringout(bool a[4]){
     }
 }
 
+bool qNeeded(pair<int,int>pr){
+  vector<int>v;
+
+if(celler[pr.first][pr.second].wall[0]){
+    v.push_back(cell[pr.first-1][pr.second]);
+}
+if(celler[pr.first][pr.second].wall[1]){
+    v.push_back(cell[pr.first+1][pr.second]);
+}
+if(celler[pr.first][pr.second].wall[2]){
+    v.push_back(cell[pr.first][pr.second+1]);
+}
+if(celler[pr.first][pr.second].wall[3]){
+    v.push_back(cell[pr.first][pr.second-1]);
+}
+
+  if(v.size()==1){
+    cout<<"q madhe single element aahe\n";
+    return false;
+  }
+  int firstElement = v[0];
+  for (int i = 1; i < v.size(); i++) {
+      if (v[i] != firstElement) {
+          cout<<" false fekt aahe ithe -> ~q Need\n";
+          return false;
+      }
+  }  
+  return true;
+}
+
+int bringTheval(int val){
+   vector<int>v;
+    if(celler[cur.first][cur.second].wall[0]){
+        v.push_back(cell[cur.first-1][cur.second]);
+    }
+    if(celler[cur.first][cur.second].wall[1]){
+        v.push_back(cell[cur.first+1][cur.second]);
+    }
+    if(celler[cur.first][cur.second].wall[2]){
+        v.push_back(cell[cur.first][cur.second+1]);
+    }
+    if(celler[cur.first][cur.second].wall[3]){
+        v.push_back(cell[cur.first][cur.second-1]);
+    }
+
+    cout<<"returning : "<<*min_element(v.begin(),v.end())<<'\n';
+    return *min_element(v.begin(),v.end());
+}
+
 void solve(){
   queue<pair<int,int>>q;
   q.push(cur);   
   
-  bool a[4];
+  bool a[4]={true,true,true,true};
   while(true){
         print(cur.first,cur.second);
+
         pair<int, int> next={cur.first,cur.second};
         int minVal = cell[cur.first][cur.second];
         cout << "possible directions to go: ";
         cin>>a[0]>>a[1]>>a[2]>>a[3]; //take input from ultrasonic sensor
+        wallSaver(cur,a);
+
+        if(qNeeded(cur)){
+          cout<<"q kde kam assign: \n";
+          while(!q.empty()){
+            pair<int,int>temp=q.front();
+            queken(q,temp);
+            q.pop();
+          }
+        }else{
+          while(!q.empty())q.pop();
+        }
+
+        if(bringTheval(cell[cur.first][cur.second]>=cell[cur.first][cur.second])){
+          cell[cur.first][cur.second]=bringTheval(cell[cur.first][cur.second])+1;
+          // continue;
+        }
 
         if(a[0]){
             if(cell[cur.first][cur.second]>cell[cur.first-1][cur.second]){
@@ -182,19 +229,18 @@ void solve(){
           }
         }
 
-        wallSaver(cur,a);
 
-        while(!q.empty()){
-          pair<int,int>temp=q.front();
-          q.pop();
-          queken(q,temp);
-        }
+        // while(!q.empty()){
+        //   pair<int,int>temp=q.front();
+        //   q.pop();
+        //   queken(q,temp);
+        // }
 
         
-        if(cell[cur.first][cur.second]==minVal){
-            cout<<"game hogya bro!\n";
-            cell[cur.first][cur.second]=bringout(a)+1;
-        }   //buts works correctly,altough review
+        // if(cell[cur.first][cur.second]==minVal){
+        //     cout<<"game hogya bro!\n";
+        //     cell[cur.first][cur.second]=bringout(a)+1;
+        // }   //buts works correctly,altough review
 
         cout<<next.first<<" "<<next.second<<endl;
         cur=next;
