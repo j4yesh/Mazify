@@ -1,19 +1,19 @@
 #include <bits/stdc++.h>
 #include<windows.h>
-using namespace std;
-//TOP BOTTOM RIGHT LEFT
+using namespace std; //TOP BOTTOM RIGHT LEFT
 #define ROW 16
 #define COL 16
 
   struct node{
      int row,col;
-     bool right=true,left=true,top=true,bottom=true;
+     bool nev=false;
      int wall[4]={true,true,true,true};
   };
-
+  vector<pair<int,int>> trips;
   node celler[ROW][COL];
 
   pair<int,int>cur={0,0};
+  node retTrip[ROW][COL];
 
   int cell[16][16]={
     {14,13,12,11,10, 9, 8, 7, 7, 8, 9,10,11,12,13,14},
@@ -62,7 +62,48 @@ using namespace std;
       }
       cout<<endl;
     }
-  }
+}
+
+void printAns(){
+    string a="\nPRINT THE ANSWER\n";
+    for(auto it: a){
+      cout<<it;
+      Sleep(100);
+    }
+    vector<vector<bool>>ans(ROW,vector<bool>(ROW,false));
+    if(trips.empty()){
+        cout<<"not path available\n";
+    }
+    reverse(trips.begin(),trips.end());
+    for(auto it: trips){
+      ans[it.first][it.second]=true;
+      Sleep(1500);
+      // system("cls");
+      for(auto ut: ans){
+        for(auto wt: ut){
+               if(!wt){
+                  cout<<"  ";
+                  continue;
+               }
+             cout<<wt<<" ";
+        }
+        cout<<endl;
+      }
+      cout<<endl;
+    }
+    for(int i=0;i<ROW;i++){
+      for(int j=0;j<COL;j++){
+        if(!retTrip[i][j].nev){
+          cout<<"  ";
+          continue;
+        }
+        cout<<retTrip[i][j].nev<<" ";
+      }
+      cout<<endl;
+    }
+    cout<<endl;
+  
+}
 
 pair<int,int>getCurcell(){
   return cur;
@@ -86,19 +127,15 @@ void queken(queue<pair<int,int>>&q,pair<int,int>pr){
 
   if(celler[pr.first][pr.second].wall[0]){ //celler se test krre
     vr.push_back({cell[pr.first-1][pr.second],{pr.first-1,pr.second}});
-    // q.push({pr.first-1,pr.second});
   }
   if(celler[pr.first][pr.second].wall[1]){
     vr.push_back({cell[pr.first+1][pr.second],{pr.first+1,pr.second}});
-    // q.push({pr.first+1,pr.second});
   }
   if(celler[pr.first][pr.second].wall[2]){
     vr.push_back({cell[pr.first][pr.second+1],{pr.first,pr.second+1}});
-    // q.push({pr.first,pr.second+1});
   }
   if(celler[pr.first][pr.second].wall[3]){
     vr.push_back({cell[pr.first][pr.second-1],{pr.first,pr.second-1}});
-    // q.push({pr.first,pr.second-1});
   }
   int minValue=INT_MAX;
   for(auto it: vr){
@@ -210,7 +247,6 @@ void solve(){
 
         if(bringTheval(cell[cur.first][cur.second]>=cell[cur.first][cur.second])){
           cell[cur.first][cur.second]=bringTheval(cell[cur.first][cur.second])+1;
-          // continue;
         }
 
         if(a[0]){
@@ -247,21 +283,24 @@ void solve(){
           }
         }
 
-
-        // while(!q.empty()){
-        //   pair<int,int>temp=q.front();
-        //   q.pop();
-        //   queken(q,temp);
-        // }
-
-        
-        // if(cell[cur.first][cur.second]==minVal){
-        //     cout<<"game hogya bro!\n";
-        //     cell[cur.first][cur.second]=bringout(a)+1;
-        // }   //buts works correctly,altough review
-
         cout<<next.first<<" "<<next.second<<endl;
+        if(retTrip[next.first][next.second].nev){
+          cout<<"              one detected \n";
+          retTrip[cur.first][cur.second].nev=false;
+          trips.pop_back();
+          cout<<" pop krre \n";
+        }
         cur=next;
+        if(!retTrip[cur.first][cur.second].nev){
+          trips.push_back({cur.first,cur.second});
+          cout<<" push krre hai\n";
+        }
+        retTrip[cur.first][cur.second].nev=~retTrip[cur.first][cur.second].nev;
+
+        if(cell[cur.first][cur.second]==0){
+          printAns();
+          break;
+        }
 
         
   }
@@ -276,14 +315,9 @@ int main()
       celler[i][ROW-1].wall[2]=false;
       celler[i][0].wall[3]=false;
   }
-  // while(true){
-  //   int a,b; cin>>a>>b;
-  //   for(auto it: celler[a][b].wall){
-  //     cout<<it<< " ";
-  //   } cout<<endl;
-  // }
 
   pair<int,int>src={15,0};
+  trips.push_back({src.first,src.second});
   cur=src;
   solve();
 
