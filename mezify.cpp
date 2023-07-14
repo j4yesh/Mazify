@@ -7,21 +7,23 @@ using namespace std;
 
   struct node{
      int row,col;
-     bool right=true,left=true,top=true,bottom=true;
      int wall[4]={true,true,true,true};
+     bool nev=false;
   };
-
-  node celler[5][5];
+  vector<pair<int,int>> trips;
+  node celler[ROW][COL];
 
   pair<int,int>cur={0,0};
 
-  int cell[5][5]={
+  int cell[ROW][COL]={
     {4,3,2,3,4},
     {3,2,1,2,3},
     {2,1,0,1,2},
     {3,2,1,2,3},
     {4,3,2,3,4}
   };
+
+  node retTrip[ROW][COL];
 
   void wallSaver(pair<int,int>temp,bool a[4]){
     for(int i=0;i<4;i++){
@@ -34,8 +36,8 @@ using namespace std;
 
   void print(int a,int b){
     // system("cls");
-    for(int i=0;i<5;i++){
-      for(int j=0;j<5;j++){
+    for(int i=0;i<ROW;i++){
+      for(int j=0;j<COL;j++){
         if(i==a&&j==b){
           cout<<cell[i][j]<<'.';
           continue;
@@ -44,6 +46,46 @@ using namespace std;
       }
       cout<<endl;
     }
+  }
+
+  void printAns(){
+    string a="\nPRINT THE ANSWER\n";
+    for(auto it: a){
+      cout<<it;
+      Sleep(100);
+    }
+    vector<vector<bool>>ans(ROW,vector<bool>(ROW,false));
+    if(trips.empty()){
+        cout<<"not path available\n";
+    }
+    ans[ROW-1][0]=true;
+    for(auto it: trips){
+      ans[it.first][it.second]=true;
+      Sleep(1500);
+      // system("cls");
+      for(auto ut: ans){
+        for(auto wt: ut){
+               if(!wt){
+                  cout<<"  ";
+                  continue;
+               }
+             cout<<wt<<" ";
+        }
+        cout<<endl;
+      }
+    }
+    for(int i=0;i<ROW;i++){
+      for(int j=0;j<COL;j++){
+        if(!retTrip[i][j].nev){
+          cout<<"  ";
+          continue;
+        }
+        cout<<retTrip[i][j].nev<<" ";
+      }
+      cout<<endl;
+    }
+    cout<<endl;
+  
   }
 
 pair<int,int>getCurcell(){
@@ -229,23 +271,26 @@ void solve(){
           }
         }
 
-
-        // while(!q.empty()){
-        //   pair<int,int>temp=q.front();
-        //   q.pop();
-        //   queken(q,temp);
-        // }
-
-        
-        // if(cell[cur.first][cur.second]==minVal){
-        //     cout<<"game hogya bro!\n";
-        //     cell[cur.first][cur.second]=bringout(a)+1;
-        // }   //buts works correctly,altough review
-
         cout<<next.first<<" "<<next.second<<endl;
+        if(retTrip[next.first][next.second].nev){
+          cout<<"              one detected \n";
+          retTrip[cur.first][cur.second].nev=false;
+          trips.pop_back();
+          cout<<" pop krre \n";
+        }
         cur=next;
+        if(!retTrip[cur.first][cur.second].nev){
+          trips.push_back({cur.first,cur.second});
+          cout<<" push krre hai\n";
+        }
+        retTrip[cur.first][cur.second].nev=~retTrip[cur.first][cur.second].nev;
 
-        
+        if(cell[cur.first][cur.second]==0){
+          printAns();
+          break;
+        }
+        //ethically dedicate direction function should called 
+
   }
 }
 
@@ -266,6 +311,7 @@ int main()
   // }
 
   pair<int,int>src={4,0};
+  retTrip[src.first][src.second].nev=true;
   cur=src;
   solve();
 
