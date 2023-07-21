@@ -14,7 +14,7 @@ using namespace std;
   node celler[ROW][COL];
   node retEarn[ROW][COL];
   pair<int,int>cur={7,0};
-  string headc="tophead";
+  string headc="headtop";
 
   int cell[ROW][COL]={
     {6,5,4,3,3,4,5,6},
@@ -29,17 +29,24 @@ using namespace std;
 
   node retTrip[ROW][COL];
 
-  void wallSaver(pair<int,int>temp,bool a[4]){
-    //changes are made 
-    for(int i=0;i<4;i++){
-       if(i==1){
-        continue;
-       }
-       if(!a[i]){
-          celler[temp.first][temp.second].wall[i]=false;
-          retEarn[temp.first][temp.second].wall[i]=false;
-          cout<<"wall save krha hu bro\n";
-       }
+  void wallSaver(pair<int,int>temp,bool a[3]){ //LHR
+  cout<<headc<<" orientation bolte !\n";
+    if(headc=="headtop"){
+      celler[temp.first][temp.second].wall[0]=a[1]; //top
+      celler[temp.first][temp.second].wall[2]=a[2]; //right
+      celler[temp.first][temp.second].wall[3]=a[0]; //left
+    }else if(headc=="headbottom"){
+      celler[temp.first][temp.second].wall[1]=a[1]; //bott
+      celler[temp.first][temp.second].wall[2]=a[0];  //right
+      celler[temp.first][temp.second].wall[3]=a[2]; //left
+    }else if(headc=="headright"){
+      celler[temp.first][temp.second].wall[1]=a[2]; //bott
+      celler[temp.first][temp.second].wall[2]=a[1]; //right
+      celler[temp.first][temp.second].wall[0]=a[0]; //top
+    }else {
+       celler[temp.first][temp.second].wall[0]=a[2]; //top
+      celler[temp.first][temp.second].wall[1]=a[0]; //bott
+      celler[temp.first][temp.second].wall[3]=a[1]; //left
     }
   }
 
@@ -67,7 +74,7 @@ void moveLeft(){
   cur.second--;
 }
 void moveRight(){
-  cur.second++;
+  
 }
 
 void printAns(pair<int,int>start){
@@ -179,27 +186,21 @@ int bringTheval(int val){
     cout<<"returning : "<<*min_element(v.begin(),v.end())<<'\n';
     return *min_element(v.begin(),v.end());
 }
-void manageHeadc(bool a[4]){
-  // if(headc=="tophead"){
-  //   return;
-  // }else if(headc=="bottomhead"){
 
-  // }
-}
 void solve(){
   queue<pair<int,int>>q;
   q.push(cur);   
   
   bool a[4]={true,true,true,true};
   while(true){
+        cout<<headc<<"                       Print karnyadhi !\n";
+        
         print(cur.first,cur.second);
 
         pair<int, int> next={cur.first,cur.second};
         int minVal = cell[cur.first][cur.second];
         cout << "possible directions to go: ";
-        cin>>a[0]>>a[2]>>a[3]; //take input from ultrasonic sensor
-        a[1]=celler[cur.first][cur.second].wall[1];
-        manageHeadc(a);
+        cin>>a[0]>>a[1]>>a[2]; //take input from ultrasonic sensor
         wallSaver(cur,a);
 
         if(qNeeded(cur)){
@@ -226,6 +227,7 @@ void solve(){
                 minVal=cell[cur.first-1][cur.second];
                 next={cur.first-1,cur.second};
                 dir="Top";
+                headc="headtop";
             }
         }
 
@@ -235,6 +237,7 @@ void solve(){
             minVal=cell[cur.first+1][cur.second];
             next={cur.first+1,cur.second};
             dir="Bottom";
+            headc="headbottom";
           }
         }
 
@@ -245,6 +248,7 @@ void solve(){
               minVal=cell[cur.first][cur.second+1];
               next={cur.first,cur.second+1};
               dir="Right";
+              headc="headright";
           }
         }
 
@@ -254,6 +258,7 @@ void solve(){
               minVal=cell[cur.first][cur.second-1];
               next={cur.first,cur.second-1};
               dir="Left";
+              headc="headleft";
           }
         }
 
@@ -269,14 +274,17 @@ void solve(){
         // cur=next;
         if(dir=="Top"){
           moveTop();
+          headc="headtop";
         }else if(dir=="Bottom"){
           moveDown();
+          headc="headbottom";
         }else if(dir=="Right"){
           moveRight();
+          headc="headright";
         }else {
           moveLeft();
+          headc="headleft";
         }
-
 
         if(!retTrip[cur.first][cur.second].nev){
           // retEarn[cur.first][cur.second].nev=true;
@@ -287,7 +295,7 @@ void solve(){
 
         if(cell[cur.first][cur.second]==0){
           cout<<" input at dst: ";
-          cin>>a[0]>>a[2]>>a[3];
+          cin>>a[0]>>a[1]>>a[2];
           wallSaver({cur.first,cur.second},a);
           printAns({cur.first,cur.second});
           break;
