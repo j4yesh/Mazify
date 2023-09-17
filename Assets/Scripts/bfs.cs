@@ -177,9 +177,9 @@ public class bfs : MonoBehaviour
     }
 
     IEnumerator bordit(int x,int y){
-        MET.myArray[x,y].GetComponent<SpriteRenderer>().color=BORDER;
-        yield return new WaitForSeconds(DELAY);
-        MET.myArray[x,y].GetComponent<SpriteRenderer>().color=BORDER;
+        MET.myArray[x, y].GetComponent<SpriteRenderer>().color = Color.blue;
+        yield return new WaitForSeconds(0.325f);
+        MET.myArray[x, y].GetComponent<SpriteRenderer>().color = BORDER;
     }
 
     void Update()

@@ -60,7 +60,7 @@ public class FloodFill_Algo : MonoBehaviour
         }
 
         // Fill the current cell with the new color
-        MET.myArray[row, column].GetComponent<SpriteRenderer>().color = Color.green;
+        MET.myArray[row, column].GetComponent<SpriteRenderer>().color = MET.one;
 
         StartCoroutine(DelayedFunction(row-1,column));
         StartCoroutine(DelayedFunction(row+1,column));

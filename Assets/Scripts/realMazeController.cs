@@ -90,33 +90,34 @@ public class realMazeController : MonoBehaviour
     }
 
     void printvertical(){
-        // string str="";
-        // for(int i=0;i<ROW-1;i++){
-        //     str+="{";
-        //     for(int j=0;j<COL;j++){
-        //         if(verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
-        //             str+="1,";
-        //         }else{
-        //             str+="0,";
-        //         }
-        //     }
-        //     str+="},";
-        // }
-        // Debug.Log(str);    
-        // str="";
-        // Debug.Log("now for horizontol");
-        // for(int i=0;i<ROW;i++){
-        //     str+="{";
-        //     for(int j=0;j<COL-1;j++){
-        //          if(horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
-        //             str+="1,";
-        //         }else{
-        //             str+="0,";
-        //         }
-        //     }
-        //     str+="},";
-        // }
-        //     Debug.Log(str);
+        string str="";
+        Debug.Log("printing ::: ");
+        for(int i=0;i<ROW-1;i++){
+            str+="{";
+            for(int j=0;j<COL;j++){
+                if(verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                    str+="1,";
+                }else{
+                    str+="0,";
+                }
+            }
+            str+="},";
+        }
+        Debug.Log(str);    
+        str="";
+        Debug.Log("now for horizontol");
+        for(int i=0;i<ROW;i++){
+            str+="{";
+            for(int j=0;j<COL-1;j++){
+                 if(horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                    str+="1,";
+                }else{
+                    str+="0,";
+                }
+            }
+            str+="},";
+        }
+            Debug.Log(str);
         for(int i=0;i<ROW-1;i++){
             for(int j=0;j<COL;j++){
                 if(ver[i,j]==1){
@@ -187,23 +188,23 @@ public class realMazeController : MonoBehaviour
             hpos=hposref;
         }
 
-        for(int i=0;i<ROW-1;i++){
-            for(int j=0;j<COL-1;j++){
-                cell[i,j]=Instantiate(celler,inpos,transform.rotation);
-                cell[i,j].GetComponent<SpriteRenderer>().color=greit;
-                cell[i,j].GetComponent<Flip>().x=i;
-                cell[i,j].GetComponent<Flip>().y=j;
-                inpos += new Vector3(0.6f,0f,0f);
-                Debug.Log("lund ka bal");
-            }
-            inpos2+=new Vector3(0f,-0.6f,0f);
-            inpos=inpos2;
-        }
+        // for(int i=0;i<ROW-1;i++){
+        //     for(int j=0;j<COL-1;j++){
+        //         cell[i,j]=Instantiate(celler,inpos,transform.rotation);
+        //         cell[i,j].GetComponent<SpriteRenderer>().color=greit;
+        //         cell[i,j].GetComponent<Flip>().x=i;
+        //         cell[i,j].GetComponent<Flip>().y=j;
+        //         inpos += new Vector3(0.6f,0f,0f);
+        //         Debug.Log("lund ka bal");
+        //     }
+        //     inpos2+=new Vector3(0f,-0.6f,0f);
+        //     inpos=inpos2;
+        // }
 
-        cell[8,8].GetComponent<SpriteRenderer>().color=Color.green;
-        cell[7,7].GetComponent<SpriteRenderer>().color=Color.green;
-        cell[7,8].GetComponent<SpriteRenderer>().color=Color.green;
-        cell[8,7].GetComponent<SpriteRenderer>().color=Color.green;
+        // cell[8,8].GetComponent<SpriteRenderer>().color=Color.green;
+        // cell[7,7].GetComponent<SpriteRenderer>().color=Color.green;
+        // cell[7,8].GetComponent<SpriteRenderer>().color=Color.green;
+        // cell[8,7].GetComponent<SpriteRenderer>().color=Color.green;
 
         
     }
