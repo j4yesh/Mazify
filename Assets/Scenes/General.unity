@@ -2219,6 +2219,26 @@ PrefabInstance:
       propertyPath: spawn
       value: 
       objectReference: {fileID: 1122372280}
+    - target: {fileID: 4004787608025871232, guid: eb92049abee9aaf47a58bec5b0d2e87b,
+        type: 3}
+      propertyPath: leftpos.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004787608025871232, guid: eb92049abee9aaf47a58bec5b0d2e87b,
+        type: 3}
+      propertyPath: rightpos.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004787608025871232, guid: eb92049abee9aaf47a58bec5b0d2e87b,
+        type: 3}
+      propertyPath: leftpos.x
+      value: -8.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004787608025871232, guid: eb92049abee9aaf47a58bec5b0d2e87b,
+        type: 3}
+      propertyPath: rightpos.x
+      value: -8.21
+      objectReference: {fileID: 0}
     - target: {fileID: 4004787608025871233, guid: eb92049abee9aaf47a58bec5b0d2e87b,
         type: 3}
       propertyPath: m_LocalPosition.x

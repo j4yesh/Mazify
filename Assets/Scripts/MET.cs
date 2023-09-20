@@ -35,9 +35,11 @@ public class MET : MonoBehaviour
     private int[,] save1 = new int[100, 100];
 
 
-    public static int ROW=19;
-    public static int COL=27;
-    
+    public static int ROW=35;
+    public static int COL=55;
+     [SerializeField]
+    public float GEP= 0.5f;
+    public float Dellay = 0.5f;
     [SerializeField]
     public Vector3 leftpos;
     
@@ -73,14 +75,14 @@ public class MET : MonoBehaviour
                 // spawn.x=3;
                 
                 myArray[i, j] = Instantiate(spawn, leftpos, transform.rotation);
-                leftpos += new Vector3(0.5f, 0f, 0f);
+                leftpos += new Vector3(GEP, 0f, 0f);
                 myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
 
                 myArray[i,j].GetComponent<Flip>().x=i;
                 myArray[i,j].GetComponent<Flip>().y=j;
                 // Debug.Log(myArray[i,j].GetComponent<Flip>().x);
             }
-            rightpos+=new Vector3(0f,-0.5f,0f);
+            rightpos+=new Vector3(0f,-GEP,0f);
             leftpos=rightpos;
         }
 
