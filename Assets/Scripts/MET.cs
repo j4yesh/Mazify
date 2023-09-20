@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class MET : MonoBehaviour
 {   
     // [SerializeField]
@@ -39,7 +39,6 @@ public class MET : MonoBehaviour
     public static int COL=55;
      [SerializeField]
     public float GEP= 0.5f;
-    public float Dellay = 0.5f;
     [SerializeField]
     public Vector3 leftpos;
     
@@ -93,7 +92,7 @@ public class MET : MonoBehaviour
 
     }
 
-    void defaultMaze(string fel,ref int [,]ar){
+    public void defaultMaze(string fel,ref int [,]ar){
         string[] lines = File.ReadAllLines(@"J:\GAMeD\peebeeyel\Assets\Scripts\"+fel);
         for(int i=0;i<lines.Length;i++){
           for(int j=0;j<lines[i].Length;j++){
@@ -126,7 +125,7 @@ public class MET : MonoBehaviour
       }
     }
 
-   private void saveThemaze(){
+   public void saveThemaze(){
         for(int i=0;i<MET.ROW;i++){
             for(int j=0;j<MET.COL;j++){
                 if(myArray[i,j].GetComponent<SpriteRenderer>().color!=zero){
@@ -139,7 +138,7 @@ public class MET : MonoBehaviour
         Debug.Log("saved successfully");
    }
 
-   private void displaySaved(){
+   public void displaySaved(){
         string ss="{";
          for(int i=0;i<MET.ROW;i++)
         {   string num="{";
@@ -169,7 +168,7 @@ public class MET : MonoBehaviour
     Debug.Log("overwrited successfully");
     }
 
-    private void resetThemaze(){
+    public void resetThemaze(){
         for(int i=0;i<ROW;i++){
             for(int j=0;j<COL;j++){
                 myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
@@ -178,7 +177,7 @@ public class MET : MonoBehaviour
         Debug.Log("Reset Successfully");
     }
 
-    private void defaultFlood(ref int [,]ar){
+    public void defaultFlood(ref int [,]ar){
         for(int i=0;i<MET.ROW;i++){
             for(int j=0;j<MET.COL;j++){
                 if(ar[i,j]==1){
@@ -190,7 +189,7 @@ public class MET : MonoBehaviour
         }
     }
 
-    private void defaultMaze(){
+    public void defaultMaze(){
         for(int i=0;i<19;i++){
             for(int j=0;j<26;j++){
                 if(d3[i,j]==1){
@@ -202,20 +201,15 @@ public class MET : MonoBehaviour
         }
         Debug.Log("Default maze loaded");
     }
+    public void restartScene(){
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if(currentSceneName=="General"){
+            return;
+        }
+        SceneManager.LoadScene(currentSceneName);
+        Debug.Log("Abort call!");
+    }
 }
 
 
 
-//  if (Input.GetKey(KeyCode.Space))
-//         {
-//             myArray[i, j] = Instantiate(spawn, leftpos, transform.rotation);
-//             i++;
-            
-//             if(i==25){
-//                 leftpos=rightpos;
-//                 rightpos+=new Vector3(0f,-0.5f,0f);
-//                 i=0;
-//                 j++;
-//             }
-//             leftpos += new Vector3(0.5f, 0f, 0f);
-//         }

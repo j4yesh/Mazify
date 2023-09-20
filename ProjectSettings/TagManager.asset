@@ -10,6 +10,7 @@ TagManager:
   - vw
   - hw
   - cell
+  - topButton
   layers:
   - Default
   - TransparentFX

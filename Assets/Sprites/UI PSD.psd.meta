@@ -38,6 +38,9 @@ TextureImporter:
   - first:
       213: -7749317166026266834
     second: dp_button
+  - first:
+      213: 5299984000461507416
+    second: UI PSD_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -376,7 +379,7 @@ TextureImporter:
         width: 372
         height: 92
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -384,6 +387,27 @@ TextureImporter:
       bones: []
       spriteID: e27ea2b5815e47490800000000000000
       internalID: -7749317166026266834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI PSD_2
+      rect:
+        serializedVersion: 2
+        x: 1117
+        y: 953
+        width: 370
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85b03ce2e535d8940800000000000000
+      internalID: 5299984000461507416
       vertices: []
       indices: 
       edges: []

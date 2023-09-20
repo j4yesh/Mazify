@@ -4,42 +4,6 @@ using UnityEngine;
 // using System;
 using System.Collections.Concurrent;
 
-public class Union
-{
-    private int[] parent;
-
-    public Union()
-    {
-        parent = new int[10000];
-        for (int i = 0; i < 10000; i++)
-        {
-            parent[i] = i;
-        }
-    }
-
-    public int Find(int x)
-    {
-        if (parent[x] != x)
-        {
-            parent[x] = Find(parent[x]); // Path compression
-        }
-        return parent[x];
-    }
-
-    public bool Friend(int x, int y,KeyValuePair<int,int>a,KeyValuePair<int,int>b)
-    {
-        int rootX = Find(x);
-        int rootY = Find(y);
-        
-        if (rootX == rootY)
-        {  
-            return false; // x and y are already in the same set
-        }
-
-        parent[rootX] = rootY;
-        return true;
-    }
-}
 
 public class DijAlgo : MonoBehaviour
 {

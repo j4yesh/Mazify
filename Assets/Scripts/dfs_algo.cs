@@ -49,13 +49,13 @@ public class dfs_algo : MonoBehaviour
     [SerializeField]
     private testconfirmation tc;
 
-    List<KeyValuePair<int, int>> adj = new List<KeyValuePair<int, int>>(514);
+    List<KeyValuePair<int, int>> adj = new List<KeyValuePair<int, int>>(4000);
 
     ConcurrentDictionary<int, KeyValuePair<int, int>> adk = new ConcurrentDictionary<int, KeyValuePair<int, int>>();
 
     ConcurrentDictionary<KeyValuePair<int, int>, int> adl = new ConcurrentDictionary<KeyValuePair<int, int>, int>();
 
-    Graph addj = new Graph(514);
+    Graph addj = new Graph(4000);
     void Start()
     {
         int k = 0;
@@ -120,9 +120,9 @@ public class dfs_algo : MonoBehaviour
         var finit=new KeyValuePair<int, int>(SETDSTSRC.dx,SETDSTSRC.dy);
         int t= adl[finit];
 
-        int[] visited = new int[514];
-        int[] dist = new int[514];
-        for(int i=0;i<514;i++){
+        int[] visited = new int[4000];
+        int[] dist = new int[4000];
+        for(int i=0;i<4000;i++){
             visited[i]=25000;
             dist[i]=-1;
         }
