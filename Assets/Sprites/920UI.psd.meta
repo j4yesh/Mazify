@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: -2554943582083904061
     second: SPEED
+  - first:
+      213: 4484152195905284137
+    second: fullMode
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -285,6 +288,27 @@ TextureImporter:
       bones: []
       spriteID: 3cd89b849540b8cd0800000000000000
       internalID: -2554943582083904061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fullMode
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 928e8b30aa8ea3e30800000000000000
+      internalID: 4484152195905284137
       vertices: []
       indices: 
       edges: []

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // using System;
@@ -47,7 +47,7 @@ public class MazeGen : MonoBehaviour
     [SerializeField]
     public static Color INSIDER = new Color(1f, 0.255f, 0.086f);
     public static Color BORDER = new Color(1f, 0.325f, 0f);
-     public float DELAY = 2f;
+    public float DELAY = 2f;
 
     [SerializeField]
     private testconfirmation tc;
@@ -234,7 +234,7 @@ public class MazeGen : MonoBehaviour
     }
     IEnumerator timeChange(int i,int j){
                     MET.myArray[i,j].GetComponent<SpriteRenderer>().color=Color.yellow;
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(DELAY);
                     MET.myArray[i,j].GetComponent<SpriteRenderer>().color=MET.one;
     }
 }

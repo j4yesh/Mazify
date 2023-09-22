@@ -57,7 +57,7 @@ public class MET : MonoBehaviour
     public TextMeshProUGUI sceneName;
 
     public static MET instance;
-
+    public static KeyValuePair<int,int> source,destination;
 
     private void Start()
     {   
@@ -208,6 +208,18 @@ public class MET : MonoBehaviour
         }
         SceneManager.LoadScene(currentSceneName);
         Debug.Log("Abort call!");
+    }
+
+    public void removePath(){
+        for(int i=0;i<MET.ROW;i++){
+            for(int j=0;j<MET.COL;j++){
+                if(myArray[i,j].GetComponent<SpriteRenderer>().color==one||
+                    myArray[i,j].GetComponent<SpriteRenderer>().color==zero){
+                        continue;
+                }
+                    myArray[i,j].GetComponent<SpriteRenderer>().color=one;
+            }
+        }
     }
 }
 

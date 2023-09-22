@@ -44,7 +44,8 @@ public class bfs : MonoBehaviour
     public static Color INSIDER = new Color(1f, 0.255f, 0.086f);
     public static Color BORDER = new Color(1f, 0.325f, 0f);
 
-    private float DELAY = 2f;
+    public float DELAY = 0.5f;
+    [SerializeField]public bool cAllowed=true;
 
     [SerializeField]
     private testconfirmation tc;
@@ -109,14 +110,14 @@ public class bfs : MonoBehaviour
             }
         }
         //addj.print();
-        StartCoroutine(BFS(SETDSTSRC.sx,SETDSTSRC.sy));
+        StartCoroutine(BFS(MET.source.Key,MET.source.Value));
     }
 
     IEnumerator BFS(int x,int y){
 
         var init=new KeyValuePair<int, int>(x, y);
 
-        var finit=new KeyValuePair<int, int>(SETDSTSRC.dx,SETDSTSRC.dy);
+        var finit=new KeyValuePair<int, int>(MET.destination.Key,MET.destination.Value);
         int t= adl[finit];
 
         int[] visited = new int[4000];
@@ -130,7 +131,7 @@ public class bfs : MonoBehaviour
         queue.Enqueue(adl[init]);
         visited[adl[init]] = 0;
         bool flag=true;
-        while (queue.Count > 0 && flag) {
+        while (queue.Count > 0 && flag && cAllowed) {
             int u = queue.Peek();
             queue.Dequeue();
             foreach (int v in addj.admet[u]) {
@@ -143,7 +144,7 @@ public class bfs : MonoBehaviour
 
                     //MET.myArray[m,n].GetComponent<SpriteRenderer>().color=Color.red;
                     StartCoroutine(bordit(m,n));
-                    yield return new WaitForSeconds(0.1f);
+                    yield return new WaitForSeconds(DELAY);
 
                     visited[v] = visited[u]+1;
                     queue.Enqueue(v);
@@ -156,7 +157,19 @@ public class bfs : MonoBehaviour
             }
         }
         
-
+        if(cAllowed==false){
+            cAllowed=true;
+            yield return new WaitForSeconds(DELAY);
+            for(int i=0;i<MET.ROW;i++){
+                for(int j=0;j<MET.COL;j++){
+                    if(MET.myArray[i,j].GetComponent<SpriteRenderer>().color!=MET.one &&MET.myArray[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
+                        MET.myArray[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                    }   
+                }
+            }
+            Debug.Log("Call Aborted!");
+            yield break;
+        }
         if (visited[t] == 25000) {
             Debug.Log("no path exist");
             tc.openconfirmationwindow("NO PATH EXIST!");
@@ -184,7 +197,7 @@ public class bfs : MonoBehaviour
 
     void Update()
     {
-
+        
     }
 }
 

@@ -10,7 +10,7 @@ public class backtracking_algo : MonoBehaviour
     [SerializeField]
     private Color pathColor=new Color(1f, 0.92f, 0.016f, 1f);
     // private int sx=0,sy=0,dx=MET.ROW-1,dy=MET.COL-1;
-    private float DELAY=0.1f;
+    public float DELAY=0.1f;
 
     [SerializeField]
     private testconfirmation tc;
@@ -32,7 +32,7 @@ public class backtracking_algo : MonoBehaviour
                 }
             }
         }
-        StartCoroutine(backtrack(SETDSTSRC.sx,SETDSTSRC.sy));
+        StartCoroutine(backtrack(MET.source.Key,MET.source.Value));
         // while(notfound!=true||done!=true){
 
         // }
@@ -54,7 +54,7 @@ public class backtracking_algo : MonoBehaviour
     private bool done=false;
     IEnumerator backtrack(int row, int col)
     {
-        if (row == SETDSTSRC.dx && col == SETDSTSRC.dy)
+        if (row == MET.destination.Key && col == MET.destination.Value)
         {
             MET.myArray[row, col].GetComponent<SpriteRenderer>().color = pathColor;
             yield return new WaitForSeconds(DELAY);

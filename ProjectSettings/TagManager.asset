@@ -11,6 +11,7 @@ TagManager:
   - hw
   - cell
   - topButton
+  - sideButton
   layers:
   - Default
   - TransparentFX

@@ -44,7 +44,7 @@ public class dfs_algo : MonoBehaviour
     public static Color INSIDER = new Color(1f, 0.255f, 0.086f);
     public static Color BORDER = new Color(1f, 0.325f, 0f);
 
-    private float DELAY = 2f;
+    public float DELAY = 2f;
 
     [SerializeField]
     private testconfirmation tc;
@@ -109,7 +109,7 @@ public class dfs_algo : MonoBehaviour
             }
         }
         //addj.print();
-        StartCoroutine(DFS(SETDSTSRC.sx, SETDSTSRC.sy));
+        StartCoroutine(DFS(MET.source.Key, MET.source.Value));
     }
 
     IEnumerator DFS(int x, int y)
@@ -117,7 +117,10 @@ public class dfs_algo : MonoBehaviour
 
         var init=new KeyValuePair<int, int>(x, y);
 
-        var finit=new KeyValuePair<int, int>(SETDSTSRC.dx,SETDSTSRC.dy);
+        var finit=new KeyValuePair<int, int>(MET.destination.Key,MET.destination.Value);
+        // if(finit==NULL){
+        //     Debug.Log(" Set SRC/DST please .");
+        // }
         int t= adl[finit];
 
         int[] visited = new int[4000];
@@ -141,7 +144,7 @@ public class dfs_algo : MonoBehaviour
                     int m = pick.Key;
                     int n = pick.Value;
                     StartCoroutine(bordit(m,n));
-                    yield return new WaitForSeconds(0.1f);
+                    yield return new WaitForSeconds(DELAY);
 
                     visited[v] = visited[u]+1;
                     stack.Push(v);
