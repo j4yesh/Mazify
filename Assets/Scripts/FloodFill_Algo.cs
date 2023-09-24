@@ -6,6 +6,7 @@ public class FloodFill_Algo : MonoBehaviour
 {
     private bool flooded=false;
     private int row,col;
+    public float DELAY=0.01f;
     // public static FloodFill_Algo ffinst;
     void Start()
     {   
@@ -17,7 +18,6 @@ public class FloodFill_Algo : MonoBehaviour
         // GameObject.DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(!flooded && Input.GetMouseButton(0)){
@@ -49,29 +49,25 @@ public class FloodFill_Algo : MonoBehaviour
     }
     void floody(int row, int column)
     {
-        // Check if the current cell is within the bounds of the array
         if (row < 0 || row >= MET.ROW || column < 0 || column >= MET.COL) {
             return;
         }
 
-        // Check if the current cell is already filled or not
         if (MET.myArray[row, column].GetComponent<SpriteRenderer>().color != MET.zero) {
             return;
         }
 
-        // Fill the current cell with the new color
         MET.myArray[row, column].GetComponent<SpriteRenderer>().color = MET.one;
 
         StartCoroutine(DelayedFunction(row-1,column));
         StartCoroutine(DelayedFunction(row+1,column));
         StartCoroutine(DelayedFunction(row,column-1));
         StartCoroutine(DelayedFunction(row,column+1));
-        // Recursively fill the neighboring cells
     }
 
     IEnumerator DelayedFunction(int row,int column)
     {
-        yield return new WaitForSeconds(0.0000f);
+        yield return new WaitForSeconds(DELAY);
         // Debug.Log("Delayed function executed");
         floody(row, column);
     }
