@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    // public static SceneController dinst;
+    private int[,] save1 = new int[100, 100];
     void Start()
     {
         // if(dinst!=null){
@@ -73,6 +72,83 @@ public class SceneController : MonoBehaviour
                 SceneManager.LoadScene("Flood");
     } 
 
+    public void removeSRCDST(){
+         GameObject[] objectsToDelete = GameObject.FindGameObjectsWithTag("setsrc");
+
+        foreach (GameObject obj in objectsToDelete)
+        {   
+            Debug.Log("deleted");
+            DestroyImmediate(obj);
+        }
+            Debug.Log("removeSRCDST DESTROYed");
+
+    }
+
+    public void removePath(){
+        for(int i=0;i<MET.ROW;i++){
+            for(int j=0;j<MET.COL;j++){
+                if( MET.myArray[i,j].GetComponent<SpriteRenderer>().color!=MET.one
+                    && MET.myArray[i,j].GetComponent<SpriteRenderer>().color!=MET.zero
+                ){
+            MET.myArray[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                    Debug.Log("destroyed for path");
+                }
+            }
+        }
+                    Debug.Log("REMOVE path func. invoked");
+    }
+
+    public void resetMaze(){
+        for(int i=0;i<MET.ROW;i++){
+            for(int j=0;j<MET.COL;j++){
+            MET.myArray[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+            }
+        }
+                 
+    }
+
+    public void saveThemaze(){
+        for(int i=0;i<MET.ROW;i++){
+            for(int j=0;j<MET.COL;j++){
+                if(MET.myArray[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
+                    save1[i,j]=1;
+                }else{
+                    save1[i,j]=0;
+                }
+            }
+        }
+        Debug.Log("temporary saved successfully");
+   }
+
+    public void displaySaved(){
+        string ss="{";
+         for(int i=0;i<MET.ROW;i++)
+        {   string num="{";
+            for(int j=0;j<MET.COL;j++)
+            {
+                if(save1[i,j]==1)
+                {
+                    MET.myArray[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                    num+="1";
+                }
+                else
+                {   
+                    MET.myArray[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+                    num+="0";
+                }
+                if(j!=25){
+                    num+=',';
+                }
+            }
+            num+="}";
+            if(i!=18){
+                num+=',';
+            }
+            ss+=num;
+        }
+        // Debug.Log(ss);
+    Debug.Log("overwrited successfully");
+    }
 
 
 }

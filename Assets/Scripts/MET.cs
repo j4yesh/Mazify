@@ -210,12 +210,7 @@ public class MET : MonoBehaviour
         Debug.Log("Abort call!");
     }
 
-    public void removeSRCDST(){
-        // if(SETDSTSRC){ 
-             Destroy(SETDSTSRC.prevDST);
-            Destroy(SETDSTSRC.prevSRC);
-        // }
-    }
+    
 }
 
 

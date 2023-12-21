@@ -58,6 +58,7 @@ public class SETDSTSRC : MonoBehaviour
 
                     Vector3 spawnPosition = hitObject.transform.position;
                     prevSRC=Instantiate(spawn, spawnPosition, Quaternion.identity); 
+                    prevSRC.tag = "setsrc";
                     prevSRC.GetComponent<SpriteRenderer>().color=cc;
                     prevSRC.GetComponent<Renderer>().sortingOrder=10;
                     sx=hitObject.GetComponent<Flip>().x;
@@ -85,6 +86,7 @@ public class SETDSTSRC : MonoBehaviour
                     {
                     Vector3 spawnPosition = hitObject.transform.position;
                     prevDST=Instantiate(spawn, spawnPosition, Quaternion.identity); 
+                    prevDST.tag = "setsrc";
                     prevDST.GetComponent<SpriteRenderer>().color=rr;
                     prevDST.GetComponent<Renderer>().sortingOrder=10;
                     dx=hitObject.GetComponent<Flip>().x;

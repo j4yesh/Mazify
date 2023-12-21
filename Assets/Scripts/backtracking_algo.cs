@@ -8,7 +8,8 @@ public class backtracking_algo : MonoBehaviour
     private int[,] ans=new int[MET.ROW,MET.COL];
 
     [SerializeField]
-    private Color pathColor=new Color(1f, 0.92f, 0.016f, 1f);
+    // private Color pathColor=new Color(1f, 0.92f, 0.016f, 1f);
+    private Color pathColor=Color.green;
     // private int sx=0,sy=0,dx=MET.ROW-1,dy=MET.COL-1;
     private float DELAY=0.1f;
 
