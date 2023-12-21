@@ -57,7 +57,7 @@ public class MET : MonoBehaviour
     public TextMeshProUGUI sceneName;
 
     public static MET instance;
-    public static KeyValuePair<int,int> source,destination;
+
 
     private void Start()
     {   
@@ -93,7 +93,7 @@ public class MET : MonoBehaviour
     }
 
     public void defaultMaze(string fel,ref int [,]ar){
-        string[] lines = File.ReadAllLines(@"J:\GAMeD\peebeeyel\Assets\Scripts\"+fel);
+        string[] lines = File.ReadAllLines(@"J:\GAMeD\pathfinder-hehe\Assets\Scripts\"+fel);
         for(int i=0;i<lines.Length;i++){
           for(int j=0;j<lines[i].Length;j++){
              ar[i,j]=(lines[i][j]=='1')?1:0;
@@ -208,18 +208,6 @@ public class MET : MonoBehaviour
         }
         SceneManager.LoadScene(currentSceneName);
         Debug.Log("Abort call!");
-    }
-
-    public void removePath(){
-        for(int i=0;i<MET.ROW;i++){
-            for(int j=0;j<MET.COL;j++){
-                if(myArray[i,j].GetComponent<SpriteRenderer>().color==one||
-                    myArray[i,j].GetComponent<SpriteRenderer>().color==zero){
-                        continue;
-                }
-                    myArray[i,j].GetComponent<SpriteRenderer>().color=one;
-            }
-        }
     }
 }
 
