@@ -50,7 +50,7 @@ public class FloodFill_Algo : MonoBehaviour
     void floody(int row, int column)
     {
         // Check if the current cell is within the bounds of the array
-        if (row < 0 || row >= MET.ROW || column < 0 || column >= MET.COL) {
+        if (row < 0 || row >=MET.ROW || column < 0 || column >=MET.COL) {
             return;
         }
 
@@ -62,17 +62,25 @@ public class FloodFill_Algo : MonoBehaviour
         // Fill the current cell with the new color
         MET.myArray[row, column].GetComponent<SpriteRenderer>().color = MET.one;
 
+
+        // floody(row-1,column);
+        // floody(row+1,column);
+        // floody(row,column-1);
+        // floody(row,column+1);
+
         StartCoroutine(DelayedFunction(row-1,column));
         StartCoroutine(DelayedFunction(row+1,column));
         StartCoroutine(DelayedFunction(row,column-1));
         StartCoroutine(DelayedFunction(row,column+1));
         // Recursively fill the neighboring cells
+        return;
     }
 
     IEnumerator DelayedFunction(int row,int column)
     {
-        yield return new WaitForSeconds(0.0000f);
+        yield return new WaitForSeconds(0.000f);
         // Debug.Log("Delayed function executed");
         floody(row, column);
+        yield break;
     }
 }

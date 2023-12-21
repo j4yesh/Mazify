@@ -112,7 +112,19 @@ public class SETDSTSRC : MonoBehaviour
         // }
     }
     
-    public void remove(){
+    public static void remove()
+    {
+    //    for(int i=0;i<MET.ROW;i++){
+    //     for(int j=0;j<MET.COL;j++){
+    //         if(
+    //             MET.myArray[i,j].GetComponent<SpriteRenderer>().color==Color.red || MET.myArray[i,j].GetComponent<SpriteRenderer>().color==Color.green
+    //         ){
+    //             MET.myArray[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+    //             Debug.Log("happen");
+    //         }
+    //     }
+    //    }
+    //             MET.myArray[dx,dy].GetComponent<SpriteRenderer>().color=MET.one;
             Destroy(prevDST);
             Destroy(prevSRC);
     }

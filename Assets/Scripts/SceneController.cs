@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static SceneController dinst;
+    // public static SceneController dinst;
     void Start()
     {
-        if(dinst!=null){
-            Destroy(this.gameObject);
-            return;
-        }
-        dinst=this;
-        GameObject.DontDestroyOnLoad(gameObject);
+        // if(dinst!=null){
+        //     Destroy(this.gameObject);
+        //     return;
+        // }
+        // dinst=this;
+        // GameObject.DontDestroyOnLoad(gameObject);
     }
 
     public void changeDraw(){
