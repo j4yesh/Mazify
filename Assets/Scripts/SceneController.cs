@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class SceneController : MonoBehaviour
+public class SceneController : MonoBehaviour,IDataPersistenceManger
 {
     private int[,] save1 = new int[100, 100];
     void Start()
@@ -150,5 +150,25 @@ public class SceneController : MonoBehaviour
     Debug.Log("overwrited successfully");
     }
 
+    public void OnNewGameClicked(){
+        DataPersistenceManager.instance.NewGame();
+    }
+
+    public void OnLoadGameClicked(){
+        DataPersistenceManager.instance.LoadGame();
+    }
+
+    public void OnSaveGameClicked(){
+        DataPersistenceManager.instance.SaveGame();
+    }
+
+
+    public void LoadData(GameData data){
+        Debug.Log(data.deathCount);
+    }
+
+    public void SaveData(ref GameData data){
+        data.deathCount=69;
+    }
 
 }
