@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/dpflood.unity
     guid: cb0d946ceea0d1b4992e20ef6cfbedb7
+  - enabled: 1
+    path: Assets/Scenes/SaveMenu.unity
+    guid: e6abbb072c7bf324ab33ccbc3474bef3
+  - enabled: 1
+    path: Assets/Scenes/LoadMenu.unity
+    guid: 2e75d4180e1081145b74a25c7fd0f2f6
   m_configObjects: {}

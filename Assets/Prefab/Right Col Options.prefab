@@ -2246,7 +2246,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4996473877221949796}
-        m_MethodName: OnSaveGameClicked
+        m_MethodName: SaveMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
