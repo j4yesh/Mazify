@@ -21,7 +21,7 @@ public class DataPersistenceManager : MonoBehaviour
         this.gameData=new GameData();
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         // LoadGame();
-         Invoke("LoadGame", 0.3f);
+        Invoke("LoadGame", 1f);
     }
 
     private void Awake()
@@ -72,7 +72,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {   
-        Invoke("SaveGame", 0.3f);
+        //Invoke("SaveGame", 0.3f);
         //SaveGame();
     }
 

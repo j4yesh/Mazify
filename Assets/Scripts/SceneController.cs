@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -89,6 +89,13 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
         Debug.Log("entered in general");
         if (SceneManager.GetActiveScene().name != "SaveMenu")
             SceneManager.LoadScene("SaveMenu");
+    }
+
+    public void LoadMenu()
+    {
+        Debug.Log("entered in general");
+        if (SceneManager.GetActiveScene().name != "LoadMenu")
+            SceneManager.LoadScene("LoadMenu");
     }
 
     public void removeSRCDST()
@@ -202,16 +209,16 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
         DataPersistenceManager.instance.SaveGame();
     }
 
-    private int choice = -1;
+    static private int choice = -1;
     public void LoadData(GameData data)
-    {
+     { 
         Debug.Log(data.deathCount);
         if (choice == -1)
-        {
+        {       Debug.Log("First Place invoking");
+                //resetMaze();
+
             foreach (KeyValuePair<int, int> it in data.met1)
             {
-                // MET.myArray[3,3].GetComponent<SpriteRenderer>().color=MET.one;
-                Debug.Log(it.Key + " | " + it.Value);
                 if (MET.myArray[it.Key, it.Value])
                     MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
             }
@@ -219,50 +226,51 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
         else
         {
 
-
+            Debug.Log("LoadData choicing invoked");
+               // resetMaze();
             switch (choice)
             {
                 case 2:
                     Debug.Log("Option 2 selected");
+                    data.met1.Clear();
                     foreach (KeyValuePair<int, int> it in data.met2)
                     {
-                        // MET.myArray[3,3].GetComponent<SpriteRenderer>().color=MET.one;
-                        Debug.Log(it.Key + " | " + it.Value);
-                        if (MET.myArray[it.Key, it.Value])
-                            MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
+                        //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
+                         if (MET.myArray[it.Key, it.Value])
+                             MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
                     }
                     break;
 
                 case 3:
                     Debug.Log("Option 3 selected");
+                    data.met1.Clear();
                     foreach (KeyValuePair<int, int> it in data.met3)
                     {
-                        // MET.myArray[3,3].GetComponent<SpriteRenderer>().color=MET.one;
-                        Debug.Log(it.Key + " | " + it.Value);
-                        if (MET.myArray[it.Key, it.Value])
-                            MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
+                        //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
+                         if (MET.myArray[it.Key, it.Value])
+                             MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
                     }
                     break;
 
                 case 4:
                     Debug.Log("Option 4 selected");
+                    data.met1.Clear();
                     foreach (KeyValuePair<int, int> it in data.met4)
                     {
-                        // MET.myArray[3,3].GetComponent<SpriteRenderer>().color=MET.one;
-                        Debug.Log(it.Key + " | " + it.Value);
-                        if (MET.myArray[it.Key, it.Value])
-                            MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
+                        //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
+                         if (MET.myArray[it.Key, it.Value])
+                             MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
                     }
                     break;
 
                 case 5:
                     Debug.Log("Option 5 selected");
+                    data.met1.Clear();
                     foreach (KeyValuePair<int, int> it in data.met5)
                     {
-                        // MET.myArray[3,3].GetComponent<SpriteRenderer>().color=MET.one;
-                        Debug.Log(it.Key + " | " + it.Value);
-                        if (MET.myArray[it.Key, it.Value])
-                            MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
+                        //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
+                         if (MET.myArray[it.Key, it.Value])
+                             MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
                     }
                     break;
 
@@ -279,7 +287,9 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
     public void SaveData(ref GameData data)
     {
         data.deathCount = 121;
-        data.met1.Clear();
+        if(choice==-1){
+            data.met1.Clear();
+            Debug.Log("Default Persistence Saving");
         for (int i = 0; i < MET.ROW; i++)
         {
             for (int j = 0; j < MET.COL; j++)
@@ -290,13 +300,10 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
                 }
             }
         }
-
-
-
-
+        }
 
         if (choice != -1)
-        {
+        {   Debug.Log("SaveData invoked");
             switch (choice)
             {
                 case 2:
@@ -365,9 +372,6 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
             }
 
 
-
-
-
             Debug.Log("save data succ.");
         }
     }
@@ -376,21 +380,50 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
         choice=2;
         DataPersistenceManager.instance.SaveGame();
         choice=-1;
+        Invoke("changeDraw",1f);
     }
     public void saveTwo(){
         choice=3;
         DataPersistenceManager.instance.SaveGame();
         choice=-1;
+        Invoke("changeDraw",1f);
     }
     public void saveThree(){
         choice=4;
         DataPersistenceManager.instance.SaveGame();
         choice=-1;
+        Invoke("changeDraw",1f);
     }
     public void saveFour(){
         choice=5;
         DataPersistenceManager.instance.SaveGame();
         choice=-1;
+        Invoke("changeDraw",1f);
+    }
+
+     public void LoadOne(){
+        choice=2;
+        DataPersistenceManager.instance.LoadGame();
+        choice=-1;
+        Invoke("changeDraw",1f);
+    }
+    public void LoadTwo(){
+        choice=3;
+        DataPersistenceManager.instance.LoadGame();
+        choice=-1;
+        Invoke("changeDraw",1f);
+    }
+    public void LoadThree(){
+        choice=4;
+        DataPersistenceManager.instance.LoadGame();
+        choice=-1;
+        Invoke("changeDraw",1f);
+    }
+    public void LoadFour(){
+        choice=5;
+        DataPersistenceManager.instance.LoadGame();
+        choice=-1;
+        Invoke("changeDraw",1f);
     }
 
 

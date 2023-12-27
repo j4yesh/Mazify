@@ -19,7 +19,7 @@ public class Serializator : MonoBehaviour
         var json=File.ReadAllText(Application.dataPath+"/SavePath.json");
         Debug.Log(json);
         var serializedData=JsonConvert.DeserializeObject<GameData>(json);
-        Debug.Log("serializedData"+serializedData.met1[0]);
+       // Debug.Log("serializedData"+serializedData.met1[0]);
     }
 
     public GameData Load()

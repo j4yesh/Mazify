@@ -35,8 +35,8 @@ public class MET : MonoBehaviour
     private int[,] save1 = new int[100, 100];
 
 
-    public static int ROW=35;
-    public static int COL=55;
+    public static int ROW=35;  //35 55
+    public static int COL=56;
      [SerializeField]
     public float GEP= 0.5f;
     [SerializeField]
@@ -70,23 +70,24 @@ public class MET : MonoBehaviour
         }
         instance=this;
         for(int i=0;i<MET.ROW;i++){
-            for(int j=0;j<MET.COL;j++){               
-                // spawn.x=3;
+            for(int j=0;j<MET.COL;j++){         
                 
+                //if(i<8)continue;
+
                 myArray[i, j] = Instantiate(spawn, leftpos, transform.rotation);
                 leftpos += new Vector3(GEP, 0f, 0f);
                 myArray[i,j].GetComponent<SpriteRenderer>().color=zero;
 
                 myArray[i,j].GetComponent<Flip>().x=i;
                 myArray[i,j].GetComponent<Flip>().y=j;
-                // Debug.Log(myArray[i,j].GetComponent<Flip>().x);
-            }
+                Debug.Log(myArray[i,j].GetComponent<Flip>().x);
+               }
             rightpos+=new Vector3(0f,-GEP,0f);
             leftpos=rightpos;
         }
 
-        defaultMaze("d1.txt",ref d1);
-        defaultMaze("d2.txt",ref d2);
+        // defaultMaze("d1.txt",ref d1);
+        // defaultMaze("d2.txt",ref d2);
 
         GameObject.DontDestroyOnLoad(gameObject);
 
@@ -104,25 +105,25 @@ public class MET : MonoBehaviour
     //j->17 i->26
     private void Update()
     { 
-    //   myArray[0,7].GetComponent<SpriteRenderer>().color=src;
-      if(Input.GetKeyDown(KeyCode.T)){
-        saveThemaze();
-      }
-      if(Input.GetKeyDown(KeyCode.Y)){
-        displaySaved();
-      }
-      if(Input.GetKeyDown(KeyCode.U)){
-        resetThemaze();
-      }
-      if(Input.GetKeyDown(KeyCode.I)){
-        defaultFlood(ref d1);
-      }
-      if(Input.GetKeyDown(KeyCode.O)){
-        defaultFlood(ref d2);
-      } 
-      if(Input.GetKeyDown(KeyCode.P)){
-        defaultMaze();
-      }
+    // //   myArray[0,7].GetComponent<SpriteRenderer>().color=src;
+    //   if(Input.GetKeyDown(KeyCode.T)){
+    //     saveThemaze();
+    //   }
+    //   if(Input.GetKeyDown(KeyCode.Y)){
+    //     displaySaved();
+    //   }
+    //   if(Input.GetKeyDown(KeyCode.U)){
+    //     resetThemaze();
+    //   }
+    //   if(Input.GetKeyDown(KeyCode.I)){
+    //     defaultFlood(ref d1);
+    //   }
+    //   if(Input.GetKeyDown(KeyCode.O)){
+    //     defaultFlood(ref d2);
+    //   } 
+    //   if(Input.GetKeyDown(KeyCode.P)){
+    //     defaultMaze();
+    //   }
     }
 
    public void saveThemaze(){
