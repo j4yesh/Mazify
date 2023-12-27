@@ -7,6 +7,7 @@ public class SliderControllr : MonoBehaviour
     public Text sliderText;
    public Slider mySlider;
    [SerializeField]
+
    public MazeGen mg;
    public void SliderChange(float Value)
     {
@@ -15,8 +16,9 @@ public class SliderControllr : MonoBehaviour
 
         // Map the localValue from [0, 0.5] to [0, 0.5]
         localValue = MapValue(localValue, 0, 0.5f, 0, 0.5f);
-        mg.DELAY = 0.5f - localValue; // Adjust mg.DELAY based on the mapped value
-        Debug.Log("mg.DELAY: " + mg.DELAY);
+        if(mg)mg.DELAY = 0.5f - localValue;
+       
+        Debug.Log(0.5f-localValue);
     }
 
     private float MapValue(float value, float inputMin, float inputMax, float outputMin, float outputMax)

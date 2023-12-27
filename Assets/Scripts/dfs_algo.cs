@@ -44,7 +44,7 @@ public class dfs_algo : MonoBehaviour
     public static Color INSIDER = new Color(1f, 0.255f, 0.086f);
     public static Color BORDER = new Color(1f, 0.325f, 0f);
 
-    private float DELAY = 2f;
+    public float DELAY = 0.5f;
 
     [SerializeField]
     private testconfirmation tc;

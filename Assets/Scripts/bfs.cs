@@ -39,12 +39,11 @@ public class Graph
 
 public class bfs : MonoBehaviour
 {
-
-    [SerializeField]
+    public float DELAY = 0.5f;
+   
     public static Color INSIDER = new Color(1f, 0.255f, 0.086f);
     public static Color BORDER = new Color(1f, 0.325f, 0f);
 
-    private float DELAY = 2f;
 
     [SerializeField]
     private testconfirmation tc;
@@ -143,8 +142,8 @@ public class bfs : MonoBehaviour
 
                     //MET.myArray[m,n].GetComponent<SpriteRenderer>().color=Color.red;
                     StartCoroutine(bordit(m,n));
-                    yield return new WaitForSeconds(0.1f);
-
+                    yield return new WaitForSeconds(DELAY);
+                    Debug.Log("delay from the bfs: "+DELAY);
                     visited[v] = visited[u]+1;
                     queue.Enqueue(v);
                     
@@ -173,7 +172,7 @@ public class bfs : MonoBehaviour
             Destroy(SETDSTSRC.prevDST);
             Destroy(SETDSTSRC.prevSRC);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(DELAY);
     }
 
     IEnumerator bordit(int x,int y){
