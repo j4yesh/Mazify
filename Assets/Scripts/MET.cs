@@ -36,7 +36,7 @@ public class MET : MonoBehaviour
 
 
     public static int ROW=35;  //35 55
-    public static int COL=56;
+    public static int COL=50;
      [SerializeField]
     public float GEP= 0.5f;
     [SerializeField]

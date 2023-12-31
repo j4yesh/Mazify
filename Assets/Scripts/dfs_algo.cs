@@ -141,7 +141,7 @@ public class dfs_algo : MonoBehaviour
                     int m = pick.Key;
                     int n = pick.Value;
                     StartCoroutine(bordit(m,n));
-                    yield return new WaitForSeconds(0.1f);
+                    yield return new WaitForSeconds(DELAY);
 
                     visited[v] = visited[u]+1;
                     stack.Push(v);
@@ -171,7 +171,7 @@ public class dfs_algo : MonoBehaviour
             Destroy(SETDSTSRC.prevDST);
             Destroy(SETDSTSRC.prevSRC);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
 
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class realMazeController : MonoBehaviour
 {   
 
-    int ROW=17,COL=17;
+    int ROW=9,COL=9; 
     public bool swipe=true;
 
     private GameObject vw;
@@ -19,14 +19,17 @@ public class realMazeController : MonoBehaviour
     public Vector3 rightpos;
     public  Vector3 hpos;
     public Vector3 hposref;
-    public Vector3 inpos;
-    public Vector3 inpos2;
+
+    public Vector3 inpos,inpos2;
 
     // public Color greit=new Color(0f, 162f, 255f);
     public Color greit=MET.zero;
 
+    public float GEP=10f;
+    public float GEPX=10f;
 
     [SerializeField]
+    public GameObject parentObject ;
 
     public static GameObject[,] verticalWall = new GameObject[100, 100];
     public static GameObject[,] horizontolwall = new GameObject[100, 100];
@@ -75,7 +78,7 @@ public class realMazeController : MonoBehaviour
     {
         vw=GameObject.FindWithTag("vw");
         hw=GameObject.FindWithTag("hw");
-        celler=GameObject.FindWithTag("cell");
+        celler=GameObject.FindWithTag("celler");
         StartCoroutine(mazeChange(swipe));
     }
 
@@ -153,59 +156,54 @@ public class realMazeController : MonoBehaviour
         {
             for (int j = 0; j < COL; j++)
             {
-                if(!verticalWall[i,j])
-                    Destroy(verticalWall[i,j]);
+                // if(!verticalWall[i,j])
+                    // Destroy(verticalWall[i,j]);
                     verticalWall[i, j] = Instantiate(vw, leftpos, transform.rotation);
 
-                leftpos += new Vector3(0.6f, 0f, 0f);
+                leftpos += new Vector3(GEP, 0f, 0f);
                 verticalWall[i,j].GetComponent<SpriteRenderer>().color=greit;
 
 
                 verticalWall[i,j].GetComponent<verticalWall>().x=i;
                 verticalWall[i,j].GetComponent<verticalWall>().y=j;
                 // Debug.Log(myArray[i,j].GetComponent<Flip>().x);
-
-                
-
             }
-            rightpos+=new Vector3(0f,-0.6f,0f);
+            rightpos+=new Vector3(0f,-GEP,0f);
             leftpos=rightpos;
         }
 
         for(int i=0;i<ROW;i++){
             for(int j=0;j<COL-1;j++){
-                if(!horizontolwall[i,j])
-                    Destroy(horizontolwall[i,j]);
+                // if(!horizontolwall[i,j])
+                    // Destroy(horizontolwall[i,j]);
                     horizontolwall[i,j]=Instantiate(hw,hpos,transform.rotation);
 
+                hpos += new Vector3(GEPX, 0f, 0f);
                 horizontolwall[i,j].GetComponent<SpriteRenderer>().color=greit;
                 horizontolwall[i,j].GetComponent<horizontolwall>().x=i;
                 horizontolwall[i,j].GetComponent<horizontolwall>().y=j;
-                hpos += new Vector3(0.6f, 0f, 0f);
 
             }
-            hposref+=new Vector3(0f,-0.6f,0f);
+            hposref+=new Vector3(0f,-GEPX,0f);
             hpos=hposref;
         }
+        GEP=45f;
+        for(int i=0;i<ROW-1;i++){
+            for(int j=0;j<COL-1;j++){
+                cell[i,j]=Instantiate(celler,inpos,transform.rotation);
+             
+                  cell[i,j].transform.parent = parentObject.transform;
+                       cell[i,j].transform.localPosition = inpos;
+                    // cell[i,j].transform.localRotation = Quaternion.identity;
 
-        // for(int i=0;i<ROW-1;i++){
-        //     for(int j=0;j<COL-1;j++){
-        //         cell[i,j]=Instantiate(celler,inpos,transform.rotation);
-        //         cell[i,j].GetComponent<SpriteRenderer>().color=greit;
-        //         cell[i,j].GetComponent<Flip>().x=i;
-        //         cell[i,j].GetComponent<Flip>().y=j;
-        //         inpos += new Vector3(0.6f,0f,0f);
-        //         Debug.Log("lund ka bal");
-        //     }
-        //     inpos2+=new Vector3(0f,-0.6f,0f);
-        //     inpos=inpos2;
-        // }
 
-        // cell[8,8].GetComponent<SpriteRenderer>().color=Color.green;
-        // cell[7,7].GetComponent<SpriteRenderer>().color=Color.green;
-        // cell[7,8].GetComponent<SpriteRenderer>().color=Color.green;
-        // cell[8,7].GetComponent<SpriteRenderer>().color=Color.green;
-
+                cell[i,j].GetComponent<bluep>().x=i;
+                cell[i,j].GetComponent<bluep>().y=j;
+                inpos += new Vector3(GEP,0f,0f);
+            }
+            inpos2+=new Vector3(0f,-GEP,0f);
+            inpos=inpos2;
+        }
         
     }
 
