@@ -9,7 +9,6 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
 
     void Start()
     {
-
         // if(dinst!=null){
         //     Destroy(this.gameObject);
         //     return;
@@ -209,7 +208,7 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
         DataPersistenceManager.instance.SaveGame();
     }
 
-    static private int choice = -1;
+    static public int choice = -1;
     public void LoadData(GameData data)
      { 
         Debug.Log(data.deathCount);
@@ -378,9 +377,9 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
 
     public void saveOne(){
         choice=2;
-        DataPersistenceManager.instance.SaveGame();
+        if(DataPersistenceManager.instance)DataPersistenceManager.instance.SaveGame();
         choice=-1;
-        Invoke("changeDraw",1f);
+        if(!realMazeController.instance)Invoke("changeDraw",1f);
     }
     public void saveTwo(){
         choice=3;

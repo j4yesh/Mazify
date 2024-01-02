@@ -17,7 +17,8 @@ public class Raycast_General : MonoBehaviour
             if (hit.collider != null)
             {
                 GameObject hitObject = hit.collider.gameObject;
-                hitObject.GetComponent<SpriteRenderer>().color=new Color(0f, 162f, 255f);
+                //hitObject.GetComponent<SpriteRenderer>().color=new Color(0f, 162f, 255f);
+                hitObject.GetComponent<SpriteRenderer>().color=MET.one;
             }
         }
         if(Input.GetMouseButton(1)){

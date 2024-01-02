@@ -15,8 +15,7 @@ public class Sevier : MonoBehaviour
         //     Destroy(gameObject);
         // }
 
-        // Make this button persistent across scenes
-        foreach(GameObject i in buttons){
+            foreach(GameObject i in buttons){
             DontDestroyOnLoad(i);
         }
     }

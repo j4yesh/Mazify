@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MicroMouse/MicroMouse.unity
     guid: 545ca4c6ad3819640a53eb4b101b9417
+  - enabled: 1
+    path: Assets/Scenes/MicroMouse/LoadReal.unity
+    guid: 0a423539cf682d8478a5663090c88885
   m_configObjects: {}

@@ -11,6 +11,8 @@ TagManager:
   - hw
   - cell
   - topButton
+  - celler
+  - realMaze
   layers:
   - Default
   - TransparentFX
