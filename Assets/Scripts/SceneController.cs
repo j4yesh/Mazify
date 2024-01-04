@@ -385,44 +385,44 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
         choice=3;
         DataPersistenceManager.instance.SaveGame();
         choice=-1;
-        Invoke("changeDraw",1f);
+        if(!realMazeController.instance)Invoke("changeDraw",1f);
     }
     public void saveThree(){
         choice=4;
         DataPersistenceManager.instance.SaveGame();
         choice=-1;
-        Invoke("changeDraw",1f);
+        if(!realMazeController.instance)Invoke("changeDraw",1f);
     }
     public void saveFour(){
         choice=5;
         DataPersistenceManager.instance.SaveGame();
         choice=-1;
-        Invoke("changeDraw",1f);
+        if(!realMazeController.instance)Invoke("changeDraw",1f);
     }
 
      public void LoadOne(){
         choice=2;
         DataPersistenceManager.instance.LoadGame();
         choice=-1;
-        Invoke("changeDraw",1f);
+        if(!realMazeController.instance)Invoke("changeDraw",1f);
     }
     public void LoadTwo(){
         choice=3;
         DataPersistenceManager.instance.LoadGame();
         choice=-1;
-        Invoke("changeDraw",1f);
+        if(!realMazeController.instance)Invoke("changeDraw",1f);
     }
     public void LoadThree(){
         choice=4;
         DataPersistenceManager.instance.LoadGame();
         choice=-1;
-        Invoke("changeDraw",1f);
+        if(!realMazeController.instance)Invoke("changeDraw",1f);
     }
     public void LoadFour(){
         choice=5;
         DataPersistenceManager.instance.LoadGame();
         choice=-1;
-        Invoke("changeDraw",1f);
+        if(!realMazeController.instance)Invoke("changeDraw",1f);
     }
 
 

@@ -2445,6 +2445,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &3691874079968321277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996473877221949799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b23d0cb51fc64190d5fa3783be503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5059460171916339134
 GameObject:
   m_ObjectHideFlags: 0
@@ -3366,6 +3378,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3691874079968321277}
+        m_MethodName: eraseRealMaze
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8418341732744808571
 GameObject:
   m_ObjectHideFlags: 0
@@ -3589,21 +3612,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c887ccc7f3eebd49b44abc23139fd8c, type: 3}
---- !u!4 &4996473877221949797 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1307739255888475194, guid: 3c887ccc7f3eebd49b44abc23139fd8c,
-    type: 3}
-  m_PrefabInstance: {fileID: 6300834295087215967}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4996473877221949796 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1307739255888475195, guid: 3c887ccc7f3eebd49b44abc23139fd8c,
     type: 3}
   m_PrefabInstance: {fileID: 6300834295087215967}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4996473877221949799}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01691c02e88033042ba66e6fb26679d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4996473877221949799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1307739255888475192, guid: 3c887ccc7f3eebd49b44abc23139fd8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6300834295087215967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4996473877221949797 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1307739255888475194, guid: 3c887ccc7f3eebd49b44abc23139fd8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6300834295087215967}
+  m_PrefabAsset: {fileID: 0}

@@ -6,6 +6,7 @@ public class Sevier : MonoBehaviour
 {
     // Start is called before the first frame update
         public GameObject[] buttons;
+    public static Sevier instance;
     private void Start()
     {
         // Ensure that only one instance of this button exists
@@ -14,9 +15,13 @@ public class Sevier : MonoBehaviour
         // {
         //     Destroy(gameObject);
         // }
+        if(instance!=null){
+            Destroy(this.gameObject);
+            return;
+        }
 
             foreach(GameObject i in buttons){
-            DontDestroyOnLoad(i);
+         //   DontDestroyOnLoad(i);
         }
     }
 }

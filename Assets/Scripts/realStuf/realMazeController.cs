@@ -72,15 +72,25 @@ public class realMazeController : MonoBehaviour
                         {0,0,1,0,1,0,0,0,0,1,1,1,1,1,1,0},
                         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
                         };
-    public static realMazeController instance ;
+    static public realMazeController instance;  
+    // void Awake(){
+    //     if(instance!=null){
+    //         Destroy(gameObject);
+    //     }else{
+    //         instance=this;
+    //         DontDestroyOnLoad(gameObject);
+    //     }
+    // }
 
     void Start()
     {   
-        // if(instance!=null){
-        //     Destroy(this.gameObject);
-        //     return;
-        // }
+        if(instance!=null){
+            Destroy(this.gameObject);
+            return;
+        }
         instance=this;
+        GameObject.DontDestroyOnLoad(gameObject);
+
         vw=GameObject.FindWithTag("vw");
         hw=GameObject.FindWithTag("hw");
         celler=GameObject.FindWithTag("celler");

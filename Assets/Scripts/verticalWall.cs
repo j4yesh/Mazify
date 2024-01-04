@@ -11,7 +11,6 @@ public class verticalWall : MonoBehaviour
 
     // [SerializeField]
     public int x,y;
-
     private void Start()
     {   
         originalColor=GetComponent<SpriteRenderer>().color;

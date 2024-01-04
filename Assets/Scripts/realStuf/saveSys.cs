@@ -57,15 +57,21 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
         {       
             for(int i=0;i<realMazeController.ROW;i++){
                 for(int j=0;j<realMazeController.COL-1;j++){
-                    if(data.hor1[i,j]==1){
+                    if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                        continue;
+                    }
+                    if(data.hor4[i,j]==1){
                         realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
                     }else{
                         realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
                     }
-                } 
+                }
             }
             for(int i=0;i<realMazeController.ROW-1;i++){
                 for(int j=0;j<realMazeController.COL;j++){
+                    if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                        continue;
+                    }
                     if(data.ver1[i,j]==1){
                         realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
                     }else{
@@ -85,45 +91,113 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
             {
                 case 2:
                     Debug.Log("Option 2 selected");
-                    data.met1.Clear();
-                    foreach (KeyValuePair<int, int> it in data.met2)
-                    {
-                        //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
-                         if (MET.myArray[it.Key, it.Value])
-                             MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
+                    for(int i=0;i<realMazeController.ROW;i++){
+                        for(int j=0;j<realMazeController.COL-1;j++){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                continue;
+                            }
+                            if(data.hor2[i,j]==1){
+                                realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                            }else{
+                                realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+                            }
+                        }
+                    }
+                    for(int i=0;i<realMazeController.ROW-1;i++){
+                        for(int j=0;j<realMazeController.COL;j++){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                continue;
+                            }
+                            if(data.ver2[i,j]==1){
+                                realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                            }else{
+                                realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+                            }
+                        } 
                     }
                     break;
 
                 case 3:
                     Debug.Log("Option 3 selected");
-                    data.met1.Clear();
-                    foreach (KeyValuePair<int, int> it in data.met3)
-                    {
-                        //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
-                         if (MET.myArray[it.Key, it.Value])
-                             MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
+                    for(int i=0;i<realMazeController.ROW;i++){
+                        for(int j=0;j<realMazeController.COL-1;j++){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                continue;
+                            }
+                            if(data.hor3[i,j]==1){
+                                realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                            }else{
+                                realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+                            }
+                        }
+                    }
+                    for(int i=0;i<realMazeController.ROW-1;i++){
+                        for(int j=0;j<realMazeController.COL;j++){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                continue;
+                            }
+                            if(data.ver3[i,j]==1){
+                                realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                            }else{
+                                realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+                            }
+                        } 
                     }
                     break;
 
                 case 4:
                     Debug.Log("Option 4 selected");
-                    data.met1.Clear();
-                    foreach (KeyValuePair<int, int> it in data.met4)
-                    {
-                        //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
-                         if (MET.myArray[it.Key, it.Value])
-                             MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
+                    for(int i=0;i<realMazeController.ROW;i++){
+                        for(int j=0;j<realMazeController.COL-1;j++){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                continue;
+                            }
+                            if(data.hor4[i,j]==1){
+                                realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                            }else{
+                                realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+                            }
+                        }
+                    }
+                    for(int i=0;i<realMazeController.ROW-1;i++){
+                        for(int j=0;j<realMazeController.COL;j++){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                continue;
+                            }
+                            if(data.ver4[i,j]==1){
+                                realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                            }else{
+                                realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+                            }
+                        } 
                     }
                     break;
 
                 case 5:
                     Debug.Log("Option 5 selected");
-                    data.met1.Clear();
-                    foreach (KeyValuePair<int, int> it in data.met5)
-                    {
-                        //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
-                         if (MET.myArray[it.Key, it.Value])
-                             MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
+                    for(int i=0;i<realMazeController.ROW;i++){
+                        for(int j=0;j<realMazeController.COL-1;j++){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                continue;
+                            }
+                            if(data.hor5[i,j]==1){
+                                realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                            }else{
+                                realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+                            }
+                        }
+                    }
+                    for(int i=0;i<realMazeController.ROW-1;i++){
+                        for(int j=0;j<realMazeController.COL;j++){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                continue;
+                            }
+                            if(data.ver5[i,j]==1){
+                                realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                            }else{
+                                realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
+                            }
+                        } 
                     }
                     break;
 
@@ -169,61 +243,89 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
             {
                 case 2:
                     Debug.Log("Option 2 selected");
-                    data.met2.Clear();
-                    for (int i = 0; i < MET.ROW; i++)
-                    {
-                        for (int j = 0; j < MET.COL; j++)
-                        {
-                            if (MET.myArray[i, j].GetComponent<SpriteRenderer>().color != MET.zero)
-                            {
-                                data.met2.Add(new KeyValuePair<int, int>(i, j));
+                    for(int i=0;i<realMazeController.ROW;i++){
+                        for(int j=0;j<realMazeController.COL-1;j++){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                data.hor2[i,j]=1;
+                            }else{ 
+                                data.hor2[i,j]=0;
                             }
-                        }
+                        } 
+                    }
+                    for(int i=0;i<realMazeController.ROW-1;i++){
+                        for(int j=0;j<realMazeController.COL;j++){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                data.ver2[i,j]=1;
+                            }else{ 
+                                data.ver2[i,j]=0;
+                            }
+                        } 
                     }
                     break;
 
                 case 3:
                     Debug.Log("Option 3 selected");
-                    data.met3.Clear();
-                    for (int i = 0; i < MET.ROW; i++)
-                    {
-                        for (int j = 0; j < MET.COL; j++)
-                        {
-                            if (MET.myArray[i, j].GetComponent<SpriteRenderer>().color != MET.zero)
-                            {
-                                data.met3.Add(new KeyValuePair<int, int>(i, j));
+                    for(int i=0;i<realMazeController.ROW;i++){
+                        for(int j=0;j<realMazeController.COL-1;j++){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                data.hor3[i,j]=1;
+                            }else{ 
+                                data.hor3[i,j]=0;
                             }
-                        }
+                        } 
+                    }
+                    for(int i=0;i<realMazeController.ROW-1;i++){
+                        for(int j=0;j<realMazeController.COL;j++){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                data.ver3[i,j]=1;
+                            }else{ 
+                                data.ver3[i,j]=0;
+                            }
+                        } 
                     }
                     break;
 
                 case 4:
                     Debug.Log("Option 4 selected");
-                    data.met4.Clear();
-                    for (int i = 0; i < MET.ROW; i++)
-                    {
-                        for (int j = 0; j < MET.COL; j++)
-                        {
-                            if (MET.myArray[i, j].GetComponent<SpriteRenderer>().color != MET.zero)
-                            {
-                                data.met4.Add(new KeyValuePair<int, int>(i, j));
+                    for(int i=0;i<realMazeController.ROW;i++){
+                        for(int j=0;j<realMazeController.COL-1;j++){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                data.hor4[i,j]=1;
+                            }else{ 
+                                data.hor4[i,j]=0;
                             }
-                        }
+                        } 
+                    }
+                    for(int i=0;i<realMazeController.ROW-1;i++){
+                        for(int j=0;j<realMazeController.COL;j++){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                data.ver4[i,j]=1;
+                            }else{ 
+                                data.ver4[i,j]=0;
+                            }
+                        } 
                     }
                     break;
 
                 case 5:
                     Debug.Log("Option 5 selected");
-                    data.met5.Clear();
-                    for (int i = 0; i < MET.ROW; i++)
-                    {
-                        for (int j = 0; j < MET.COL; j++)
-                        {
-                            if (MET.myArray[i, j].GetComponent<SpriteRenderer>().color != MET.zero)
-                            {
-                                data.met5.Add(new KeyValuePair<int, int>(i, j));
+                    for(int i=0;i<realMazeController.ROW;i++){
+                        for(int j=0;j<realMazeController.COL-1;j++){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                data.hor5[i,j]=1;
+                            }else{ 
+                                data.hor5[i,j]=0;
                             }
-                        }
+                        } 
+                    }
+                    for(int i=0;i<realMazeController.ROW-1;i++){
+                        for(int j=0;j<realMazeController.COL;j++){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                                data.ver5[i,j]=1;
+                            }else{ 
+                                data.ver5[i,j]=0;
+                            }
+                        } 
                     }
                     break;
 
