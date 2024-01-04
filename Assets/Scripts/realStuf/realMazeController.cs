@@ -176,7 +176,7 @@ public class realMazeController : MonoBehaviour
                     verticalWall[i, j] = Instantiate(vw, leftpos, transform.rotation);
 
                 leftpos += new Vector3(GEP, 0f, 0f);
-                verticalWall[i,j].GetComponent<SpriteRenderer>().color=greit;
+                verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
 
 
                 verticalWall[i,j].GetComponent<verticalWall>().x=i;
@@ -194,7 +194,7 @@ public class realMazeController : MonoBehaviour
                     horizontolwall[i,j]=Instantiate(hw,hpos,transform.rotation);
 
                 hpos += new Vector3(GEPX, 0f, 0f);
-                horizontolwall[i,j].GetComponent<SpriteRenderer>().color=greit;
+                horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
                 horizontolwall[i,j].GetComponent<horizontolwall>().x=i;
                 horizontolwall[i,j].GetComponent<horizontolwall>().y=j;
 

@@ -14,33 +14,27 @@ public class botify : MonoBehaviour
         public bool[] wall;
     }
 
-    static int ROW = 16;
-    static int COL = 16;
+    static int ROW = 8;
+    static int COL = 8;
 
     static List<KeyValuePair<int,int>> trips;
-    static Node[,] celler = new Node[16, 16];
+    static Node[,] celler = new Node[8, 8];
 
     static KeyValuePair<int, int> cur = new KeyValuePair<int, int>(0, 0);
     static Node[,] retTrip;
 
-    static int[,] cell = new int[16, 16]
+    static int[,] cell = new int[8, 8]
     {
-        { 14, 13, 12, 11, 10,  9,  8,  7,  7,  8,  9, 10, 11, 12, 13, 14 },
-        { 13, 12, 11, 10,  9,  8,  7,  6,  6,  7,  8,  9, 10, 11, 12, 13 },
-        { 12, 11, 10,  9,  8,  7,  6,  5,  5,  6,  7,  8,  9, 10, 11, 12 },
-        { 11, 10,  9,  8,  7,  6,  5,  4,  4,  5,  6,  7,  8,  9, 10, 11 },
-        { 10,  9,  8,  7,  6,  5,  4,  3,  3,  4,  5,  6,  7,  8,  9, 10 },
-        {  9,  8,  7,  6,  5,  4,  3,  2,  2,  3,  4,  5,  6,  7,  8,  9 },
-        {  8,  7,  6,  5,  4,  3,  2,  1,  1,  2,  3,  4,  5,  6,  7,  8 },
-        {  7,  6,  5,  4,  3,  2,  1,  0,  0,  1,  2,  3,  4,  5,  6,  7 },
-        {  7,  6,  5,  4,  3,  2,  1,  0,  0,  1,  2,  3,  4,  5,  6,  7 },
-        {  8,  7,  6,  5,  4,  3,  2,  1,  1,  2,  3,  4,  5,  6,  7,  8 },
-        {  9,  8,  7,  6,  5,  4,  3,  2,  2,  3,  4,  5,  6,  7,  8,  9 },
-        { 10,  9,  8,  7,  6,  5,  4,  3,  3,  4,  5,  6,  7,  8,  9, 10 },
-        { 11, 10,  9,  8,  7,  6,  5,  4,  4,  5,  6,  7,  8,  9, 10, 11 },
-        { 12, 11, 10,  9,  8,  7,  6,  5,  5,  6,  7,  8,  9, 10, 11, 12 },
-        { 13, 12, 11, 10,  9,  8,  7,  6,  6,  7,  8,  9, 10, 11, 12, 13 },
-        { 14, 13, 12, 11, 10,  9,  8,  7,  7,  8,  9, 10, 11, 12, 13, 14 }
+   
+        { 6,  5,  4,  3,  3,  4,  5,  6},
+        { 5,  4,  3,  2,  2,  3,  4,  5},
+        { 4,  3,  2,  1,  1,  2,  3,  4},
+        { 3,  2,  1,  0,  0,  1,  2,  3},
+        { 3,  2,  1,  0,  0,  1,  2,  3},
+        { 4,  3,  2,  1,  1,  2,  3,  4},
+        { 5,  4,  3,  2,  2,  3,  4,  5},
+        { 6,  5,  4,  3,  3,  4,  5,  6},
+   
     };
     
     void Start()
@@ -79,7 +73,7 @@ public class botify : MonoBehaviour
         {
            if(Input.GetKeyDown(KeyCode.C)){    
             Debug.Log("extended flood fill called at that moment\n ");
-             StartCoroutine(Solve());
+             StartCoroutine(Solve(7,0));
            }
         }
 
@@ -169,22 +163,22 @@ public class botify : MonoBehaviour
 
     void MoveTop()
     {
-        transform.position += new Vector3(0f, 0.6f, 0f);
+        transform.position += new Vector3(0f, 1f, 0f);
     }
 
     void MoveDown()
     {
-        transform.position += new Vector3(0f, -0.6f, 0f);
+        transform.position += new Vector3(0f, -1f, 0f);
     }
 
     void MoveLeft()
     {
-        transform.position += new Vector3(-0.6f, 0f, 0f);
+        transform.position += new Vector3(-1f, 0f, 0f);
     }
 
     void MoveRight()
     {
-        transform.position += new Vector3(0.6f, 0f, 0f);
+        transform.position += new Vector3(1f, 0f, 0f);
     }
 
     void WallSaver(KeyValuePair<int, int> temp, bool[] a)
@@ -377,7 +371,7 @@ public class botify : MonoBehaviour
         yield break;
     }
 
-    IEnumerator Solve()
+    IEnumerator Solve(int stx,int sty)
     {
         for (int i = 0; i < ROW; i++)
         {
@@ -400,8 +394,8 @@ public class botify : MonoBehaviour
             celler[i, 0].wall[3] = false;
         }
 
-        cur = new KeyValuePair<int, int>(15, 0);
-        retTrip[cur.Key, cur.Value].nev = true;
+        cur = new KeyValuePair<int, int>(stx, sty);
+        //retTrip[cur.Key, cur.Value].nev = true;
         // trips.Add(cur);
 
         Queue<KeyValuePair<int, int>> q = new Queue<KeyValuePair<int, int>>();

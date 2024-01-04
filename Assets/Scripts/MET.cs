@@ -1,4 +1,4 @@
-  using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -58,7 +58,6 @@ public class MET : MonoBehaviour
 
     public static MET instance;
 
-
     private void Start()
     {   
         sceneName=FindObjectOfType<TextMeshProUGUI>();
@@ -68,6 +67,7 @@ public class MET : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+        
         instance=this;
         for(int i=0;i<MET.ROW;i++){
             for(int j=0;j<MET.COL;j++){         
@@ -80,7 +80,7 @@ public class MET : MonoBehaviour
 
                 myArray[i,j].GetComponent<Flip>().x=i;
                 myArray[i,j].GetComponent<Flip>().y=j;
-                Debug.Log(myArray[i,j].GetComponent<Flip>().x);
+                //Debug.Log(myArray[i,j].GetComponent<Flip>().x);
                }
             rightpos+=new Vector3(0f,-GEP,0f);
             leftpos=rightpos;
