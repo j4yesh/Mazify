@@ -16,7 +16,7 @@ public class botify : MonoBehaviour
 
     static int ROW = 8;
     static int COL = 8;
-
+    public float DELAY=0.01f;
     static List<KeyValuePair<int,int>> trips;
     static Node[,] celler = new Node[8, 8];
 
@@ -39,13 +39,17 @@ public class botify : MonoBehaviour
     
     void Start()
     {
-        trips = new List<KeyValuePair<int,int>>();
+        Invoke("kuchTohKarkeExecutekr",1f);
+    }
+    void kuchTohKarkeExecutekr(){
+         trips = new List<KeyValuePair<int,int>>();
         retTrip = new Node[ROW, COL];
 
         for (int i = 0; i < ROW; i++)
         {
             for (int j = 0; j < COL; j++)
-            {
+            {   
+                realMazeController.cell[i,j].GetComponent<bluep>().num.text=cell[i,j].ToString();
                 celler[i, j] = new Node();
                 celler[i, j].wall = new bool[4];
                 celler[i, j].wall[0] = true;
@@ -64,18 +68,19 @@ public class botify : MonoBehaviour
         }
 
         cur = new KeyValuePair<int, int>(15, 0);
-        retTrip[cur.Key, cur.Value].nev = true;
+        // retTrip[cur.Key, cur.Value].nev = true;
         trips.Add(cur);
 
     }
-
         void Update()
         {
            if(Input.GetKeyDown(KeyCode.C)){    
-            Debug.Log("extended flood fill called at that moment\n ");
-             StartCoroutine(Solve(7,0));
+                Debug.Log("extended flood fill called at that moment\n ");
+                StartCoroutine(Solve(7, 0));
            }
+          
         }
+
 
     bool RightSensor()
     {
@@ -199,8 +204,8 @@ public class botify : MonoBehaviour
 
         if (celler[pr.Key, pr.Value].wall[0])
         {
-            KeyValuePair<int, int> innerPair = new KeyValuePair<int, int>(pr.Key - 1, pr.Value);
-            KeyValuePair<int, KeyValuePair<int, int>> outerPair = new KeyValuePair<int, KeyValuePair<int, int>>(cell[pr.Key - 1, pr.Value], innerPair);
+            KeyValuePair<int, int> innerPair = new KeyValuePair<int, int>(pr.Key -1, pr.Value);
+            KeyValuePair<int, KeyValuePair<int, int>> outerPair = new KeyValuePair<int, KeyValuePair<int, int>>(cell[pr.Key -1, pr.Value], innerPair);
             vr.Add(outerPair);
         }
         if (celler[pr.Key, pr.Value].wall[2])
@@ -211,8 +216,8 @@ public class botify : MonoBehaviour
         }
         if (celler[pr.Key, pr.Value].wall[1])
         {
-            KeyValuePair<int, int> innerPair = new KeyValuePair<int, int>(pr.Key + 1, pr.Value);
-            KeyValuePair<int, KeyValuePair<int, int>> outerPair = new KeyValuePair<int, KeyValuePair<int, int>>(cell[pr.Key + 1, pr.Value], innerPair);
+            KeyValuePair<int, int> innerPair = new KeyValuePair<int, int>(pr.Key +1, pr.Value);
+            KeyValuePair<int, KeyValuePair<int, int>> outerPair = new KeyValuePair<int, KeyValuePair<int, int>>(cell[pr.Key +1, pr.Value], innerPair);
             vr.Add(outerPair);
         }
         if (celler[pr.Key, pr.Value].wall[3])
@@ -286,19 +291,19 @@ public class botify : MonoBehaviour
         Debug.Log(cur.Value);
         if (celler[cur.Key, cur.Value].wall[0])
         {   
-            v.Add(cell[cur.Key - 1, cur.Value]);
+            v.Add(cell[cur.Key - 1, cur.Value]); //-1
         }
         if (celler[cur.Key, cur.Value].wall[2])
         {
-            v.Add(cell[cur.Key, cur.Value + 1]);
+            v.Add(cell[cur.Key, cur.Value + 1]); //+1
         }
         if (celler[cur.Key, cur.Value].wall[1])
         {
-            v.Add(cell[cur.Key + 1, cur.Value]);
+            v.Add(cell[cur.Key + 1, cur.Value]); //+1
         }
-        if (celler[cur.Key, cur.Value].wall[3])
+        if (celler[cur.Key, cur.Value].wall[3]) 
         {
-            v.Add(cell[cur.Key, cur.Value - 1]);
+            v.Add(cell[cur.Key, cur.Value - 1]); //-1
         }
         if(v.Count==0){
             Debug.Log("just cannot!");
@@ -366,7 +371,7 @@ public class botify : MonoBehaviour
             retEarn[cur.Key,cur.Value]=false;
             cur=new KeyValuePair<int, int>(cur.Key, cur.Value-1);
         }
-        yield return new WaitForSeconds(0.03f);
+        yield return new WaitForSeconds(DELAY);
         }
         yield break;
     }
@@ -431,15 +436,16 @@ public class botify : MonoBehaviour
             }
             else
             {
-                while (q.Count > 0)
-                {
-                    q.Dequeue();
-                }
+                // while (q.Count > 0)
+                // {
+                //     q.Dequeue();
+                // }
             }
 
             if (BringTheVal(cell[cur.Key, cur.Value]) >= cell[cur.Key, cur.Value])
             {
                 cell[cur.Key, cur.Value] = BringTheVal(cell[cur.Key, cur.Value]) + 1;
+                realMazeController.cell[cur.Key,cur.Value].GetComponent<bluep>().num.text=cell[cur.Key,cur.Value].ToString();
             }
 
             string dir = "";
@@ -489,13 +495,13 @@ public class botify : MonoBehaviour
             }
 
             Debug.Log(next.Key + " " + next.Value);
-            if (retTrip[next.Key, next.Value].nev)
-            {
-                Debug.Log("One detected");
-                retTrip[cur.Key, cur.Value].nev = false;
-                trips.RemoveAt(trips.Count - 1);
-                Debug.Log("Popping");
-            }
+            // if (retTrip[next.Key, next.Value].nev)
+            // {
+            //     Debug.Log("One detected");
+            //     retTrip[cur.Key, cur.Value].nev = false;
+            //     trips.RemoveAt(trips.Count - 1);
+            //     Debug.Log("Popping");
+            // }
 
             if (dir == "top")
             {
@@ -514,7 +520,7 @@ public class botify : MonoBehaviour
                 MoveLeft();
             }
 
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(DELAY);
 
             cur = next;
             if (!retTrip[cur.Key, cur.Value].nev)
@@ -522,9 +528,9 @@ public class botify : MonoBehaviour
                 trips.Add(cur);
                 Debug.Log("Pushing");
             }
-            retTrip[cur.Key, cur.Value].nev = !retTrip[cur.Key, cur.Value].nev;
+           // retTrip[cur.Key, cur.Value].nev = !retTrip[cur.Key, cur.Value].nev;
 
-            if ((cur.Key == 8 && cur.Value==8)||(cur.Key == 8 && cur.Value==7)||(cur.Key == 7 && cur.Value==8)||(cur.Key == 7 && cur.Value==7))
+            if (cell[cur.Key,cur.Value]==0 || cell[cur.Key,cur.Value]>9)
             {
                 Debug.Log("Finish!");
                  a[0] = UpSensor();

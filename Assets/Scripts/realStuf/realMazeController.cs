@@ -10,7 +10,7 @@ public class realMazeController : MonoBehaviour
 
     private GameObject vw;
     private GameObject hw;
-    private GameObject celler;
+    public static GameObject celler;
 
     [SerializeField]
     public Vector3 leftpos;
@@ -222,4 +222,8 @@ public class realMazeController : MonoBehaviour
         
     }
 
+    public static void changet(int i,int j,string str){
+        Debug.Log("this was called hahahahahahhahahahahha");
+        cell[i,j].GetComponent<bluep>().num.text=str;
+    }
 }
