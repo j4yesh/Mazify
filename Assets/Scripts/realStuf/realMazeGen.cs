@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Concurrent;
+
 
 
 public class overload : MonoBehaviour
@@ -175,7 +177,7 @@ public class realMazeGen : MonoBehaviour
     IEnumerator Solve(int stx,int sty)
     {   
    
-
+        transform.position=new Vector3(-5.49f,-3.996f,0f);
         for (int i = 0; i < ROW; i++)
         {
             for (int j = 0; j < COL; j++)
@@ -184,65 +186,100 @@ public class realMazeGen : MonoBehaviour
                 cell[i,j]=0;
             }
         }
+
+        for (int i = 0; i < ROW-1; i++)
+        {
+            for (int j = 0; j < COL; j++)
+            {
+                realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+            }
+        }
+
+        for(int i=0;i<ROW;i++){
+            for(int j=0;j<COL-1;j++){
+                realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+            }
+        }
        
 
         cur = new KeyValuePair<int, int>(stx, sty);
 
         Stack<overload>st=new Stack<overload>();
         st.Push(new overload(transform.position,stx,sty));
-
-         realMazeController.cell[cur.Key,cur.Value].GetComponent<bluep>().num.text="0";
-         cell[cur.Key,cur.Value]=0;
-         bool[] a = new bool[4];
-
-             int cnt=0;
+        cell[stx,sty]=1;
+  
+         cell[cur.Key,cur.Value]=1;
+        
          while (st.Count>0)
          {   
              overload c=st.Pop();
-            Debug.Log(c.kvp.Key+"  |  "+c.kvp.Value);
-            //   a[0] = UpSensor();
-            //   a[1] = DownSensor();
-            //   a[2] = RightSensor();
-            //   a[3] = LeftSensor();
-            
-            if(cnt==0){
-                removeWall(c.pos);
-                transform.position=c.pos;
-            }else{
-                removeWall(c.pos);
-                transform.position=c.pos;
-                cnt=0;
-            }
+       
+            removeWall(c.pos);
+            transform.position=c.pos;
             yield return new WaitForSeconds(0.2f);
+            List<overload>ls=new List<overload>();
+            int cnt=0;
              if(c.kvp.Key-1>=0 && cell[c.kvp.Key-1,c.kvp.Value]==0){
-                 cnt++;
+                cnt++;
                  cell[c.kvp.Key-1,c.kvp.Value]=1; 
                  Vector3 nextPos=transform.position;
                  nextPos += new Vector3(0f, 1f, 0f);
-                 st.Push(new overload(nextPos,c.kvp.Key-1,c.kvp.Value));
+                 ls.Add(new overload(nextPos,c.kvp.Key-1,c.kvp.Value));
+                //  st.Push(new overload(nextPos,c.kvp.Key-1,c.kvp.Value));
              }
              if(c.kvp.Key+1<ROW && cell[c.kvp.Key+1,c.kvp.Value]==0){
-                 cnt++;
+                cnt++;
                  cell[c.kvp.Key+1,c.kvp.Value]=1;
                  Vector3 nextPos=transform.position;
                  nextPos += new Vector3(0f, -1f, 0f);
-                 st.Push(new overload(nextPos,c.kvp.Key+1,c.kvp.Value));
+                 ls.Add(new overload(nextPos,c.kvp.Key+1,c.kvp.Value));
+                //  st.Push(new overload(nextPos,c.kvp.Key+1,c.kvp.Value));
              }
              if(c.kvp.Value+1<COL && cell[c.kvp.Key,c.kvp.Value+1]==0){
-                 cnt++;
+                cnt++;
                  cell[c.kvp.Key,c.kvp.Value+1]=1;
                   Vector3 nextPos=transform.position;
                  nextPos += new Vector3(1f, 0f, 0f);
-                 st.Push(new overload(nextPos,c.kvp.Key,c.kvp.Value+1));
+                 ls.Add(new overload(nextPos,c.kvp.Key,c.kvp.Value+1));
+                //  st.Push(new overload(nextPos,c.kvp.Key,c.kvp.Value+1));
              }
              if(c.kvp.Value-1>=0 && cell[c.kvp.Key,c.kvp.Value-1]==0){
-                 cnt++;
+                cnt++;
                  cell[c.kvp.Key,c.kvp.Value-1]=1;
                   Vector3 nextPos=transform.position;
                  nextPos += new Vector3(-1f, 0f, 0f);
-                 st.Push(new overload(nextPos,c.kvp.Key,c.kvp.Value-1));
+                 ls.Add(new overload(nextPos,c.kvp.Key,c.kvp.Value-1));
+                //  st.Push(new overload(nextPos,c.kvp.Key,c.kvp.Value-1));
              }
-            
+            if(cnt==0 && c.kvp.Key>=1 && c.kvp.Key<ROW-1 && c.kvp.Value>=1 && c.kvp.Value<COL-1){
+                int del=Random.Range(1, 5);
+                 switch (del)
+                    {
+                        case 1:
+                            UpSensor();
+                            break;
+                        case 2:
+                            DownSensor();
+                            break;
+                        case 3:
+                            RightSensor();
+                            break;
+                        case 4:
+                            LeftSensor();
+                            break;
+                    }
+            }
+             int n = ls.Count;
+                while (n > 1) {
+                    n--;
+                    int k = Random.Range(0, n + 1);
+                    overload value = ls[k];
+                    ls[k] = ls[n];
+                    ls[n] = value;
+                }
+            foreach(overload item in ls){
+                st.Push(item);
+            }
          }
         yield break;
     }

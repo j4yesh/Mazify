@@ -3,10 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public class State{
+    public int [,]celli=new int [8,8];
+    public Vector3 pos=new Vector3();
+    public Color [,] verticalWall=new Color[8,8];
+    public Color [,] horizontolWall=new Color[8,8];
+    public int r=8,c=8;
+    public State(int [,]cell,Vector3 posi, GameObject [,] ver,GameObject [,] hor){
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                this.celli[i,j]=cell[i,j];
+                if(i!=r-1){
+                    this.verticalWall[i,j]=ver[i,j].GetComponent<SpriteRenderer>().color;
+                }
+                if(j!=c-1){
+                    this.horizontolWall[i,j]=hor[i,j].GetComponent<SpriteRenderer>().color;
+                }
+            }
+        }
+                this.pos=posi;
+    }
+}
+
 public class botify : MonoBehaviour
 {
     public float raycastDistance = 10f; // The distance to cast the rays
-
+    public List<State>Trip=new List<State>();
     struct Node
     {
         public int row, col;
@@ -36,7 +58,19 @@ public class botify : MonoBehaviour
         { 6,  5,  4,  3,  3,  4,  5,  6},
    
     };
-    
+    static int[,] valueExtractor = new int[8, 8]
+    {
+   
+        { 6,  5,  4,  3,  3,  4,  5,  6},
+        { 5,  4,  3,  2,  2,  3,  4,  5},
+        { 4,  3,  2,  1,  1,  2,  3,  4},
+        { 3,  2,  1,  0,  0,  1,  2,  3},
+        { 3,  2,  1,  0,  0,  1,  2,  3},
+        { 4,  3,  2,  1,  1,  2,  3,  4},
+        { 5,  4,  3,  2,  2,  3,  4,  5},
+        { 6,  5,  4,  3,  3,  4,  5,  6},
+   
+    };
     void Start()
     {
         Invoke("kuchTohKarkeExecutekr",1f);
@@ -67,10 +101,6 @@ public class botify : MonoBehaviour
             celler[i, 0].wall[3] = false;
         }
 
-        cur = new KeyValuePair<int, int>(15, 0);
-        // retTrip[cur.Key, cur.Value].nev = true;
-        trips.Add(cur);
-
     }
         void Update()
         {
@@ -78,10 +108,27 @@ public class botify : MonoBehaviour
                 Debug.Log("extended flood fill called at that moment\n ");
                 StartCoroutine(Solve(7, 0));
            }
+           if(Input.GetKeyDown(KeyCode.M)){
+            changeState();
+           }
           
         }
 
-
+    void changeState(){
+        int idx=1;
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                realMazeController.cell[i,j].GetComponent<bluep>().num.text=Trip[idx].celli[i,j].ToString();
+                if(i!=ROW-1){
+                    realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=Trip[idx].verticalWall[i,j];
+                }
+                if(j!=COL-1){
+                    realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=Trip[idx].horizontolWall[i,j];
+                }
+            }
+        }
+        transform.position=Trip[idx].pos;
+    }
     bool RightSensor()
     {
         Ray ray = new Ray(transform.position, Vector3.right);
@@ -377,11 +424,15 @@ public class botify : MonoBehaviour
     }
 
     IEnumerator Solve(int stx,int sty)
-    {
+    {   
+        transform.position=new Vector3(-5.49f,-3.996f,0f);
+
         for (int i = 0; i < ROW; i++)
         {
             for (int j = 0; j < ROW; j++)
-            {
+            {   
+                realMazeController.cell[i,j].GetComponent<bluep>().num.text=cell[i,j].ToString();
+                cell[i,j]=valueExtractor[i,j];
                 celler[i, j] = new Node();
                 celler[i, j].wall = new bool[4];
                 celler[i, j].wall[0] = true;
@@ -523,12 +574,6 @@ public class botify : MonoBehaviour
             yield return new WaitForSeconds(DELAY);
 
             cur = next;
-            if (!retTrip[cur.Key, cur.Value].nev)
-            {
-                trips.Add(cur);
-                Debug.Log("Pushing");
-            }
-           // retTrip[cur.Key, cur.Value].nev = !retTrip[cur.Key, cur.Value].nev;
 
             if (cell[cur.Key,cur.Value]==0 || cell[cur.Key,cur.Value]>9)
             {
@@ -542,6 +587,8 @@ public class botify : MonoBehaviour
                 // StartCoroutine(backtrip());
                 yield break;
             }
+            
+            //int [,]cell,Vector3 posi, int [,] ver,int [,] hor
         }
     }
 }

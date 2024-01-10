@@ -2230,6 +2230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adabe96af19ec5409bc9a14909190f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raycastDistance: 10
+  DELAY: 0.01
 --- !u!96 &1663910739
 TrailRenderer:
   serializedVersion: 2
@@ -2366,7 +2368,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2318914573408742512, guid: 83b0f8ac74f05a944b441cc306f44d9b,
+  m_Sprite: {fileID: -5953857553447092499, guid: 68515ba27503a474bbbb4fce9e656cab,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
