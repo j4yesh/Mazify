@@ -60,8 +60,6 @@ public class MET : MonoBehaviour
 
     private void Start()
     {   
-        sceneName=FindObjectOfType<TextMeshProUGUI>();
-        sceneName.text="DRAW/ERASE";
         spawn=GameObject.FindWithTag("blk");
         if(instance!=null){
             Destroy(this.gameObject);

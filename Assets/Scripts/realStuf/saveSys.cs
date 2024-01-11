@@ -51,7 +51,10 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
 
     static private int choice = -1;
     public void LoadData(GameData data)
-     { 
+     {  
+        if (SceneManager.GetActiveScene().name != "MicroMouse"){
+            return;
+        }
         Debug.Log(data.deathCount);
         if (choice == -1)
         {       
@@ -333,7 +336,6 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
                     Debug.Log("Invalid option selected");
                     break;
             }
-
 
             Debug.Log("save data succ.");
         }

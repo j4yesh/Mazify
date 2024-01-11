@@ -175,6 +175,9 @@ public class realMazeGen : MonoBehaviour
             DownSensor();
         }
     }
+    public void wannaGenThemAZE(){
+         StartCoroutine(Solve(7, 0));
+    }
     IEnumerator Solve(int stx,int sty)
     {   
          trailRenderer.time = 70; 

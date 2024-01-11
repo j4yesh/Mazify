@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.UI;
 public class State{
     public int [,]celli=new int [8,8];
     public Vector3 pos=new Vector3();
@@ -78,9 +78,10 @@ public class botify : MonoBehaviour
          trailRenderer = GetComponent<TrailRenderer>();
         objectsWithTag = GameObject.FindGameObjectsWithTag("frontback");
         foreach (GameObject obj in objectsWithTag)
-        {
-            obj.SetActive(false);
-        }
+                {
+                    Button khupBhari=obj.GetComponent<Button>();
+                    khupBhari.interactable=false;
+                }
         Invoke("kuchTohKarkeExecutekr",1f);
     }
 
@@ -111,11 +112,13 @@ public class botify : MonoBehaviour
         }
 
     }
+    public void CallTheFloodFill(){
+         StartCoroutine(Solve(7, 0));
+    }
     int idx=0;
         void Update()
         {
            if(Input.GetKeyDown(KeyCode.C)){    
-                Debug.Log("extended flood fill called at that moment\n ");
                 StartCoroutine(Solve(7, 0));
            }
            if(Input.GetKeyDown(KeyCode.M)){
@@ -454,10 +457,11 @@ public class botify : MonoBehaviour
     {   
         trailRenderer.time=70;    
         
-        foreach (GameObject obj in objectsWithTag)
-        {
-            obj.SetActive(false);
-        }
+       foreach (GameObject obj in objectsWithTag)
+                {
+                    Button khupBhari=obj.GetComponent<Button>();
+                    khupBhari.interactable=false;
+                }
         transform.position=new Vector3(-5.49f,-3.996f,0f);
 
         for (int i = 0; i < ROW; i++)
@@ -606,7 +610,8 @@ public class botify : MonoBehaviour
             {   
                 foreach (GameObject obj in objectsWithTag)
                 {
-                    obj.SetActive(true);
+                    Button khupBhari=obj.GetComponent<Button>();
+                    khupBhari.interactable=true;
                 }
                 Debug.Log("Finish!");
                  a[0] = UpSensor();
@@ -624,7 +629,6 @@ public class botify : MonoBehaviour
                 }
                 idx=Trip.Count-1;
                  trailRenderer.time=0;    
-
                 yield break;
             }
             for(int i=0;i<9;i++){
