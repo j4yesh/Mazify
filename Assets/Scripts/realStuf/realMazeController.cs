@@ -199,7 +199,7 @@ public class realMazeController : MonoBehaviour
                 horizontolwall[i,j].GetComponent<horizontolwall>().y=j;
 
             }
-            hposref+=new Vector3(0f,-GEPX,0f);
+            hposref+=new Vector3(0f,-GEPX,0f) ;
             hpos=hposref;
         }
         GEP=45f;

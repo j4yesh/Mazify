@@ -13,6 +13,7 @@ TagManager:
   - topButton
   - celler
   - realMaze
+  - frontback
   layers:
   - Default
   - TransparentFX

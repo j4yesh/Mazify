@@ -6,17 +6,17 @@ using System;
 public class State{
     public int [,]celli=new int [8,8];
     public Vector3 pos=new Vector3();
-    public Color [,] verticalWall=new Color[8,8];
-    public Color [,] horizontolWall=new Color[8,8];
-    public int r=8,c=8;
+    public Color [,] verticalWall=new Color[9,9];
+    public Color [,] horizontolWall=new Color[9,9];
+    public int r=9,c=9;
     public State(int [,]cell,Vector3 posi, GameObject [,] ver,GameObject [,] hor){
-        for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
-                this.celli[i,j]=cell[i,j];
-                if(i!=r-1){
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(i<8 && j<8)this.celli[i,j]=cell[i,j];
+                if(ver[i,j]){
                     this.verticalWall[i,j]=ver[i,j].GetComponent<SpriteRenderer>().color;
                 }
-                if(j!=c-1){
+                if(hor[i,j]){
                     this.horizontolWall[i,j]=hor[i,j].GetComponent<SpriteRenderer>().color;
                 }
             }
@@ -71,10 +71,19 @@ public class botify : MonoBehaviour
         { 6,  5,  4,  3,  3,  4,  5,  6},
    
     };
+    public GameObject[] objectsWithTag;
+     private TrailRenderer trailRenderer;    
     void Start()
-    {
+    {   
+         trailRenderer = GetComponent<TrailRenderer>();
+        objectsWithTag = GameObject.FindGameObjectsWithTag("frontback");
+        foreach (GameObject obj in objectsWithTag)
+        {
+            obj.SetActive(false);
+        }
         Invoke("kuchTohKarkeExecutekr",1f);
     }
+
     void kuchTohKarkeExecutekr(){
          trips = new List<KeyValuePair<int,int>>();
         retTrip = new Node[ROW, COL];
@@ -102,6 +111,7 @@ public class botify : MonoBehaviour
         }
 
     }
+    int idx=0;
         void Update()
         {
            if(Input.GetKeyDown(KeyCode.C)){    
@@ -109,20 +119,37 @@ public class botify : MonoBehaviour
                 StartCoroutine(Solve(7, 0));
            }
            if(Input.GetKeyDown(KeyCode.M)){
-            changeState();
+            forwardIterate();
            }
-          
+           if(Input.GetKeyDown(KeyCode.N)){
+            backwardIterate();
+           }
         }
-
+    
+    public void forwardIterate(){
+        if(idx+1<0 || idx+1>=Trip.Count){
+            changeState();
+            return;
+        }
+        idx++;changeState();
+    }
+    public void backwardIterate(){
+        if(idx-1<0 || idx-1>=Trip.Count){
+            changeState();
+            return;
+        }
+        idx--;changeState();
+    }
     void changeState(){
-        int idx=1;
-        for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                if(realMazeController.cell[i,j]){
                 realMazeController.cell[i,j].GetComponent<bluep>().num.text=Trip[idx].celli[i,j].ToString();
-                if(i!=ROW-1){
+                }
+                if(realMazeController.verticalWall[i,j]){
                     realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=Trip[idx].verticalWall[i,j];
                 }
-                if(j!=COL-1){
+                if(realMazeController.horizontolwall[i,j]){
                     realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=Trip[idx].horizontolWall[i,j];
                 }
             }
@@ -425,14 +452,22 @@ public class botify : MonoBehaviour
 
     IEnumerator Solve(int stx,int sty)
     {   
+        trailRenderer.time=70;    
+        
+        foreach (GameObject obj in objectsWithTag)
+        {
+            obj.SetActive(false);
+        }
         transform.position=new Vector3(-5.49f,-3.996f,0f);
 
         for (int i = 0; i < ROW; i++)
         {
-            for (int j = 0; j < ROW; j++)
-            {   
-                realMazeController.cell[i,j].GetComponent<bluep>().num.text=cell[i,j].ToString();
+            for (int j = 0; j < COL; j++)
+            {
                 cell[i,j]=valueExtractor[i,j];
+                if(realMazeController.cell[i,j]){   
+                realMazeController.cell[i,j].GetComponent<bluep>().num.text=cell[i,j].ToString();
+                }
                 celler[i, j] = new Node();
                 celler[i, j].wall = new bool[4];
                 celler[i, j].wall[0] = true;
@@ -451,14 +486,13 @@ public class botify : MonoBehaviour
         }
 
         cur = new KeyValuePair<int, int>(stx, sty);
-        //retTrip[cur.Key, cur.Value].nev = true;
-        // trips.Add(cur);
+        Trip.Clear();
 
         Queue<KeyValuePair<int, int>> q = new Queue<KeyValuePair<int, int>>();
         q.Enqueue(cur);
 
         bool[] a = new bool[4];
-
+        Trip.Add(new State(cell,transform.position,realMazeController.verticalWall,realMazeController.horizontolwall));
         while (true)
         {   
             KeyValuePair<int, int> next = cur;
@@ -546,13 +580,6 @@ public class botify : MonoBehaviour
             }
 
             Debug.Log(next.Key + " " + next.Value);
-            // if (retTrip[next.Key, next.Value].nev)
-            // {
-            //     Debug.Log("One detected");
-            //     retTrip[cur.Key, cur.Value].nev = false;
-            //     trips.RemoveAt(trips.Count - 1);
-            //     Debug.Log("Popping");
-            // }
 
             if (dir == "top")
             {
@@ -576,20 +603,42 @@ public class botify : MonoBehaviour
             cur = next;
 
             if (cell[cur.Key,cur.Value]==0 || cell[cur.Key,cur.Value]>9)
-            {
+            {   
+                foreach (GameObject obj in objectsWithTag)
+                {
+                    obj.SetActive(true);
+                }
                 Debug.Log("Finish!");
                  a[0] = UpSensor();
                  a[1] = DownSensor();
                  a[2] = RightSensor();
                  a[3] = LeftSensor();
                 WallSaver(cur, a);
+                Trip.Add(new State(cell,transform.position,realMazeController.verticalWall,realMazeController.horizontolwall));
+                 for(int i=0;i<9;i++){
+                    for(int j=0;j<9;j++){
+                        if(realMazeController.cell[i,j]){
+                        realMazeController.cell[i,j].GetComponent<bluep>().num.text=cell[i,j].ToString();
+                        }
+                    }
+                }
+                idx=Trip.Count-1;
+                 trailRenderer.time=0;    
 
-                // StartCoroutine(backtrip());
                 yield break;
             }
-            
-            //int [,]cell,Vector3 posi, int [,] ver,int [,] hor
+            for(int i=0;i<9;i++){
+                for(int j=0;j<9;j++){
+                    if(realMazeController.cell[i,j]){
+                    realMazeController.cell[i,j].GetComponent<bluep>().num.text=cell[i,j].ToString();
+                    }
+                }
+            }
+            Trip.Add(new State(cell,transform.position,realMazeController.verticalWall,realMazeController.horizontolwall));
         }
+        
+        trailRenderer.time=0;    
+
     }
 }
 

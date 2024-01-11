@@ -64,9 +64,10 @@ public class realMazeGen : MonoBehaviour
         { 6,  5,  4,  3,  3,  4,  5,  6},
    
     };
-    
+    private TrailRenderer trailRenderer;    
     void Start()
     {
+        trailRenderer = GetComponent<TrailRenderer>();
     }
     
         void Update()
@@ -176,32 +177,23 @@ public class realMazeGen : MonoBehaviour
     }
     IEnumerator Solve(int stx,int sty)
     {   
-   
+         trailRenderer.time = 70; 
         transform.position=new Vector3(-5.49f,-3.996f,0f);
         for (int i = 0; i < ROW; i++)
         {
             for (int j = 0; j < COL; j++)
             {   
-                realMazeController.cell[i,j].GetComponent<bluep>().num.text="0";
+                realMazeController.cell[i,j].GetComponent<bluep>().num.text="x";
                 cell[i,j]=0;
             }
         }
-
-        for (int i = 0; i < ROW-1; i++)
-        {
-            for (int j = 0; j < COL; j++)
-            {
-                realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+        for(int i=0;i<ROW+1;i++){
+            for(int j=0;j<COL+1;j++){
+                if(realMazeController.verticalWall[i,j])realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
+                if(realMazeController.horizontolwall[i,j])realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
             }
         }
-
-        for(int i=0;i<ROW;i++){
-            for(int j=0;j<COL-1;j++){
-                realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
-            }
-        }
-       
-
+    
         cur = new KeyValuePair<int, int>(stx, sty);
 
         Stack<overload>st=new Stack<overload>();
@@ -281,6 +273,7 @@ public class realMazeGen : MonoBehaviour
                 st.Push(item);
             }
          }
-        yield break;
+         trailRenderer.time = 0; 
+         yield break;
     }
 }
