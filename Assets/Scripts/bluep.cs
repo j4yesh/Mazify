@@ -31,7 +31,7 @@ public class bluep : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "SaveMenu"||scene.name=="LoadMenu")
+        if (scene.name == "SaveReal"||scene.name=="LoadReal")
         {
             SetObjectVisibility(false);
         }

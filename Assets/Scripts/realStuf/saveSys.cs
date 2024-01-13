@@ -49,6 +49,18 @@ public class saveSys : MonoBehaviour, uDataPersistenceManager
             SceneManager.LoadScene("LoadReal");
     }
 
+    public void changeStandard()
+    {
+            SceneManager.LoadScene("General");
+    }
+
+    public void changeMicroMouse(){
+            SceneManager.LoadScene("MicroMouse");
+    }
+    public void changeExit(){
+        SceneManager.LoadScene("split");
+    }
+
     public void OnNewGameClicked()
     {
         sDataPersistenceManager.instance.NewGame();
@@ -72,7 +84,7 @@ public class saveSys : MonoBehaviour, uDataPersistenceManager
         {       
             for(int i=0;i<realMazeController.ROW;i++){
                 for(int j=0;j<realMazeController.COL-1;j++){
-                    if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                    if(realMazeController.horizontolwall[i,j] && realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
                         continue;
                     }
                     if(data.hor1[i,j]==1){

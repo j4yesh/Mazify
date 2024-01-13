@@ -96,6 +96,10 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
         if (SceneManager.GetActiveScene().name != "LoadMenu")
             SceneManager.LoadScene("LoadMenu");
     }
+    public void changeMain()
+    {
+            SceneManager.LoadScene("split");
+    }
 
     public void removeSRCDST()
     {

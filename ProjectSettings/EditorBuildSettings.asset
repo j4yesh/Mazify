@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MicroMouse/SaveReal.unity
     guid: 5b12b40efe4d7314bb85030666c49bca
+  - enabled: 1
+    path: Assets/Scenes/split.unity
+    guid: 24be512376cc3cb48a9963238b7c8076
   m_configObjects: {}
