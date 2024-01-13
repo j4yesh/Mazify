@@ -11,17 +11,19 @@ public class DataPersistenceManager : MonoBehaviour
     private List<IDataPersistenceManger> dataPersistenceObjects;
     private GameData gameData; // You need to declare the GameData variable.
 
-   [SerializeField ]public Serializator dataHandler;
-
-
+   public Serializator dataHandler;
 
     private void Start()
     {   
-        this.dataHandler=new Serializator();
+        // this.dataHandler=new Serializator();
+        if (dataHandler == null)
+            {
+                dataHandler = gameObject.AddComponent<Serializator>();
+            }
         this.gameData=new GameData();
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        // LoadGame();
-        Invoke("LoadGame", 1f);
+        LoadGame();
+        //Invoke("LoadGame", 1f);
     }
 
     private void Awake()

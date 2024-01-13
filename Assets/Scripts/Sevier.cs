@@ -9,19 +9,18 @@ public class Sevier : MonoBehaviour
     public static Sevier instance;
     private void Start()
     {
-        // Ensure that only one instance of this button exists
-        // GameObject[] buttons = GameObject.FindGameObjectsWithTag("topButton");
-        // if (buttons.Length > 200)
-        // {
-        //     Destroy(gameObject);
-        // }
         if(instance!=null){
             Destroy(this.gameObject);
             return;
         }
-
+        instance=this;
+       // GameObject[] buttons = GameObject.FindGameObjectsWithTag("topButton");
+        if (buttons.Length > 200)
+        {
+            Destroy(gameObject);
+        }
             foreach(GameObject i in buttons){
-         //   DontDestroyOnLoad(i);
+           DontDestroyOnLoad(i);
         }
     }
 }

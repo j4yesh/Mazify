@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class saveSys : MonoBehaviour, IDataPersistenceManger
+public class saveSys : MonoBehaviour, uDataPersistenceManager
 {   
     //public realMazeController realMazeController;
     void Start()
     {
       //  realMazeController=realMazeController.FindWithTag("realMaze");
+
     }
 
     void Update()
@@ -20,6 +21,8 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
         if (SceneManager.GetActiveScene().name != "MicroMouseScene")
             SceneManager.LoadScene("MicroMouse");
     }
+
+    
 
     public void eraseRealMaze(){
         for(int i=0;i<realMazeController.ROW;i++){
@@ -34,27 +37,36 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
         }
     }
 
+    public void changeSaveScene()
+    {
+        if (SceneManager.GetActiveScene().name != "SaveReal")
+            SceneManager.LoadScene("SaveReal");
+    }
+
+    public void changeLoadReal()
+    {
+        if (SceneManager.GetActiveScene().name != "LoadReal")
+            SceneManager.LoadScene("LoadReal");
+    }
+
     public void OnNewGameClicked()
     {
-        DataPersistenceManager.instance.NewGame();
+        sDataPersistenceManager.instance.NewGame();
     }
 
     public void OnLoadGameClicked()
     {
-        DataPersistenceManager.instance.LoadGame();
+        sDataPersistenceManager.instance.LoadGame1();
     }
 
     public void OnSaveGameClicked()
     {
-        DataPersistenceManager.instance.SaveGame();
+        sDataPersistenceManager.instance.SaveGame1();
     }
-
     static private int choice = -1;
-    public void LoadData(GameData data)
+    public void LoadData1(GameData data)
      {  
-        if (SceneManager.GetActiveScene().name != "MicroMouse"){
-            return;
-        }
+
         Debug.Log(data.deathCount);
         if (choice == -1)
         {       
@@ -63,7 +75,7 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
                     if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
                         continue;
                     }
-                    if(data.hor4[i,j]==1){
+                    if(data.hor1[i,j]==1){
                         realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.one;
                     }else{
                         realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color=MET.zero;
@@ -88,7 +100,7 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
         else
         {
 
-            Debug.Log("LoadData choicing invoked");
+            Debug.Log("LoadData1 choicing invoked");
                // resetMaze();
             switch (choice)
             {
@@ -206,7 +218,6 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
 
                 default:
                     Debug.Log("Invalid option selected");
-                    // Perform actions for default case (when none of the specified cases match)
                     break;
             }
 
@@ -214,13 +225,13 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
         }
     }
 
-    public void SaveData(ref GameData data)
-    {
+    public void SaveData1(ref GameData data)
+    {   
         data.deathCount = 121;
         if(choice==-1){
             for(int i=0;i<realMazeController.ROW;i++){
                 for(int j=0;j<realMazeController.COL-1;j++){
-                    if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                    if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
                         data.hor1[i,j]=1;
                     }else{ 
                         data.hor1[i,j]=0;
@@ -229,7 +240,7 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
             }
             for(int i=0;i<realMazeController.ROW-1;i++){
                 for(int j=0;j<realMazeController.COL;j++){
-                    if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                    if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
                         data.ver1[i,j]=1;
                     }else{ 
                         data.ver1[i,j]=0;
@@ -241,23 +252,25 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
         }
 
         if (choice != -1)
-        {   Debug.Log("SaveData invoked");
+        {   Debug.Log("SaveData1 invoked");
             switch (choice)
             {
                 case 2:
                     Debug.Log("Option 2 selected");
                     for(int i=0;i<realMazeController.ROW;i++){
                         for(int j=0;j<realMazeController.COL-1;j++){
-                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
+                                
                                 data.hor2[i,j]=1;
                             }else{ 
                                 data.hor2[i,j]=0;
+                                Debug.Log("realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color");
                             }
                         } 
                     }
                     for(int i=0;i<realMazeController.ROW-1;i++){
                         for(int j=0;j<realMazeController.COL;j++){
-                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
                                 data.ver2[i,j]=1;
                             }else{ 
                                 data.ver2[i,j]=0;
@@ -270,7 +283,7 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
                     Debug.Log("Option 3 selected");
                     for(int i=0;i<realMazeController.ROW;i++){
                         for(int j=0;j<realMazeController.COL-1;j++){
-                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
                                 data.hor3[i,j]=1;
                             }else{ 
                                 data.hor3[i,j]=0;
@@ -279,7 +292,7 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
                     }
                     for(int i=0;i<realMazeController.ROW-1;i++){
                         for(int j=0;j<realMazeController.COL;j++){
-                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
                                 data.ver3[i,j]=1;
                             }else{ 
                                 data.ver3[i,j]=0;
@@ -292,7 +305,7 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
                     Debug.Log("Option 4 selected");
                     for(int i=0;i<realMazeController.ROW;i++){
                         for(int j=0;j<realMazeController.COL-1;j++){
-                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
                                 data.hor4[i,j]=1;
                             }else{ 
                                 data.hor4[i,j]=0;
@@ -301,7 +314,7 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
                     }
                     for(int i=0;i<realMazeController.ROW-1;i++){
                         for(int j=0;j<realMazeController.COL;j++){
-                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
                                 data.ver4[i,j]=1;
                             }else{ 
                                 data.ver4[i,j]=0;
@@ -314,7 +327,7 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
                     Debug.Log("Option 5 selected");
                     for(int i=0;i<realMazeController.ROW;i++){
                         for(int j=0;j<realMazeController.COL-1;j++){
-                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                            if(realMazeController.horizontolwall[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
                                 data.hor5[i,j]=1;
                             }else{ 
                                 data.hor5[i,j]=0;
@@ -323,7 +336,7 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
                     }
                     for(int i=0;i<realMazeController.ROW-1;i++){
                         for(int j=0;j<realMazeController.COL;j++){
-                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color==MET.one){
+                            if(realMazeController.verticalWall[i,j].GetComponent<SpriteRenderer>().color!=MET.zero){
                                 data.ver5[i,j]=1;
                             }else{ 
                                 data.ver5[i,j]=0;
@@ -343,50 +356,50 @@ public class saveSys : MonoBehaviour, IDataPersistenceManger
 
     public void saveOne(){
         choice=2;
-        DataPersistenceManager.instance.SaveGame();
-        choice=-1;
+        sDataPersistenceManager.instance.SaveGame1();
+        // choice=-1;
         Invoke("MicroMouseScene",1f);
     }
     public void saveTwo(){
         choice=3;
-        DataPersistenceManager.instance.SaveGame();
+        sDataPersistenceManager.instance.SaveGame1();
         choice=-1;
         Invoke("MicroMouseScene",1f);
     }
     public void saveThree(){
         choice=4;
-        DataPersistenceManager.instance.SaveGame();
+        sDataPersistenceManager.instance.SaveGame1();
         choice=-1;
         Invoke("MicroMouseScene",1f);
     }
     public void saveFour(){
         choice=5;
-        DataPersistenceManager.instance.SaveGame();
+        sDataPersistenceManager.instance.SaveGame1();
         choice=-1;
         Invoke("MicroMouseScene",1f);
     }
 
      public void LoadOne(){
         choice=2;
-        DataPersistenceManager.instance.LoadGame();
+        sDataPersistenceManager.instance.LoadGame1();
         choice=-1;
         Invoke("MicroMouseScene",1f);
     }
     public void LoadTwo(){
         choice=3;
-        DataPersistenceManager.instance.LoadGame();
+        sDataPersistenceManager.instance.LoadGame1();
         choice=-1;
         Invoke("MicroMouseScene",1f);
     }
     public void LoadThree(){
         choice=4;
-        DataPersistenceManager.instance.LoadGame();
+        sDataPersistenceManager.instance.LoadGame1();
         choice=-1;
         Invoke("MicroMouseScene",1f);
     }
     public void LoadFour(){
         choice=5;
-        DataPersistenceManager.instance.LoadGame();
+        sDataPersistenceManager.instance.LoadGame1();
         choice=-1;
         Invoke("MicroMouseScene",1f);
     }

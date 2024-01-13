@@ -231,44 +231,46 @@ public class SceneController : MonoBehaviour, IDataPersistenceManger
             {
                 case 2:
                     Debug.Log("Option 2 selected");
-                    data.met1.Clear();
+                    // data.met1.Clear();
                     foreach (KeyValuePair<int, int> it in data.met2)
                     {
                         //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
-                         if (MET.myArray[it.Key, it.Value])
+                        //  if (MET.myArray[it.Key, it.Value])
                              MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
+                        Debug.Log(it.Key+" "+it.Value);
                     }
+                    Debug.Log(data.met2.Count  + "size of the list");
                     break;
 
                 case 3:
                     Debug.Log("Option 3 selected");
-                    data.met1.Clear();
+                    // data.met1.Clear();
                     foreach (KeyValuePair<int, int> it in data.met3)
                     {
                         //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
-                         if (MET.myArray[it.Key, it.Value])
+                        //  if (MET.myArray[it.Key, it.Value])
                              MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
                     }
                     break;
 
                 case 4:
                     Debug.Log("Option 4 selected");
-                    data.met1.Clear();
+                    // data.met1.Clear();
                     foreach (KeyValuePair<int, int> it in data.met4)
                     {
                         //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
-                         if (MET.myArray[it.Key, it.Value])
+                        //  if (MET.myArray[it.Key, it.Value])
                              MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
                     }
                     break;
 
                 case 5:
                     Debug.Log("Option 5 selected");
-                    data.met1.Clear();
+                    // data.met1.Clear();
                     foreach (KeyValuePair<int, int> it in data.met5)
                     {
                         //data.met1.Add(new KeyValuePair<int,int>(it.Key,it.Value));
-                         if (MET.myArray[it.Key, it.Value])
+                        //  if (MET.myArray[it.Key, it.Value])
                              MET.myArray[it.Key, it.Value].GetComponent<SpriteRenderer>().color = MET.one;
                     }
                     break;

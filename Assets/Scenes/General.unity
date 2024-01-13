@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttons:
-  - {fileID: 0}
   - {fileID: 1308683127}
 --- !u!4 &478563519
 Transform:
@@ -802,6 +801,9 @@ MonoBehaviour:
   inpos: {x: -5.522, y: 4.5, z: 0}
   inpos2: {x: -5.522, y: 4.5, z: 0}
   greit: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+  GEP: 10
+  GEPX: 10
+  parentObject: {fileID: 0}
 --- !u!4 &1990574006
 Transform:
   m_ObjectHideFlags: 0
@@ -1113,7 +1115,8 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: changeDraw
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3691874079968321277, guid: 1aeb95e833e291f46879e245c63c5f25, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1aeb95e833e291f46879e245c63c5f25, type: 3}
 --- !u!1001 &832645524906405556
 PrefabInstance:
