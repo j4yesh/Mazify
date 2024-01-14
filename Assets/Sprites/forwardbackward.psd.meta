@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: -7263817857221090329
     second: forwardbackward_1
+  - first:
+      213: -8908022034759549841
+    second: j4yesh_
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -165,6 +168,27 @@ TextureImporter:
       bones: []
       spriteID: 7e3a23be42cb13b90800000000000000
       internalID: -7263817857221090329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: j4yesh_
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 28
+        width: 915
+        height: 177
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 1, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6cfdc6f729506480800000000000000
+      internalID: -8908022034759549841
       vertices: []
       indices: 
       edges: []

@@ -31,7 +31,7 @@ public class bluep : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "SaveReal"||scene.name=="LoadReal")
+        if (scene.name == "SaveReal"||scene.name=="LoadReal" || scene.name=="split")
         {
             SetObjectVisibility(false);
         }
