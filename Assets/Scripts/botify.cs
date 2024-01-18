@@ -39,6 +39,8 @@ public class botify : MonoBehaviour
     static int ROW = 8;
     static int COL = 8;
     public float DELAY=0.01f;
+    public testconfirmation tc;
+
     static List<KeyValuePair<int,int>> trips;
     static Node[,] celler = new Node[8, 8];
 
@@ -73,6 +75,7 @@ public class botify : MonoBehaviour
     };
     public GameObject[] objectsWithTag;
      private TrailRenderer trailRenderer;    
+    private List<Coroutine> activeCoroutines = new List<Coroutine>();
     void Start()
     {   
          trailRenderer = GetComponent<TrailRenderer>();
@@ -83,6 +86,14 @@ public class botify : MonoBehaviour
                     khupBhari.interactable=false;
                 }
         Invoke("kuchTohKarkeExecutekr",1f);
+    }
+     private void StopAllCoroutines()
+    {
+        foreach (Coroutine coroutine in activeCoroutines)
+        {
+            StopCoroutine(coroutine);
+        }
+        activeCoroutines.Clear();
     }
 
     void kuchTohKarkeExecutekr(){
@@ -113,7 +124,8 @@ public class botify : MonoBehaviour
 
     }
     public void CallTheFloodFill(){
-         StartCoroutine(Solve(7, 0));
+        Coroutine coroutine = StartCoroutine( Solve(7, 0));
+        activeCoroutines.Add(coroutine);
     }
     int idx=0;
         void Update()
@@ -126,6 +138,9 @@ public class botify : MonoBehaviour
            }
            if(Input.GetKeyDown(KeyCode.N)){
             backwardIterate();
+           }
+           if(Input.GetKeyDown(KeyCode.G)){
+            checkSolutionExist(7,0);
            }
         }
     
@@ -270,7 +285,17 @@ public class botify : MonoBehaviour
             if (!a[i])
             {
                 celler[temp.Key, temp.Value].wall[i] = false;
-                Debug.Log("Wall saved");
+                if(i==0 && temp.Key-1>=0){
+                    celler[temp.Key-1,temp.Value].wall[1]=false;
+                }
+                else if(i==1 && temp.Key+1<8){
+                    celler[temp.Key+1,temp.Value].wall[0]=false;
+                }
+                else if(i==2 && temp.Value+1<8){
+                    celler[temp.Key,temp.Value+1].wall[3]=false;
+                }else if(temp.Value-1>=0){
+                    celler[temp.Key,temp.Value-1].wall[2]=false;
+                }
             }
         }
     }
@@ -319,6 +344,7 @@ public class botify : MonoBehaviour
             Debug.Log("minValue: " + minValue);
         }
     }
+
 
     bool QNeeded(KeyValuePair<int, int> pr)
     {
@@ -398,61 +424,6 @@ public class botify : MonoBehaviour
         return temp;
     }
 
-    IEnumerator backtrip(){
-         bool [,] retEarn= new bool [ROW,ROW];
-        for(int i=0;i<ROW;i++){
-            for(int j=0;j<ROW;j++){
-            retEarn[i,j]=false;
-            }
-        }
-        for(int i=0;i<trips.Count;i++){
-            retEarn[trips[i].Key,trips[i].Value]=true;
-        }
-            String str="";
-        for(int i=0;i<ROW;i++){
-            for(int j=0;j<ROW;j++){
-                if(retEarn[i,j]==false){
-                    str+="0";
-                }else{
-                    str+="1";
-                }
-            }
-        }
-            Debug.Log(str);
-    Debug.Log("starting return journey \n");
-        while(cur.Key!=4 || cur.Value!=0){
-
-            for(int i=0;i<4;i++){
-             Debug.Log(celler[cur.Key,cur.Value].wall[i]+" | ");     
-            }
-
-            Debug.Log(cur.Key);
-            Debug.Log(cur.Value);
-        if(celler[cur.Key,cur.Value].wall[0] && retEarn[cur.Key-1,cur.Value]){
-            MoveTop();
-            retEarn[cur.Key,cur.Value]=false;
-            cur=new KeyValuePair<int, int>(cur.Key-1, cur.Value);
-        }
-        else if(celler[cur.Key,cur.Value].wall[2] && retEarn[cur.Key,cur.Value+1]){
-            MoveRight();
-            retEarn[cur.Key,cur.Value]=false;
-            cur=new KeyValuePair<int, int>(cur.Key, cur.Value+1);
-        }
-        else if(celler[cur.Key,cur.Value].wall[1] && retEarn[cur.Key+1,cur.Value]){
-            MoveDown();
-            retEarn[cur.Key,cur.Value]=false;
-            cur=new KeyValuePair<int, int>(cur.Key+1, cur.Value);
-        }
-        else if(celler[cur.Key,cur.Value].wall[3] && retEarn[cur.Key,cur.Value-1]){
-            MoveLeft();
-            retEarn[cur.Key,cur.Value]=false;
-            cur=new KeyValuePair<int, int>(cur.Key, cur.Value-1);
-        }
-        yield return new WaitForSeconds(DELAY);
-        }
-        yield break;
-    }
-
     IEnumerator Solve(int stx,int sty)
     {   
         trailRenderer.time=70;    
@@ -493,6 +464,7 @@ public class botify : MonoBehaviour
         Trip.Clear();
 
         Queue<KeyValuePair<int, int>> q = new Queue<KeyValuePair<int, int>>();
+        
         q.Enqueue(cur);
 
         bool[] a = new bool[4];
@@ -513,22 +485,23 @@ public class botify : MonoBehaviour
 
 
             WallSaver(cur, a);
-
-            if (QNeeded(cur))
+            checkSolutionExist(cur.Key,cur.Value);
+            if (QNeeded(cur))  //if there are more than one way
             {
                 Debug.Log("Queue needed:");
                 while (q.Count > 0)
-                {
+                {   
+                    Debug.Log(q.Count+" q counter dude");
                     KeyValuePair<int, int> temp = q.Dequeue();
                     Queken(q, temp);
                 }
             }
             else
             {
-                // while (q.Count > 0)
-                // {
-                //     q.Dequeue();
-                // }
+                while (q.Count > 0)
+                {
+                    q.Dequeue();
+                }
             }
 
             if (BringTheVal(cell[cur.Key, cur.Value]) >= cell[cur.Key, cur.Value])
@@ -583,7 +556,9 @@ public class botify : MonoBehaviour
                 }
             }
 
-            Debug.Log(next.Key + " " + next.Value);
+            if(dir==""){
+                StopAllCoroutines();
+            }
 
             if (dir == "top")
             {
@@ -606,7 +581,7 @@ public class botify : MonoBehaviour
 
             cur = next;
 
-            if (cell[cur.Key,cur.Value]==0 || cell[cur.Key,cur.Value]>9)
+            if (cell[cur.Key,cur.Value]==0 )
             {   
                 foreach (GameObject obj in objectsWithTag)
                 {
@@ -642,8 +617,90 @@ public class botify : MonoBehaviour
         }
         
         trailRenderer.time=0;    
+        yield break;
+    }
+
+
+        private void checkSolutionExist(int endx, int endy)
+    {
+        Queue<KeyValuePair<int, int>> q = new Queue<KeyValuePair<int, int>>();
+        int[,] celity = new int[8, 8]
+        {
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+            { -1,-1,-1, 0, 0,-1,-1,-1},
+            { -1,-1,-1, 0, 0,-1,-1,-1},
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+        };
+        int[,] vis = new int[8, 8]
+        {
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+            { -1,-1,-1, 1, 1,-1,-1,-1},
+            { -1,-1,-1, 1, 1,-1,-1,-1},
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+            { -1,-1,-1,-1,-1,-1,-1,-1},
+        };
+        int layer = 0;
+        q.Enqueue(new KeyValuePair<int, int>(3, 3));
+        q.Enqueue(new KeyValuePair<int, int>(3, 4));
+        q.Enqueue(new KeyValuePair<int, int>(4, 3));
+        q.Enqueue(new KeyValuePair<int, int>(4, 4));
+
+        while (q.Count > 0)
+        {   
+            int size = q.Count;
+            for(int i=0;i<size;i++)
+            {
+                Debug.Log("calibrating");
+                KeyValuePair<int, int> cur = q.Dequeue();
+                celity[cur.Key, cur.Value] = layer;
+
+                if (cur.Key - 1 >= 0 && vis[cur.Key - 1, cur.Value]==-1 && celler[cur.Key, cur.Value].wall[0])
+                {
+                    vis[cur.Key - 1, cur.Value]=1;
+                    KeyValuePair<int, int> next = new KeyValuePair<int, int>(cur.Key - 1, cur.Value);
+                    q.Enqueue(new KeyValuePair<int, int>(next.Key, next.Value));
+                }
+                if (cur.Value + 1 < 8 && vis[cur.Key, cur.Value+1]==-1 && celler[cur.Key, cur.Value].wall[2])
+                {   
+                    vis[cur.Key, cur.Value+1]=1;
+                    KeyValuePair<int, int> next = new KeyValuePair<int, int>(cur.Key, cur.Value + 1);
+                    q.Enqueue(new KeyValuePair<int, int>(next.Key, next.Value));
+                }
+                if (cur.Key + 1 < 8 && vis[cur.Key + 1, cur.Value]==-1&& celler[cur.Key, cur.Value].wall[1])
+                {   
+                    vis[cur.Key + 1, cur.Value]=1;
+                    KeyValuePair<int, int> next = new KeyValuePair<int, int>(cur.Key + 1, cur.Value);
+                    q.Enqueue(new KeyValuePair<int, int>(next.Key, next.Value));
+                }
+                if (cur.Value - 1 >= 0 && vis[cur.Key, cur.Value-1]==-1&& celler[cur.Key, cur.Value].wall[3])
+                {   
+                    vis[cur.Key , cur.Value-1]=1;
+                    KeyValuePair<int, int> next = new KeyValuePair<int, int>(cur.Key, cur.Value - 1);
+                    q.Enqueue(new KeyValuePair<int, int>(next.Key, next.Value));
+                }
+            }
+            layer++;
+        }
+        if (celity[endx, endy] == -1)
+        {
+            Debug.Log("i said kill the coroutine");
+            tc.openconfirmationwindow("solution does not exist");
+            StopAllCoroutines();
+        }else{
+            Debug.Log("yes solution exist");
+        }
 
     }
+
+    
+
 }
 
 

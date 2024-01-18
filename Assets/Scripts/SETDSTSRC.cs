@@ -81,7 +81,7 @@ public class SETDSTSRC : MonoBehaviour
                     pdst=hitObject.GetComponent<SpriteRenderer>().color;
 
                     if(psrc!=pdst || psrc==MET.zero){
-                        tc.openconfirmationwindow("invalid h brohh!");
+                        tc.openconfirmationwindow("invalid cell. make sure both should be blue!");
                     }else
                     {
                     Vector3 spawnPosition = hitObject.transform.position;
