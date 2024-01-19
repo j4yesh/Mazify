@@ -293,7 +293,7 @@ public class botify : MonoBehaviour
                 }
                 else if(i==2 && temp.Value+1<8){
                     celler[temp.Key,temp.Value+1].wall[3]=false;
-                }else if(temp.Value-1>=0){
+                }else if(i==3 && temp.Value-1>=0){
                     celler[temp.Key,temp.Value-1].wall[2]=false;
                 }
             }
