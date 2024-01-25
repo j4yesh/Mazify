@@ -12,7 +12,6 @@
 [![N|Solid](https://github.com/j4yesh/Mazify/blob/main/ScreenShots/Screenshot%202024-01-24%20194756.png?raw=true)](https://github.com/j4yesh/Mazify/blob/main/ScreenShots/Screenshot%202024-01-24%20194625.png?raw=true)
 
 ## Where does it need? how micro mouse robot look?
-![N|Solid](https://github.com/j4yesh/Mazify/blob/main/ScreenShots/micromouse-robot-2.jpg?raw=true)] 
 ![N|Solid](https://github.com/j4yesh/Mazify/blob/main/ScreenShots/maxresdefault.jpg?raw=true)]
 
 ## Table of Content
