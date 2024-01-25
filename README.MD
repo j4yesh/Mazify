@@ -62,7 +62,7 @@ This is purely made in Unity Engine. So just download and run Mazify.exe
 ## Conclusion
 1. The final takeaway from the simulator is to explore various pathfinding algorithms. Also,  game engines are very useful when it comes to simulation.
 4. Creating this simulator helped me learn a lot about various algorithms, and I came to know how actual navigation works based on logitude and latitude. how the maze solver robot makes a decision.
-3. The flood fill algorithm is suitable for solving mazes. If needed, I can implement it on a physical robot
+3. The Modified flood fill algorithm is suitable for solving mazes. If needed, anyone can surely implement it on a physical robot
 
 
 
