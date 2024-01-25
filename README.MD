@@ -41,19 +41,8 @@ This is purely made in Unity Engine. So just download and run Mazify.exe
 
 ## Directory Tree 
 ```
-├── pickle
-│   ├── model.pkl
-├── static
-│   ├── styles.css
-├── templates
-│   ├── index.html
-├── Phishing URL Detection.ipynb
-├── Procfile
-├── README.md
-├── app.py
-├── feature.py
-├── phishing.csv
-├── requirements.txt
+├── Assets
+├── ProjectSettings 
 ```
 
 ## Technologies Used
