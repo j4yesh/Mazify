@@ -14,6 +14,7 @@ The Micro-Mouse simulator is likely used in the context of educational and pract
 
 ## Where does it need?
 ![N|Solid](https://github.com/j4yesh/Mazify/blob/main/ScreenShots/maxresdefault.jpg?raw=true)]
+![N|Solid](https://abiraworld.com/wp-content/uploads/2022/02/MAZE-SOLVER-ONE-3.png)]
 
 ## Table of Content
   * [Introduction](#introduction)
