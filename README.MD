@@ -1,4 +1,4 @@
-# Mezify
+# Mazify
 ## Types of Mazes
 [![N|Solid](https://raw.githubusercontent.com/j4yesh/Mazify/main/ScreenShots/Screenshot%202024-01-24%20194152.png)](https://raw.githubusercontent.com/j4yesh/Mazify/main/ScreenShots/Screenshot%202024-01-24%20194152.png)
 
