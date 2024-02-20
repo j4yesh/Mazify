@@ -12,7 +12,7 @@
 [![N|Solid](https://github.com/j4yesh/Mazify/blob/main/ScreenShots/Screenshot%202024-01-24%20194756.png?raw=true)](https://github.com/j4yesh/Mazify/blob/main/ScreenShots/Screenshot%202024-01-24%20194625.png?raw=true)
 The Micro-Mouse simulator is likely used in the context of educational and practical training for individuals interested in robotics, specifically for micromouse competitions. A micromouse is a small robotic vehicle that is designed to navigate through a maze.
 
-## Where does it need?
+## Where do we need it?
 ![N|Solid](https://github.com/j4yesh/Mazify/blob/main/ScreenShots/maxresdefault.jpg?raw=true)]
 ![N|Solid](https://abiraworld.com/wp-content/uploads/2022/02/MAZE-SOLVER-ONE-3.png)]
 
