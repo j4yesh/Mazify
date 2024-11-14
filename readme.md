@@ -1,5 +1,5 @@
 # Mazify
-[WebGL]([https://mazify7052.netlify.app/]).
+[Play Mazify on Netlify](https://mazify7052.netlify.app/)
 ## Types of Mazes
 [![N|Solid](https://raw.githubusercontent.com/j4yesh/Mazify/main/ScreenShots/Screenshot%202024-01-24%20194152.png)](https://raw.githubusercontent.com/j4yesh/Mazify/main/ScreenShots/Screenshot%202024-01-24%20194152.png)
 
